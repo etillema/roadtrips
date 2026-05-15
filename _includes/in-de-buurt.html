@@ -1,0 +1,88 @@
+{% assign huidige_regio = page.locatie.regio %}
+{% assign huidig_land = page.locatie.land %}
+
+<div class="in-de-buurt">
+  <h2>Meer in {{ huidige_regio }}</h2>
+
+  {% for collectie_naam in "campings,fietstochten,wandelroutes,kano_suproutes,plaats,musea" | split: "," %}
+
+    {% assign items = site[collectie_naam] %}
+
+    {% assign categorie_labels = "campings:Campings,fietstochten:Fietstochten,wandelroutes:Wandelroutes,kano_suproutes:Kano & SUP,plaats:Plaatsen en steden,musea:Musea" %}
+    {% assign paren = categorie_labels | split: "," %}
+    {% for paar in paren %}
+      {% assign kv = paar | split: ":" %}
+      {% if kv[0] == collectie_naam %}
+        {% assign cat_label = kv[1] %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign gevonden = false %}
+
+    {% for item in items %}
+      {% if item.url == page.url %}{% continue %}{% endif %}
+
+      {% if item.locatie.regio == huidige_regio and item.locatie.land == huidig_land %}
+
+        {% unless gevonden %}
+          <h3>{{ cat_label }}</h3>
+          <div class="buurt-grid">
+          {% assign gevonden = true %}
+        {% endunless %}
+
+        <div class="buurt-kaart">
+          {% if item.foto %}
+            <div class="buurt-kaart-foto">
+              <a href="{{ item.url }}">
+                <img src="{{ item.foto | relative_url }}" alt="{{ item.naam }}" loading="lazy" />
+              </a>
+            </div>
+          {% endif %}
+          <div class="buurt-kaart-inhoud">
+            <h4><a href="{{ item.url }}">{{ item.naam }}</a></h4>
+            <p class="buurt-kaart-locatie">{{ item.locatie.plaats }}, {{ item.locatie.regio }}</p>
+            {% if item.beschrijving %}
+              <p class="buurt-kaart-beschrijving">{{ item.beschrijving }}</p>
+            {% endif %}
+
+            {% if item.categorie == "fietstochten" and item.afstand_km %}
+              <p class="buurt-kaart-detail">{{ item.afstand_km }} km
+                {% if item.type %} — {{ item.type }}{% endif %}
+                {% if item.ondergrond %} — {{ item.ondergrond }}{% endif %}
+              </p>
+            {% elsif item.categorie == "wandelroutes" and item.afstand_km %}
+              <p class="buurt-kaart-detail">{{ item.afstand_km }} km
+                {% if item.duur_uren %} — {{ item.duur_uren }} uur{% endif %}
+                {% if item.type %} — {{ item.type }}{% endif %}
+              </p>
+            {% elsif item.categorie == "kano_suproutes" and item.afstand_km %}
+              <p class="buurt-kaart-detail">{{ item.afstand_km }} km
+                {% if item.type_water %} — {{ item.type_water }}{% endif %}
+                {% if item.stroming and item.stroming != "geen" %} — stroming: {{ item.stroming }}{% endif %}
+              </p>
+            {% elsif item.categorie == "campings" and item.type %}
+              <p class="buurt-kaart-detail">{{ item.type }}{% if item.ligging and item.ligging != "" %} — {{ item.ligging }}{% endif %}</p>
+            {% elsif item.categorie == "musea" and item.thema %}
+              <p class="buurt-kaart-detail">{{ item.thema | join: ", " }}</p>
+            {% elsif item.categorie == "plaats" and item.type %}
+              <p class="buurt-kaart-detail">{{ item.type | capitalize }}</p>
+            {% endif %}
+
+            <div class="buurt-kaart-links">
+              <a href="{{ item.url }}" class="buurt-kaart-link">Lees meer</a>
+              {% if item.website and item.website != "" %}
+                <a href="{{ item.website }}" class="buurt-kaart-link" target="_blank" rel="noopener">Website</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      {% endif %}
+    {% endfor %}
+
+    {% if gevonden %}
+      </div>
+    {% endif %}
+
+  {% endfor %}
+</div>

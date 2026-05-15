@@ -1,0 +1,20 @@
+{
+  "autoApproveTools": ["Edit", "Write", "Create"],
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(python3 validate.py)"
+    ],
+    "deny": [
+      "Bash(sudo commit:*)",
+      "Bash(sudo push:*)",
+      "Bash(sudo rm:*)",
+      "Bash(rm -rf:*)",
+      "Bash(sudo lvremove:*)",
+      "Bash(sudo vgremove:*)",
+      "Bash(sudo pvremove:*)",
+      "Bash(sudo wipefs:*)",
+      "Bash(sudo dd:*)"
+    ]
+  }
+}

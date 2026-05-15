@@ -1,0 +1,30 @@
+---
+layout: single
+title: Plaatsen en steden
+---
+
+<div class="category-intro">
+  <p>Ontdek pittoreske dorpen en interessante steden in Nederland. Perfecte tussenstops voor je roadtrip.</p>
+</div>
+
+<div class="item-grid">
+  {% assign gesorteerd = site.plaats | sort: "naam" %}
+  {% for plaats in gesorteerd %}
+  <div class="item-kaart">
+    {% if plaats.foto %}
+      <img src="{{ plaats.foto | relative_url }}" alt="{{ plaats.naam }}" loading="lazy" />
+    {% endif %}
+    <div class="kaart-inhoud">
+      <h2><a href="{{ plaats.url }}">{{ plaats.naam }}</a></h2>
+      <p class="locatie">{{ plaats.locatie.regio }}, {{ plaats.locatie.land }}</p>
+      {% if plaats.type %}
+        <p><small>{{ plaats.type | capitalize }}</small></p>
+      {% endif %}
+      {% if plaats.beschrijving %}
+        <p>{{ plaats.beschrijving }}</p>
+      {% endif %}
+      <a href="{{ plaats.url }}" class="btn" style="display: inline-block; margin-top: 0.5rem; margin-bottom: 0;">Lees meer</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>

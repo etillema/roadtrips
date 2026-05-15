@@ -1,0 +1,79 @@
+title: Roadtrips
+description: "Campings, fietstochten, wandelroutes, kano- en suproutes, mooie plaatsen en musea"
+baseurl: ""
+url: ""
+lang: nl
+favicon: "/assets/images/favicon.ico"
+
+theme: minimal-mistakes-jekyll
+minimal_mistakes_skin: default
+
+# Build settings
+markdown: kramdown
+encoding: utf-8
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-include-cache
+
+# Collecties
+collections:
+  campings:
+    output: true
+    permalink: /campings/:slug/
+  fietstochten:
+    output: true
+    permalink: /fietstochten/:slug/
+  wandelroutes:
+    output: true
+    permalink: /wandelroutes/:slug/
+  plaats:
+    output: true
+    permalink: /plaats/:slug/
+  musea:
+    output: true
+    permalink: /musea/:slug/
+  kano_suproutes:
+    output: true
+    permalink: /kano-suproutes/:slug/
+
+# Front matter defaults per collectie
+defaults:
+  - scope:
+      path: ""
+      type: "campings"
+    values:
+      layout: "item"
+      categorie: "campings"
+  - scope:
+      path: ""
+      type: "fietstochten"
+    values:
+      layout: "item"
+      categorie: "fietstochten"
+  - scope:
+      path: ""
+      type: "wandelroutes"
+    values:
+      layout: "item"
+      categorie: "wandelroutes"
+  - scope:
+      path: ""
+      type: "plaats"
+    values:
+      layout: "item"
+      categorie: "plaats"
+  - scope:
+      path: ""
+      type: "musea"
+    values:
+      layout: "item"
+      categorie: "musea"
+  - scope:
+      path: ""
+      type: "kano_suproutes"
+    values:
+      layout: "item"
+      categorie: "kano_suproutes"

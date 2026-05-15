@@ -1,0 +1,166 @@
+---
+layout: single
+title: Zoeken
+---
+
+<div class="zoek-container">
+  <p>Selecteer een land en regio om te zien wat er te vinden is.</p>
+
+  <div class="zoek-formulier">
+    <div>
+      <label for="filter-land">Land:</label>
+      <select id="filter-land">
+        <option value="">Alle landen</option>
+      </select>
+    </div>
+    <div>
+      <label for="filter-regio">Regio:</label>
+      <select id="filter-regio">
+        <option value="">Alle regio's</option>
+      </select>
+    </div>
+    <div>
+      <label for="filter-categorie">Categorie:</label>
+      <select id="filter-categorie">
+        <option value="">Alles</option>
+        <option value="campings">Campings</option>
+        <option value="fietstochten">Fietstochten</option>
+        <option value="wandelroutes">Wandelroutes</option>
+        <option value="plaats">Plaatsen en steden</option>
+        <option value="musea">Musea</option>
+        <option value="kano_suproutes">Kano &amp; SUP</option>
+      </select>
+    </div>
+  </div>
+
+  <div id="zoek-resultaten"></div>
+</div>
+
+<script id="alle-items-data" type="application/json">
+[
+{% assign alle = site.campings
+  | concat: site.fietstochten
+  | concat: site.wandelroutes
+  | concat: site.kano_suproutes
+  | concat: site.plaats
+  | concat: site.musea %}
+{% for item in alle %}
+  {
+    "naam": {{ item.naam | jsonify }},
+    "url": "{{ item.url | relative_url }}",
+    "categorie": "{{ item.categorie }}",
+    "plaats": {{ item.locatie.plaats | jsonify }},
+    "regio": {{ item.locatie.regio | jsonify }},
+    "land": {{ item.locatie.land | jsonify }},
+    "beschrijving": {{ item.beschrijving | default: "" | jsonify }},
+    "foto": "{{ item.foto }}",
+    "website": "{{ item.website }}"
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var items = JSON.parse(document.getElementById('alle-items-data').textContent);
+
+  var landSelect      = document.getElementById('filter-land');
+  var regioSelect     = document.getElementById('filter-regio');
+  var categorieSelect = document.getElementById('filter-categorie');
+  var resultaten      = document.getElementById('zoek-resultaten');
+
+  var categorieLabels = {
+    campings:     'Campings',
+    fietstochten: 'Fietstochten',
+    wandelroutes: 'Wandelroutes',
+    plaats:          'Plaatsen en steden',
+    musea:           'Musea',
+    kano_suproutes:  'Kano & SUP'
+  };
+
+  var landen = Array.from(new Set(items.map(function (i) { return i.land; }))).sort();
+  landen.forEach(function (land) {
+    var opt = document.createElement('option');
+    opt.value = land;
+    opt.textContent = land;
+    landSelect.appendChild(opt);
+  });
+
+  function vulRegios() {
+    var gekozenLand = landSelect.value;
+    regioSelect.innerHTML = '<option value="">Alle regio\'s</option>';
+    var bron = gekozenLand
+      ? items.filter(function (i) { return i.land === gekozenLand; })
+      : items;
+    var regios = Array.from(new Set(bron.map(function (i) { return i.regio; }))).sort();
+    regios.forEach(function (regio) {
+      var opt = document.createElement('option');
+      opt.value = regio;
+      opt.textContent = regio;
+      regioSelect.appendChild(opt);
+    });
+  }
+
+  function toonResultaten() {
+    var land      = landSelect.value;
+    var regio     = regioSelect.value;
+    var categorie = categorieSelect.value;
+
+    var gefilterd = items;
+    if (land)      gefilterd = gefilterd.filter(function (i) { return i.land === land; });
+    if (regio)     gefilterd = gefilterd.filter(function (i) { return i.regio === regio; });
+    if (categorie) gefilterd = gefilterd.filter(function (i) { return i.categorie === categorie; });
+
+    if (gefilterd.length === 0) {
+      resultaten.innerHTML = '<p>Geen resultaten gevonden.</p>';
+      return;
+    }
+
+    var groepen = {};
+    gefilterd.forEach(function (item) {
+      if (!groepen[item.categorie]) groepen[item.categorie] = [];
+      groepen[item.categorie].push(item);
+    });
+
+    var html = '';
+    Object.entries(groepen).forEach(function (entry) {
+      var cat      = entry[0];
+      var catItems = entry[1];
+      html += '<h3>' + (categorieLabels[cat] || cat) + '</h3>';
+      html += '<div class="buurt-grid">';
+      catItems.forEach(function (item) {
+        html += '<div class="buurt-kaart">';
+        if (item.foto) {
+          html += '<div class="buurt-kaart-foto">'
+                + '<a href="' + item.url + '">'
+                + '<img src="' + item.foto + '" alt="' + item.naam + '" loading="lazy" />'
+                + '</a></div>';
+        }
+        html += '<div class="buurt-kaart-inhoud">'
+              + '<h4><a href="' + item.url + '">' + item.naam + '</a></h4>'
+              + '<p class="buurt-kaart-locatie">' + item.plaats + ', ' + item.regio + '</p>';
+        if (item.beschrijving) {
+          html += '<p class="buurt-kaart-beschrijving">' + item.beschrijving + '</p>';
+        }
+        html += '<div class="buurt-kaart-links">'
+              + '<a href="' + item.url + '" class="buurt-kaart-link">Lees meer</a>';
+        if (item.website) {
+          html += '<a href="' + item.website + '" class="buurt-kaart-link"'
+                + ' target="_blank" rel="noopener">Website</a>';
+        }
+        html += '</div></div></div>';
+      });
+      html += '</div>';
+    });
+
+    resultaten.innerHTML = html;
+  }
+
+  landSelect.addEventListener('change', function () { vulRegios(); toonResultaten(); });
+  regioSelect.addEventListener('change', toonResultaten);
+  categorieSelect.addEventListener('change', toonResultaten);
+
+  vulRegios();
+  toonResultaten();
+});
+</script>

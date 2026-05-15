@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Plaats of stad",
+  "type": "object",
+  "required": [
+    "naam",
+    "locatie",
+    "type",
+    "beschrijving",
+    "omschrijving_sfeer"
+  ],
+  "properties": {
+    "naam":             { "type": "string" },
+    "review_datum":     { "type": "string", "format": "date" },
+    "locatie":          { "$ref": "./defs.json#/$defs/locatie" },
+    "website":          { "type": "string", "format": "uri" },
+    "type":             { "type": "string", "enum": ["dorp", "stad", "gehucht"] },
+    "beschrijving":     { "type": "string" },
+    "omschrijving_sfeer":{ "type": "string" },
+    "bezienswaardigheden": {
+      "type": "array",
+      "items": { "$ref": "./defs.json#/$defs/bezienswaardigheidItem" }
+    },
+    "horeca": {
+      "type": "array",
+      "items": { "$ref": "./defs.json#/$defs/horecaItem" }
+    },
+    "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
+    "foto":         { "type": "string" }
+  },
+  "additionalProperties": false
+}

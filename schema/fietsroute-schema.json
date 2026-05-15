@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fietsroute",
+  "type": "object",
+  "required": [
+    "naam",
+    "locatie",
+    "startpunt",
+    "afstand_km",
+    "type",
+    "ondergrond",
+    "beschrijving",
+    "omschrijving_route"
+  ],
+  "properties": {
+    "naam":              { "type": "string" },
+    "review_datum":      { "type": "string", "format": "date" },
+    "locatie":           { "$ref": "./defs.json#/$defs/locatie" },
+    "startpunt":         { "type": "string" },
+    "eindpunt":          { "type": "string" },
+    "afstand_km":        { "type": "number", "minimum": 0 },
+    "type":              { "type": "string", "enum": ["rondrit", "A-naar-B"] },
+    "ondergrond":        { "type": "string", "enum": ["verhard", "onverhard", "fietspad", "openbare weg", "mix"] },
+    "beschrijving":      { "type": "string" },
+    "omschrijving_route":{ "type": "string" },
+    "bezienswaardigheden_onderweg": {
+      "type": "array",
+      "items": { "$ref": "./defs.json#/$defs/bezienswaardigheidItem" }
+    },
+    "gpx_bestand":  { "type": "string" },
+    "route_url":    { "type": "string", "format": "uri" },
+    "horeca": {
+      "type": "array",
+      "items": { "$ref": "./defs.json#/$defs/horecaItem" }
+    },
+    "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
+    "foto":         { "type": "string" }
+  },
+  "additionalProperties": false
+}

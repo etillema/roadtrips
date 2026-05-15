@@ -1,0 +1,17 @@
+main:
+  - title: "Home"
+    url: /
+  - title: "Campings"
+    url: /campings/
+  - title: "Fietstochten"
+    url: /fietstochten/
+  - title: "Wandelroutes"
+    url: /wandelroutes/
+  - title: "Plaatsen"
+    url: /plaats/
+  - title: "Musea"
+    url: /musea/
+  - title: "Kano & SUP"
+    url: /kano-suproutes/
+  - title: "Zoeken"
+    url: /zoeken/

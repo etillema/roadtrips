@@ -1,0 +1,34 @@
+{% comment %}
+  Toont een Google Maps embed en een link om de kaart groot te openen.
+  Gebruikt page.adres als dat beschikbaar is, anders plaats + regio + land.
+{% endcomment %}
+
+{% if page.adres %}
+  {% assign maps_query = page.adres | url_encode %}
+{% else %}
+  {% assign maps_query = page.locatie.plaats
+    | append: ", "
+    | append: page.locatie.regio
+    | append: ", "
+    | append: page.locatie.land
+    | url_encode %}
+{% endif %}
+
+<div class="google-maps-blok">
+  <div class="google-maps-embed">
+    <iframe
+      src="https://maps.google.com/maps?q={{ maps_query }}&z=13&output=embed"
+      style="width: 100%; height: 100%; border: 0; border-radius: 8px;"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Kaart van {{ page.locatie.plaats }}"
+    ></iframe>
+  </div>
+  <p class="google-maps-link">
+    <a href="https://www.google.com/maps/search/?api=1&query={{ maps_query }}"
+       target="_blank"
+       rel="noopener">
+      Bekijk op Google Maps
+    </a>
+  </p>
+</div>

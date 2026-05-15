@@ -1,0 +1,143 @@
+= Roadtrips
+:toc:
+
+Nederlandse Jekyll-website voor campings, plaatsen, fietsroutes, wandelroutes, kano- en suproutes en musea.
+
+Jekyll is een programma dat Markdown-bestanden met inhoud omzet naar een volledige statische website (HTML-bestanden). De website wordt gehost via GitHub Pages.
+
+
+== Nieuw item toevoegen
+
+Zie link:CLAUDE.md[CLAUDE.md] voor de stap-voor-stap instructies en front matter templates per categorie.
+
+
+== Lokaal draaien
+
+Om de site lokaal te bekijken heb je Ruby en Bundler nodig. Daarna volstaat één commando:
+
+[source,bash]
+----
+make serve
+----
+
+`make` is een programma dat vooraf gedefinieerde taken uitvoert. Je hoeft niet te weten hoe Jekyll werkt — `make serve` regelt installatie, validatie en het opstarten van de server automatisch in de juiste volgorde.
+
+Open daarna http://localhost:4000 in je browser.
+
+=== Lokale configuratie (_config-dev.yml)
+
+Jekyll laadt bij `make serve` automatisch twee configuratiebestanden: eerst `_config.yml` (de productie-instellingen), dan `_config-dev.yml` (jouw lokale overschrijvingen). Zo kun je lokaal andere instellingen gebruiken zonder de productieconfiguratie aan te passen.
+
+Maak eenmalig je eigen lokale configuratie aan op basis van het meegeleverde voorbeeldbestand:
+
+[source,bash]
+----
+cp _config-dev-sample.yml _config-dev.yml
+----
+
+Pas daarna `_config-dev.yml` naar wens aan. De volgende opties zijn handig om lokaal te overschrijven:
+
+[cols="1,1,3"]
+|===
+| Optie | Standaardwaarde | Uitleg
+
+| `url`
+| `""`
+| Het volledige domein van de site, bijv. `https://gebruikersnaam.github.io`. Laat leeg voor lokaal gebruik, anders werken interne links mogelijk niet.
+
+| `baseurl`
+| `""`
+| Het pad na het domein, bijv. `/roadtrips` bij een GitHub-projectpagina. Laat leeg als de site op de root draait.
+
+| `host`
+| `127.0.0.1`
+| Het netwerkadres waarop de server luistert. `127.0.0.1` betekent dat de site alleen op jouw eigen computer bereikbaar is.
+
+| `port`
+| `4000`
+| Het poortnummer. Bezoek de site via `http://localhost:4000`. Verander dit als poortnummer 4000 al in gebruik is.
+
+| `livereload`
+| `true`
+| Vernieuwt de browser automatisch zodra je een bestand opslaat. Handig tijdens het schrijven van content.
+|===
+
+`_config-dev.yml` staat in `.gitignore` en wordt nooit meegenomen in de git-repository. Iedere onotwikkelaar heeft zijn eigen exemplaar.
+
+=== Overzicht van alle make-taken
+
+`make` voert taken altijd in de juiste volgorde uit, inclusief alle benodigde voorstappen.
+
+[cols="1,2,2"]
+|===
+| Taak | Wat het doet | Voert eerst uit
+
+| `make serve`
+| Start lokale ontwikkelserver op http://localhost:4000
+| `verify-schema` → `install`
+
+| `make build`
+| Bouwt de statische site naar `_site/`
+| `verify-schema` → `install`
+
+| `make build-verbose`
+| Bouwt met uitgebreide logging (handig bij problemen)
+| `verify-schema` → `install`
+
+| `make verify-schema`
+| Valideert front matter van alle `.md`-bestanden tegen de JSON-schema's
+| `install`
+
+| `make verify-site`
+| Controleert of alle items een HTML-pagina hebben in `_site/`
+| `build` → `verify-schema` → `install`
+
+| `make install`
+| Installeert benodigde Ruby-pakketten (gems) via Bundler
+| —
+
+| `make clean`
+| Verwijdert `_site/` en alle tijdelijke bestanden
+| —
+|===
+
+=== Validatie
+
+Er zijn twee scripts om de kwaliteit van de data en de gebouwde site te controleren. Ze worden automatisch aangeroepen vanuit de Makefile, maar kunnen ook los worden uitgevoerd.
+
+[cols="1,2,2"]
+|===
+| Script | Controleert | Los uitvoeren
+
+| `verify-schema.py`
+| Front matter van alle `.md`-bestanden tegen de JSON-schema's in `schema/`
+| `python3 verify-schema.py`
+
+| `verify-site.sh`
+| Of elk item na de Jekyll-build een HTML-pagina heeft in `_site/`
+| `bash verify-site.sh`
+|===
+
+
+== Publiceren via GitHub Pages
+
+De site wordt automatisch gepubliceerd via *GitHub Pages* — een gratis hostingdienst van GitHub voor statische websites. Je hebt geen eigen server of hosting nodig.
+
+Het publiceren verloopt via *GitHub Actions*: een systeem dat automatisch taken uitvoert zodra je wijzigingen naar de repository pusht. De benodigde configuratie hiervoor staat al in de repository, in het bestand link:.github/workflows/jekyll.yml[.github/workflows/jekyll.yml].
+
+*Hoe het werkt:*
+
+1. Je pusht een wijziging naar de `main`-branch van de repository op GitHub
+2. GitHub Actions detecteert de wijziging en bouwt automatisch de site met Jekyll
+3. De gebouwde site wordt gepubliceerd op GitHub Pages
+
+Je hoeft dus na een push niets handmatig te doen — de site is binnen enkele minuten live.
+
+=== Eenmalige instelling in GitHub
+
+GitHub Pages moet eenmalig worden ingeschakeld in de instellingen van de repository:
+
+. Ga naar de repository op GitHub
+. Klik op *Settings* → *Pages*
+. Kies bij *Source* de optie *GitHub Actions*
+. Sla op — daarna wordt de site automatisch gepubliceerd bij elke push naar `main`

@@ -1,0 +1,434 @@
+---
+layout: default
+---
+
+<div id="main" role="main">
+  <div class="page__content">
+    <article class="item-detail {{ page.categorie }}">
+
+      <header class="item-header">
+        <h1 class="page__title">{{ page.naam }}</h1>
+        <p class="item-locatie">
+          {{ page.locatie.plaats }}, {{ page.locatie.regio }}, {{ page.locatie.land }}
+        </p>
+      </header>
+
+      {% if page.foto %}
+      <div class="item-hero">
+        <img src="{{ page.foto | relative_url }}" alt="{{ page.naam }}" loading="lazy" />
+      </div>
+      {% endif %}
+
+      <div class="item-meta-wrapper">
+        <div class="item-meta-blok">
+
+        {% if page.categorie == "campings" %}
+          {% if page.beschrijving and page.beschrijving != "" %}
+            <p><strong>{{ page.beschrijving }}</strong></p>
+          {% endif %}
+          {% if page.omschrijving_sfeer and page.omschrijving_sfeer != "" %}
+            <p><em>{{ page.omschrijving_sfeer }}</em></p>
+          {% endif %}
+          {% if page.website and page.website != "" %}
+            <p><a href="{{ page.website }}" target="_blank" rel="noopener">Website</a></p>
+          {% endif %}
+          {% if page.adres %}<p>Adres: {{ page.adres }}</p>{% endif %}
+          {% if page.telefoon %}<p>Telefoon: {{ page.telefoon }}</p>{% endif %}
+          {% if page.email and page.email != "" %}<p>Email: <a href="mailto:{{ page.email }}">{{ page.email }}</a></p>{% endif %}
+          {% if page.type %}<p>Type: {{ page.type }}</p>{% endif %}
+          {% if page.aantal_plaatsen and page.aantal_plaatsen > 0 %}<p>Plaatsen: {{ page.aantal_plaatsen }}</p>{% endif %}
+          {% if page.locatie.gebied and page.locatie.gebied != "" %}<p>Gebied: {{ page.locatie.gebied }}</p>{% endif %}
+          {% if page.review_datum and page.review_datum != "" %}<p>Review datum: {{ page.review_datum }}</p>{% endif %}
+          {% if page.ligging %}<p>Ligging: {{ page.ligging }}</p>{% endif %}
+          {% if page.kenmerken_kampeerplek %}
+            <h3>Kenmerken kampeerplek</h3>
+            <ul>
+              {% for k in page.kenmerken_kampeerplek %}
+                {% if k and k != "" %}<li>{{ k }}</li>{% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if page.sanitair %}<p>Sanitair: {{ page.sanitair }}</p>{% endif %}
+          {% if page.voorzieningen %}
+            {% if page.voorzieningen.broodjesservice %}<p>Broodjesservice aanwezig</p>{% endif %}
+            {% if page.voorzieningen.zwemgelegenheid %}<p>Zwemgelegenheid aanwezig</p>{% endif %}
+            {% assign op_camping = page.voorzieningen.horeca_op_camping | where_exp: "h", "h.naam != ''" %}
+            {% if op_camping.size > 0 %}
+              <h3>Horeca op de camping</h3>
+              <ul>
+                {% for h in op_camping %}
+                  <li>{{ h.naam }}{% if h.type %} ({{ h.type }}){% endif %}{% if h.opmerking and h.opmerking != "" %} — {{ h.opmerking }}{% endif %}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% assign winkels = page.voorzieningen.winkels | where_exp: "s", "s.naam != ''" %}
+            {% if winkels.size > 0 %}
+              <h3>Winkels</h3>
+              <ul>
+                {% for s in winkels %}
+                  <li>{% if s.site and s.site != "" %}<a href="{{ s.site }}" target="_blank" rel="noopener">{{ s.naam }}</a>{% else %}{{ s.naam }}{% endif %}{% if s.afstand and s.afstand != "" %} — {{ s.afstand }}{% endif %}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% assign horeca_buurt = page.voorzieningen.horeca_in_de_buurt | where_exp: "h", "h.naam != ''" %}
+            {% if horeca_buurt.size > 0 %}
+              <h3>Eten en drinken in de buurt</h3>
+              <ul>
+                {% for h in horeca_buurt %}
+                  <li>
+                    {% if h.url and h.url != "" %}
+                      <a href="{{ h.url }}" target="_blank" rel="noopener">{{ h.naam }}</a>
+                    {% else %}
+                      {{ h.naam }}
+                    {% endif %}
+                    {% if h.plaats and h.plaats != "" %} — {{ h.plaats }}{% endif %}
+                    {% if h.afstand and h.afstand != "" %} ({{ h.afstand }}){% endif %}
+                    {% if h.opmerking and h.opmerking != "" %}<br><em>{{ h.opmerking }}</em>{% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endif %}
+          {% if page.activiteiten %}
+            {% assign wandelen = page.activiteiten.wandelen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign fietsen = page.activiteiten.fietsen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign kano = page.activiteiten.kano_en_sup | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign dorpen = page.activiteiten.plaatsen_en_dorpen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign musea_act = page.activiteiten.musea | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign algemeen = page.activiteiten.algemeen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign heeft_activiteiten = false %}
+            {% if wandelen.size > 0 or fietsen.size > 0 or kano.size > 0 or dorpen.size > 0 or musea_act.size > 0 or algemeen.size > 0 %}
+              {% assign heeft_activiteiten = true %}
+            {% endif %}
+            {% if heeft_activiteiten %}
+              <h3>Activiteiten in de omgeving</h3>
+              {% assign activiteit_secties = "wandelen,fietsen,kano,dorpen,musea_act,algemeen" | split: "," %}
+              {% assign activiteit_labels = "Wandelen,Fietsen,Kano en SUP,Plaatsen en dorpen,Musea,Overig" | split: "," %}
+
+              {% if wandelen.size > 0 %}
+                <h4>Wandelen</h4>
+                <ul>
+                  {% for a in wandelen %}
+                    <li>
+                      {% if a.titel and a.titel != "" %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}
+                        {% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}
+                      {% else %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
+                      {% endif %}
+                      {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if fietsen.size > 0 %}
+                <h4>Fietsen</h4>
+                <ul>
+                  {% for a in fietsen %}
+                    <li>
+                      {% if a.titel and a.titel != "" %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}
+                        {% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}
+                      {% else %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
+                      {% endif %}
+                      {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if kano.size > 0 %}
+                <h4>Kano en SUP</h4>
+                <ul>
+                  {% for a in kano %}
+                    <li>
+                      {% if a.titel and a.titel != "" %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}
+                        {% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}
+                      {% else %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
+                      {% endif %}
+                      {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if dorpen.size > 0 %}
+                <h4>Plaatsen en dorpen</h4>
+                <ul>
+                  {% for a in dorpen %}
+                    <li>
+                      {% if a.titel and a.titel != "" %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}
+                        {% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}
+                      {% else %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
+                      {% endif %}
+                      {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if musea_act.size > 0 %}
+                <h4>Musea</h4>
+                <ul>
+                  {% for a in musea_act %}
+                    <li>
+                      {% if a.titel and a.titel != "" %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}
+                        {% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}
+                      {% else %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
+                      {% endif %}
+                      {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              {% if algemeen.size > 0 %}
+                <h4>Overig</h4>
+                <ul>
+                  {% for a in algemeen %}
+                    <li>
+                      {% if a.titel and a.titel != "" %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}
+                        {% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}
+                      {% else %}
+                        {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
+                      {% endif %}
+                      {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+        {% elsif page.categorie == "fietstochten" %}
+          {% if page.beschrijving and page.beschrijving != "" %}
+            <p><strong>{{ page.beschrijving }}</strong></p>
+          {% endif %}
+          {% if page.omschrijving_route and page.omschrijving_route != "" %}
+            <p><em>{{ page.omschrijving_route }}</em></p>
+          {% endif %}
+          {% if page.startpunt %}<p>Startpunt: {{ page.startpunt }}</p>{% endif %}
+          {% if page.eindpunt and page.eindpunt != "" %}<p>Eindpunt: {{ page.eindpunt }}</p>{% endif %}
+          {% if page.afstand_km %}<p>Afstand: {{ page.afstand_km }} km</p>{% endif %}
+          {% if page.type %}<p>Type: {{ page.type }}</p>{% endif %}
+          {% if page.ondergrond %}<p>Ondergrond: {{ page.ondergrond }}</p>{% endif %}
+          {% if page.locatie.gebied and page.locatie.gebied != "" %}<p>Gebied: {{ page.locatie.gebied }}</p>{% endif %}
+          {% if page.review_datum and page.review_datum != "" %}<p>Review datum: {{ page.review_datum }}</p>{% endif %}
+          {% if page.gpx_bestand and page.gpx_bestand != "" %}
+            <p><a href="{{ page.gpx_bestand | relative_url }}">Download GPX</a></p>
+          {% endif %}
+          {% if page.route_url and page.route_url != "" %}
+            <p><a href="{{ page.route_url }}" target="_blank" rel="noopener">Bekijk route online</a></p>
+          {% endif %}
+          {% assign bz = page.bezienswaardigheden_onderweg | where_exp: "b", "b.beschrijving != ''" %}
+          {% if bz.size > 0 %}
+            <h3>Bezienswaardigheden onderweg</h3>
+            <ul>
+              {% for b in bz %}
+                <li>{% if b.url and b.url != "" %}<a href="{{ b.url }}" target="_blank" rel="noopener">{{ b.beschrijving }}</a>{% else %}{{ b.beschrijving }}{% endif %}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+        {% elsif page.categorie == "wandelroutes" %}
+          {% if page.beschrijving and page.beschrijving != "" %}
+            <p><strong>{{ page.beschrijving }}</strong></p>
+          {% endif %}
+          {% if page.omschrijving_route and page.omschrijving_route != "" %}
+            <p><em>{{ page.omschrijving_route }}</em></p>
+          {% endif %}
+          {% if page.startpunt %}<p>Startpunt: {{ page.startpunt }}</p>{% endif %}
+          {% if page.eindpunt and page.eindpunt != "" %}<p>Eindpunt: {{ page.eindpunt }}</p>{% endif %}
+          {% if page.afstand_km %}<p>Afstand: {{ page.afstand_km }} km</p>{% endif %}
+          {% if page.duur_uren %}<p>Duur: {{ page.duur_uren }} uur</p>{% endif %}
+          {% if page.type %}<p>Type: {{ page.type }}</p>{% endif %}
+          {% if page.ondergrond %}<p>Ondergrond: {{ page.ondergrond }}</p>{% endif %}
+          {% if page.locatie.gebied and page.locatie.gebied != "" %}<p>Gebied: {{ page.locatie.gebied }}</p>{% endif %}
+          {% if page.ov_tip and page.ov_tip != "" %}<p>OV-tip: {{ page.ov_tip }}</p>{% endif %}
+          {% if page.review_datum and page.review_datum != "" %}<p>Review datum: {{ page.review_datum }}</p>{% endif %}
+          {% if page.gpx_bestand and page.gpx_bestand != "" %}
+            <p><a href="{{ page.gpx_bestand | relative_url }}">Download GPX</a></p>
+          {% endif %}
+          {% if page.route_url and page.route_url != "" %}
+            <p><a href="{{ page.route_url }}" target="_blank" rel="noopener">Bekijk route online</a></p>
+          {% endif %}
+          {% if page.ov_tip and page.ov_tip != "" %}
+            <p>OV-tip: {{ page.ov_tip }}</p>
+          {% endif %}
+          {% assign bz = page.bezienswaardigheden_onderweg | where_exp: "b", "b.beschrijving != ''" %}
+          {% if bz.size > 0 %}
+            <h3>Bezienswaardigheden onderweg</h3>
+            <ul>
+              {% for b in bz %}
+                <li>{% if b.url and b.url != "" %}<a href="{{ b.url }}" target="_blank" rel="noopener">{{ b.beschrijving }}</a>{% else %}{{ b.beschrijving }}{% endif %}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+
+        {% elsif page.categorie == "plaats" %}
+          {% if page.beschrijving and page.beschrijving != "" %}
+            <p><strong>{{ page.beschrijving }}</strong></p>
+          {% endif %}
+          {% if page.omschrijving_sfeer and page.omschrijving_sfeer != "" %}
+            <p>{{ page.omschrijving_sfeer }}</p>
+          {% endif %}
+          {% if page.website and page.website != "" %}
+            <p><a href="{{ page.website }}" target="_blank" rel="noopener">Website</a></p>
+          {% endif %}
+          {% if page.type %}<p>Type: {{ page.type | capitalize }}</p>{% endif %}
+          {% if page.locatie.gebied and page.locatie.gebied != "" %}<p>Gebied: {{ page.locatie.gebied }}</p>{% endif %}
+          {% if page.review_datum and page.review_datum != "" %}<p>Review datum: {{ page.review_datum }}</p>{% endif %}
+          {% if page.bezienswaardigheden %}
+            <h3>Bezienswaardigheden</h3>
+            <ul>
+              {% for b in page.bezienswaardigheden %}
+                {% if b.beschrijving %}
+                  <li>{% if b.url %}<a href="{{ b.url }}" target="_blank" rel="noopener">{{ b.beschrijving }}</a>{% else %}{{ b.beschrijving }}{% endif %}</li>
+                {% else %}
+                  <li>{{ b }}</li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if page.activiteiten %}
+            {% assign fietsen = page.activiteiten.fietsen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign wandelen = page.activiteiten.wandelen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign musea = page.activiteiten.musea | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign plaatsen = page.activiteiten.plaatsen_en_dorpen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign campings = page.activiteiten.campings | where_exp: "a", "a.beschrijving != ''" %}
+            {% if fietsen.size > 0 or wandelen.size > 0 or musea.size > 0 or plaatsen.size > 0 or campings.size > 0 %}
+              <h3>Activiteiten in de omgeving</h3>
+              {% if fietsen.size > 0 %}
+                <h4>Fietsen</h4>
+                <ul>{% for a in fietsen %}<li>{% if a.titel and a.titel != "" %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}{% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}{% else %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+              {% if wandelen.size > 0 %}
+                <h4>Wandelen</h4>
+                <ul>{% for a in wandelen %}<li>{% if a.titel and a.titel != "" %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}{% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}{% else %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+              {% if musea.size > 0 %}
+                <h4>Musea</h4>
+                <ul>{% for a in musea %}<li>{% if a.titel and a.titel != "" %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}{% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}{% else %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+              {% if plaatsen.size > 0 %}
+                <h4>Plaatsen en dorpen in de buurt</h4>
+                <ul>{% for a in plaatsen %}<li>{% if a.titel and a.titel != "" %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}{% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}{% else %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+              {% if campings.size > 0 %}
+                <h4>Campings in de buurt</h4>
+                <ul>{% for a in campings %}<li>{% if a.titel and a.titel != "" %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.titel }}</a>{% else %}<strong>{{ a.titel }}</strong>{% endif %}{% if a.beschrijving and a.beschrijving != "" %}<br>{{ a.beschrijving }}{% endif %}{% else %}{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+        {% elsif page.categorie == "musea" %}
+          {% if page.beschrijving and page.beschrijving != "" %}
+            <p><strong>{{ page.beschrijving }}</strong></p>
+          {% endif %}
+          {% if page.omschrijving_sfeer and page.omschrijving_sfeer != "" %}
+            <p><em>{{ page.omschrijving_sfeer }}</em></p>
+          {% endif %}
+          {% if page.website and page.website != "" %}
+            <p><a href="{{ page.website }}" target="_blank" rel="noopener">Website</a></p>
+          {% endif %}
+          {% if page.adres %}<p>Adres: {{ page.adres }}</p>{% endif %}
+          {% if page.openingstijden %}<p>Openingstijden: {{ page.openingstijden }}</p>{% endif %}
+          {% if page.toegangsprijs %}<p>Toegang: {{ page.toegangsprijs }}</p>{% endif %}
+          {% if page.locatie.gebied and page.locatie.gebied != "" %}<p>Gebied: {{ page.locatie.gebied }}</p>{% endif %}
+          {% if page.review_datum and page.review_datum != "" %}<p>Review datum: {{ page.review_datum }}</p>{% endif %}
+          {% if page.thema %}
+            <div class="kenmerken-tags">
+              {% for t in page.thema %}<span class="item-tag">{{ t }}</span>{% endfor %}
+            </div>
+          {% endif %}
+          {% if page.activiteiten %}
+            {% assign fietsen = page.activiteiten.fietsen | where_exp: "a", "a.beschrijving != ''" %}
+            {% assign plaatsen = page.activiteiten.plaatsen_en_dorpen | where_exp: "a", "a.beschrijving != ''" %}
+            {% if fietsen.size > 0 or plaatsen.size > 0 %}
+              <h3>In de omgeving</h3>
+              {% if fietsen.size > 0 %}
+                <h4>Fietsen</h4>
+                <ul>{% for a in fietsen %}<li>{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+              {% if plaatsen.size > 0 %}
+                <h4>Plaatsen in de buurt</h4>
+                <ul>{% for a in plaatsen %}<li>{% if a.url %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}</li>{% endfor %}</ul>
+              {% endif %}
+            {% endif %}
+          {% endif %}
+
+        {% elsif page.categorie == "kano_suproutes" %}
+          {% if page.beschrijving and page.beschrijving != "" %}
+            <p><strong>{{ page.beschrijving }}</strong></p>
+          {% endif %}
+          {% if page.omschrijving_route and page.omschrijving_route != "" %}
+            <p><em>{{ page.omschrijving_route }}</em></p>
+          {% endif %}
+          {% if page.instapplaats and page.instapplaats != "" %}<p>Instapplaats: {{ page.instapplaats }}</p>{% endif %}
+          {% if page.uitstapplaats and page.uitstapplaats != "" %}<p>Uitstapplaats: {{ page.uitstapplaats }}</p>{% endif %}
+          {% if page.afstand_km %}<p>Afstand: {{ page.afstand_km }} km</p>{% endif %}
+          {% if page.duur_uren %}<p>Duur: {{ page.duur_uren }} uur</p>{% endif %}
+          {% if page.type %}<p>Type: {{ page.type }}</p>{% endif %}
+          {% if page.type_water %}<p>Water: {{ page.type_water }}</p>{% endif %}
+          {% if page.stroming %}<p>Stroming: {{ page.stroming }}</p>{% endif %}
+          {% if page.locatie.gebied and page.locatie.gebied != "" %}<p>Gebied: {{ page.locatie.gebied }}</p>{% endif %}
+          {% if page.review_datum and page.review_datum != "" %}<p>Review datum: {{ page.review_datum }}</p>{% endif %}
+          {% if page.gpx_bestand and page.gpx_bestand != "" %}
+            <p><a href="{{ page.gpx_bestand | relative_url }}">Download GPX</a></p>
+          {% endif %}
+          {% if page.route_url and page.route_url != "" %}
+            <p><a href="{{ page.route_url }}" target="_blank" rel="noopener">Bekijk route online</a></p>
+          {% endif %}
+          {% assign verhuur = page.verhuur | where_exp: "v", "v.naam != ''" %}
+          {% if verhuur.size > 0 %}
+            <h3>Verhuur</h3>
+            <ul>
+              {% for v in verhuur %}
+                <li>
+                  {% if v.url and v.url != "" %}
+                    <a href="{{ v.url }}" target="_blank" rel="noopener">{{ v.naam }}</a>
+                  {% else %}
+                    {{ v.naam }}
+                  {% endif %}
+                  {% if v.type and v.type != "" %} ({{ v.type }}){% endif %}
+                  {% if v.plaats and v.plaats != "" %} — {{ v.plaats }}{% endif %}
+                  {% if v.opmerking and v.opmerking != "" %}<br><em>{{ v.opmerking }}</em>{% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% assign bz = page.bezienswaardigheden_onderweg | where_exp: "b", "b.beschrijving != ''" %}
+          {% if bz.size > 0 %}
+            <h3>Bezienswaardigheden onderweg</h3>
+            <ul>
+              {% for b in bz %}
+                <li>{% if b.url and b.url != "" %}<a href="{{ b.url }}" target="_blank" rel="noopener">{{ b.beschrijving }}</a>{% else %}{{ b.beschrijving }}{% endif %}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endif %}
+
+        </div>
+
+        <div class="item-maps-sidebar">
+          {% include google-maps.html %}
+        </div>
+      </div>
+
+      <div class="item-inhoud">
+        {{ content }}
+      </div>
+
+      {% if page.horeca %}
+        {% include horeca-links.html %}
+      {% endif %}
+
+      {% include in-de-buurt.html %}
+
+    </article>
+  </div>
+</div>

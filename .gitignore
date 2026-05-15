@@ -1,0 +1,18 @@
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+
+# Developer-specific config
+_config-dev.yml
+.vscode/
+!.vscode/settings.json
+
+# Planning and developer notes
+THEMES.md
+
+# Logs and secrets
+*.log
+.env

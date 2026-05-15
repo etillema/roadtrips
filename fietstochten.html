@@ -1,0 +1,32 @@
+---
+layout: single
+title: Fietstochten
+---
+
+<div class="category-intro">
+  <p>Verken Nederland op het fietspad. Van vlakke poldertochtento bergachtige routes met prachtige vergezichten.</p>
+</div>
+
+<div class="item-grid">
+  {% assign gesorteerd = site.fietstochten | sort: "naam" %}
+  {% for tocht in gesorteerd %}
+  <div class="item-kaart">
+    {% if tocht.foto %}
+      <img src="{{ tocht.foto | relative_url }}" alt="{{ tocht.naam }}" loading="lazy" />
+    {% endif %}
+    <div class="kaart-inhoud">
+      <h2><a href="{{ tocht.url }}">{{ tocht.naam }}</a></h2>
+      <p class="locatie">{{ tocht.locatie.plaats }}, {{ tocht.locatie.regio }}</p>
+      {% if tocht.afstand_km %}
+        <p><small>{{ tocht.afstand_km }} km
+          {% if tocht.type %} • {{ tocht.type }}{% endif %}
+        </small></p>
+      {% endif %}
+      {% if tocht.beschrijving %}
+        <p>{{ tocht.beschrijving }}</p>
+      {% endif %}
+      <a href="{{ tocht.url }}" class="btn" style="display: inline-block; margin-top: 0.5rem; margin-bottom: 0;">Lees meer</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>

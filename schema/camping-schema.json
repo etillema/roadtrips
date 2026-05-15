@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Camping",
+  "type": "object",
+  "required": [
+    "naam",
+    "locatie",
+    "adres",
+    "website",
+    "telefoon",
+    "type",
+    "aantal_plaatsen",
+    "beschrijving",
+    "omschrijving_sfeer",
+    "ligging",
+    "sanitair"
+  ],
+  "properties": {
+    "naam":         { "type": "string" },
+    "review_datum": { "type": "string", "format": "date" },
+    "locatie":      { "$ref": "./defs.json#/$defs/locatie" },
+    "adres":        { "type": "string" },
+    "website":      { "type": "string", "format": "uri" },
+    "telefoon":     { "type": "string" },
+    "email":        { "type": "string", "format": "email" },
+    "type": {
+      "type": "string",
+      "enum": ["naturcamping", "minicamping", "familiecamping", "glamping", "camperplaats", ""]
+    },
+    "aantal_plaatsen":     { "type": "integer", "minimum": 0 },
+    "beschrijving":        { "type": "string" },
+    "omschrijving_sfeer":  { "type": "string" },
+    "ligging": {
+      "type": "string",
+      "enum": ["water", "bosrand", "bos", "meer", "rivier", "bergen", "dorp", "platteland", "kust", ""]
+    },
+    "kenmerken_kampeerplek": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sanitair": { "type": "string" },
+    "voorzieningen": {
+      "type": "object",
+      "properties": {
+        "broodjesservice": { "type": "boolean" },
+        "zwemgelegenheid": { "type": "boolean" },
+        "horeca_op_camping": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["naam", "type"],
+            "properties": {
+              "naam":     { "type": "string" },
+              "type":     { "type": "string", "enum": ["restaurant", "koffie", "snackbar", ""] },
+              "opmerking":{ "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "winkels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["naam", "type"],
+            "properties": {
+              "naam":    { "type": "string" },
+              "type":    { "type": "string" },
+              "site":    { "type": "string", "format": "uri" },
+              "afstand": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "horeca_in_de_buurt": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["naam", "type", "plaats", "afstand"],
+            "properties": {
+              "naam":      { "type": "string" },
+              "type":      { "type": "string", "enum": ["restaurant", "koffie", ""] },
+              "plaats":    { "type": "string" },
+              "afstand":   { "type": "string" },
+              "url":       { "type": "string", "format": "uri" },
+              "opmerking": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
+    "foto": { "type": "string" }
+  },
+  "additionalProperties": false
+}

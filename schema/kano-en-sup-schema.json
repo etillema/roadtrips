@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kano- en suproute",
+  "type": "object",
+  "required": [
+    "naam",
+    "locatie",
+    "instapplaats",
+    "afstand_km",
+    "duur_uren",
+    "type",
+    "type_water",
+    "stroming",
+    "beschrijving",
+    "omschrijving_route"
+  ],
+  "properties": {
+    "naam":              { "type": "string" },
+    "review_datum":      { "type": "string", "format": "date" },
+    "locatie":           { "$ref": "./defs.json#/$defs/locatie" },
+    "instapplaats":      { "type": "string" },
+    "uitstapplaats":     { "type": "string" },
+    "afstand_km":        { "type": "number", "minimum": 0 },
+    "duur_uren":         { "type": "number", "minimum": 0 },
+    "type":              { "type": "string", "enum": ["rondvaart", "A-naar-B"] },
+    "type_water":        { "type": "string", "enum": ["rivier", "kanaal", "meer", "plas", "zee", "mix"] },
+    "stroming":          { "type": "string", "enum": ["geen", "licht", "matig", "sterk"] },
+    "beschrijving":      { "type": "string" },
+    "omschrijving_route":{ "type": "string" },
+    "verhuur": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["naam", "type", "plaats"],
+        "properties": {
+          "naam":      { "type": "string" },
+          "type":      { "type": "string", "enum": ["kano", "sup", "kajak", "sloep"] },
+          "plaats":    { "type": "string" },
+          "url":       { "type": "string", "format": "uri" },
+          "opmerking": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "bezienswaardigheden_onderweg": {
+      "type": "array",
+      "items": { "$ref": "./defs.json#/$defs/bezienswaardigheidItem" }
+    },
+    "gpx_bestand": { "type": "string" },
+    "route_url":   { "type": "string", "format": "uri" },
+    "horeca": {
+      "type": "array",
+      "items": { "$ref": "./defs.json#/$defs/horecaItem" }
+    },
+    "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
+    "foto":         { "type": "string" }
+  },
+  "additionalProperties": false
+}

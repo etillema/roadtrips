@@ -1,0 +1,32 @@
+---
+layout: single
+title: Kano- en suproutes
+---
+
+<div class="category-intro">
+  <p>Paddle over Nederlands mooiste rivieren, kanalen en meren. Van rustige rondvaartstechnische avonturen.</p>
+</div>
+
+<div class="item-grid">
+  {% assign gesorteerd = site.kano_suproutes | sort: "naam" %}
+  {% for route in gesorteerd %}
+  <div class="item-kaart">
+    {% if route.foto %}
+      <img src="{{ route.foto | relative_url }}" alt="{{ route.naam }}" loading="lazy" />
+    {% endif %}
+    <div class="kaart-inhoud">
+      <h2><a href="{{ route.url }}">{{ route.naam }}</a></h2>
+      <p class="locatie">{{ route.locatie.plaats }}, {{ route.locatie.regio }}</p>
+      {% if route.afstand_km %}
+        <p><small>{{ route.afstand_km }} km
+          {% if route.type_water %} • {{ route.type_water }}{% endif %}
+        </small></p>
+      {% endif %}
+      {% if route.beschrijving %}
+        <p>{{ route.beschrijving }}</p>
+      {% endif %}
+      <a href="{{ route.url }}" class="btn" style="display: inline-block; margin-top: 0.5rem; margin-bottom: 0;">Lees meer</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>

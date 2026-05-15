@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "defs.json",
+  "$defs": {
+    "locatie": {
+      "type": "object",
+      "required": ["plaats", "regio", "land"],
+      "properties": {
+        "plaats": { "type": "string" },
+        "regio":  { "type": "string" },
+        "gebied": { "type": "string" },
+        "land":   { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "activiteitItem": {
+      "type": "object",
+      "properties": {
+        "titel":        { "type": "string" },
+        "beschrijving": { "type": "string" },
+        "afstand_km":   { "type": "number", "minimum": 0 },
+        "url":          { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "activiteiten": {
+      "type": "object",
+      "properties": {
+        "algemeen":           { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } },
+        "wandelen":           { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } },
+        "fietsen":            { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } },
+        "kano_en_sup":        { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } },
+        "campings":           { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } },
+        "plaatsen_en_dorpen": { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } },
+        "musea":              { "type": "array", "items": { "$ref": "#/$defs/activiteitItem" } }
+      },
+      "additionalProperties": false
+    },
+    "bezienswaardigheidItem": {
+      "type": "object",
+      "properties": {
+        "titel":        { "type": "string" },
+        "beschrijving": { "type": "string" },
+        "url":          { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+    "horecaItem": {
+      "type": "object",
+      "required": ["naam", "type", "plaats"],
+      "properties": {
+        "naam":      { "type": "string" },
+        "type":      { "type": "string", "enum": ["restaurant", "koffie", "bakker"] },
+        "plaats":    { "type": "string" },
+        "url":       { "type": "string", "format": "uri" },
+        "opmerking": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,451 @@
+---
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/default"; // {{ site.minimal_mistakes_skin | default: 'default' }}
+@import "minimal-mistakes";
+
+// ── Kleurenpalet ──────────────────────────────────────────────────────────────
+$color-primary: #2d7a3f;
+$color-primary-hover: #1f5c2e;
+$color-accent-rose: #e8b4c4;
+$color-accent-gold: #d4a574;
+$color-accent-blue: #7fb3d5;
+$color-bg-creme: #f9f7f4;
+$color-bg-creme-dark: #f0ede8;
+$color-text: #2d2d2d;
+
+// ── Basis-stijlen ─────────────────────────────────────────────────────────────
+
+body {
+  background-color: $color-bg-creme;
+  color: $color-text;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.1rem; }
+h4 { font-size: 0.95rem; }
+
+.page__content,
+.page__inner-wrap {
+  background-color: transparent;
+}
+
+a {
+  color: $color-primary;
+  &:hover {
+    color: $color-primary-hover;
+  }
+}
+
+.btn {
+  background-color: $color-primary;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  font-weight: 500;
+  transition: background-color 0.2s, transform 0.1s;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+
+  &.btn--secondary {
+    background-color: $color-accent-rose;
+    &:hover { background-color: darken($color-accent-rose, 10%); }
+  }
+
+  &.btn--tertiary {
+    background-color: $color-accent-blue;
+    &:hover { background-color: darken($color-accent-blue, 10%); }
+  }
+}
+
+// ── Homepage ──────────────────────────────────────────────────────────────────
+
+.homepage-hero {
+  background: linear-gradient(135deg, $color-primary 0%, $color-accent-blue 100%);
+  color: white;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 2.5rem;
+  text-align: center;
+
+  h1 {
+    margin: 0 0 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    opacity: 0.95;
+  }
+}
+
+// ── Categorie-grid op de homepage ──────────────────────────────────────────
+
+.categorie-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.categorie-kaart {
+  display: block;
+  padding: 1.75rem;
+  border: 1px solid #ddd;
+  border-left: 4px solid $color-primary;
+  border-radius: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+  background: white;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: $color-primary;
+  }
+  p {
+    margin: 0 0 0.3rem;
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba($color-primary, 0.15);
+    transform: translateY(-2px);
+  }
+}
+
+// ── Category intro ────────────────────────────────────────────────────────────
+
+.category-intro {
+  background: $color-bg-creme-dark;
+  border-left: 4px solid $color-primary;
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+
+  p {
+    margin: 0;
+    color: $color-text;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+}
+
+// ── Overzichtspagina's ──────────────────────────────────────────────────────
+
+.item-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.item-kaart {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .kaart-inhoud {
+    padding: 1.25rem;
+
+    h2 {
+      margin: 0 0 0.4rem;
+      font-size: 1rem;
+      color: $color-text;
+    }
+    .locatie {
+      margin: 0 0 0.6rem;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    p {
+      margin: 0 0 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+// ── Detailpagina ────────────────────────────────────────────────────────────
+
+.item-meta-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.item-maps-sidebar {
+  .google-maps-embed {
+    width: 100%;
+    height: 280px;
+  }
+
+  .google-maps-blok {
+    margin-bottom: 0;
+  }
+}
+
+.item-header {
+  margin-bottom: 1.5rem;
+}
+
+.item-locatie {
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+.item-hero {
+  margin-bottom: 1.5rem;
+
+  img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+}
+
+.item-meta-blok {
+  background: $color-bg-creme-dark;
+  border-left: 4px solid $color-primary;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+
+  p {
+    margin: 0.3rem 0;
+    color: $color-text;
+    font-size: 0.9rem;
+  }
+  h3 {
+    margin: 0.8rem 0 0.4rem;
+    font-size: 0.95rem;
+    color: $color-primary;
+    font-weight: 600;
+  }
+  h4 {
+    margin: 0.5rem 0 0.2rem;
+    font-size: 0.9rem;
+    color: $color-text;
+  }
+  ul {
+    margin: 0.3rem 0 0 1.5rem;
+    padding: 0;
+    font-size: 0.9rem;
+  }
+}
+
+.activiteit-afstand {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.item-meta-blok ul a {
+  font-weight: bold;
+}
+
+.kenmerken-tags {
+  margin-top: 0.5rem;
+}
+
+.item-tag {
+  display: inline-block;
+  background: #e8f0fe;
+  border-radius: 4px;
+  padding: 2px 10px;
+  margin: 2px 3px 2px 0;
+  font-size: 0.82rem;
+  color: #1a56db;
+}
+
+.item-inhoud {
+  margin-bottom: 2rem;
+}
+
+// ── Google Maps ─────────────────────────────────────────────────────────────
+
+.google-maps-blok {
+  margin-bottom: 1.5rem;
+}
+
+.google-maps-embed {
+  width: 100%;
+  height: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.google-maps-link {
+  margin: 0.4rem 0 0;
+  font-size: 0.85rem;
+}
+
+// ── Horeca ──────────────────────────────────────────────────────────────────
+
+.horeca-blok {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1rem; margin-top: 1rem; }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: 0.4rem; }
+}
+
+.horeca-plaats {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+// ── In de buurt ─────────────────────────────────────────────────────────────
+
+.in-de-buurt {
+  border-top: 1px solid #e0e0e0;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1.05rem; margin-top: 1.25rem; }
+}
+
+.buurt-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.buurt-kaart {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.2s;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .buurt-kaart-foto img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .buurt-kaart-inhoud {
+    padding: 0.9rem 1rem;
+
+    h4 {
+      margin: 0 0 0.3rem;
+      font-size: 0.95rem;
+      color: $color-text;
+    }
+  }
+}
+
+.buurt-kaart-locatie {
+  font-size: 0.78rem;
+  color: #666;
+  margin: 0 0 0.3rem;
+}
+
+.buurt-kaart-beschrijving {
+  font-size: 0.82rem;
+  margin: 0.25rem 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.buurt-kaart-detail {
+  font-size: 0.78rem;
+  color: #555;
+  margin: 0.2rem 0;
+}
+
+.buurt-kaart-links {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buurt-kaart-link {
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: white;
+  background-color: $color-primary;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+}
+
+// ── Zoekpagina ──────────────────────────────────────────────────────────────
+
+.zoek-container {
+  max-width: 860px;
+}
+
+.zoek-formulier {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  label {
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  select {
+    display: block;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 160px;
+  }
+}

@@ -1,0 +1,44 @@
+<div class="horeca-blok">
+  <h2>Eten en drinken in de buurt</h2>
+
+  {% assign restaurants = page.horeca | where: "type", "restaurant" %}
+  {% assign koffie = page.horeca | where: "type", "koffie" %}
+
+  {% if restaurants.size > 0 %}
+    <h3>Restaurants</h3>
+    <ul>
+      {% for r in restaurants %}
+        <li>
+          {% if r.url and r.url != "" %}
+            <a href="{{ r.url }}" target="_blank" rel="noopener">{{ r.naam }}</a>
+          {% else %}
+            {{ r.naam }}
+          {% endif %}
+          <span class="horeca-plaats">— {{ r.plaats }}</span>
+          {% if r.opmerking and r.opmerking != "" %}
+            <br><em>{{ r.opmerking }}</em>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if koffie.size > 0 %}
+    <h3>Koffie en thee</h3>
+    <ul>
+      {% for k in koffie %}
+        <li>
+          {% if k.url and k.url != "" %}
+            <a href="{{ k.url }}" target="_blank" rel="noopener">{{ k.naam }}</a>
+          {% else %}
+            {{ k.naam }}
+          {% endif %}
+          <span class="horeca-plaats">— {{ k.plaats }}</span>
+          {% if k.opmerking and k.opmerking != "" %}
+            <br><em>{{ k.opmerking }}</em>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
