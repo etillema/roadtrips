@@ -1,0 +1,141 @@
+---
+layout: default
+---
+
+{% include camping-hero.html %}
+
+<main class="page-shell camping-page">
+
+  <section class="content-grid">
+    <article class="prose-card">
+      <h2>Over de camping</h2>
+      {% if page.beschrijving %}
+        <p class="intro-text">{{ page.beschrijving }}</p>
+      {% endif %}
+      {% if page.omschrijving_sfeer %}
+        <div class="sfeer-content">
+          {{ page.omschrijving_sfeer | markdownify }}
+        </div>
+      {% endif %}
+
+      {% if page.website %}
+        <p><a href="{{ page.website }}" target="_blank" rel="noopener" class="text-link">Bezoek de website →</a></p>
+      {% endif %}
+
+      {% if page.ligging or page.kenmerken_kampeerplek or page.sanitair or page.voorzieningen %}
+        <hr class="soft-divider" />
+
+        {% if page.ligging %}
+          <div class="detail-block">
+            <h3 class="detail-label">Ligging</h3>
+            <p>{{ page.ligging | capitalize }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.kenmerken_kampeerplek %}
+          <div class="detail-block">
+            <h3 class="detail-label">Kenmerken</h3>
+            <ul class="check-list">
+              {% for k in page.kenmerken_kampeerplek %}
+                {% if k and k != "" %}<li>{{ k }}</li>{% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        {% if page.sanitair %}
+          <div class="detail-block">
+            <h3 class="detail-label">Sanitair</h3>
+            <p>{{ page.sanitair }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.voorzieningen %}
+          <div class="detail-block">
+            {% if page.voorzieningen.broodjesservice %}
+              <span class="amenity-tag">🍞 Broodjesservice</span>
+            {% endif %}
+            {% if page.voorzieningen.zwemgelegenheid %}
+              <span class="amenity-tag">🏊 Zwemgelegenheid</span>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {{ content }}
+    </article>
+
+    <aside class="side-stack">
+      {% include camping-map-card.html %}
+      {% include camping-contact-card.html %}
+    </aside>
+  </section>
+
+  {% if page.voorzieningen and page.voorzieningen.horeca_in_de_buurt %}
+    {% assign horeca_buurt = page.voorzieningen.horeca_in_de_buurt | where_exp: "h", "h.naam != ''" %}
+    {% if horeca_buurt.size > 0 %}
+      <section class="nearby-section">
+        <h2>Eten en drinken in de buurt</h2>
+        <div class="horeca-grid">
+          {% for h in horeca_buurt %}
+            <div class="horeca-card">
+              <div class="horeca-header">
+                {% if h.url %}<a href="{{ h.url }}" target="_blank" rel="noopener" class="horeca-name">{{ h.naam }}</a>{% else %}<div class="horeca-name">{{ h.naam }}</div>{% endif %}
+              </div>
+              {% if h.plaats %}<p class="horeca-meta">{{ h.plaats }}</p>{% endif %}
+              {% if h.afstand %}<p class="horeca-distance">{{ h.afstand }}</p>{% endif %}
+              {% if h.opmerking %}<p class="horeca-note">{{ h.opmerking }}</p>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
+
+  {% if page.voorzieningen and page.voorzieningen.winkels %}
+    {% assign winkels = page.voorzieningen.winkels | where_exp: "s", "s.naam != ''" %}
+    {% if winkels.size > 0 %}
+      <section class="nearby-section">
+        <h2>Winkels</h2>
+        <div class="horeca-grid">
+          {% for s in winkels %}
+            <div class="horeca-card">
+              <div class="horeca-header">
+                {% if s.site %}<a href="{{ s.site }}" target="_blank" rel="noopener" class="horeca-name">{{ s.naam }}</a>{% else %}<div class="horeca-name">{{ s.naam }}</div>{% endif %}
+              </div>
+              {% if s.afstand %}<p class="horeca-meta">{{ s.afstand }}</p>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
+
+  {% if page.activiteiten %}
+    <section class="nearby-section">
+      <div class="section-heading">
+        <h2>Activiteiten in de omgeving</h2>
+        <a href="/activiteiten/" class="text-link">Bekijk alle activiteiten →</a>
+      </div>
+
+      <div class="activity-grid">
+        {% assign algemeen = page.activiteiten.algemeen | where_exp: "a", "a.beschrijving != ''" %}
+        {% for activity in algemeen limit: 4 %}
+          {% include activity-card.html activity=activity category="algemeen" %}
+        {% endfor %}
+
+        {% assign wandelen = page.activiteiten.wandelen | where_exp: "a", "a.beschrijving != ''" %}
+        {% for activity in wandelen limit: 4 %}
+          {% include activity-card.html activity=activity category="wandelen" %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if page.omschrijving_sfeer %}
+    <div class="closing-quote-block">
+      <p class="closing-quote">"{{ page.omschrijving_sfeer | strip_html | truncatewords: 20 }}"</p>
+    </div>
+  {% endif %}
+
+</main>

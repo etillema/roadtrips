@@ -1,0 +1,47 @@
+<section class="camping-hero page-shell">
+  <div class="camping-hero__content">
+    <a href="/campings/" class="breadcrumb">← Terug naar alle campings</a>
+
+    <h1>{{ page.naam }}</h1>
+
+    <p class="camping-location">
+      {% if page.locatie.plaats %}{{ page.locatie.plaats }}{% endif %}
+      {% if page.locatie.regio %}, {{ page.locatie.regio }}{% endif %}
+      {% if page.locatie.land %}, {{ page.locatie.land }}{% endif %}
+    </p>
+
+    {% assign badges = "" | split: "," %}
+    {% if page.type %}
+      {% assign badges = badges | push: page.type %}
+    {% endif %}
+    {% if page.ligging %}
+      {% assign badges = badges | push: page.ligging %}
+    {% endif %}
+    {% if page.locatie.gebied %}
+      {% assign badges = badges | push: page.locatie.gebied %}
+    {% endif %}
+
+    {% if badges.size > 0 %}
+      <div class="badge-list">
+        {% for badge in badges limit: 3 %}
+          {% if badge and badge != "" %}
+            <span class="badge">{{ badge | capitalize }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+
+  {% if page.foto %}
+    <div class="camping-hero__image-wrap">
+      <img src="{{ page.foto | relative_url }}" alt="{{ page.naam }}" class="camping-hero__image" loading="lazy" />
+
+      {% if page.kenmerken_kampeerplek %}
+        {% assign first_kenmerk = page.kenmerken_kampeerplek | first %}
+        {% if first_kenmerk and first_kenmerk contains "vuurtje" %}
+          <div class="floating-badge">Vuurtje stoken toegestaan</div>
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
+</section>

@@ -1,0 +1,52 @@
+---
+layout: default
+---
+
+{% include activity-list-hero.html %}
+
+<main class="page-shell activity-list-page">
+  <section class="activity-overview">
+    <aside class="filter-panel">
+      {% include filter-panel.html %}
+    </aside>
+
+    <section class="route-results">
+      <div class="results-header">
+        {% if page.collection == "fietstochten" %}
+          <p class="results-count">{{ site.fietstochten | size }} fietstochten gevonden</p>
+        {% elsif page.collection == "wandelroutes" %}
+          <p class="results-count">{{ site.wandelroutes | size }} wandelroutes gevonden</p>
+        {% elsif page.collection == "kano_suproutes" %}
+          <p class="results-count">{{ site.kano_suproutes | size }} routes gevonden</p>
+        {% elsif page.collection == "musea" %}
+          <p class="results-count">{{ site.musea | size }} musea gevonden</p>
+        {% elsif page.collection == "plaats" %}
+          <p class="results-count">{{ site.plaats | size }} plaatsen gevonden</p>
+        {% elsif page.collection == "campings" %}
+          <p class="results-count">{{ site.campings | size }} campings gevonden</p>
+        {% endif %}
+
+        <label class="sort-control">
+          <span>Sorteer op:</span>
+          <select>
+            <option>Aanbevolen</option>
+            <option>Alfabetisch</option>
+            <option>Afstand</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="route-list">
+        {{ content }}
+      </div>
+
+      <nav class="pagination">
+        <a href="#" aria-label="Vorige pagina" class="pagination__prev">‹</a>
+        <a href="#" class="pagination__page is-active">1</a>
+        <a href="#" class="pagination__page">2</a>
+        <a href="#" class="pagination__page">3</a>
+        <a href="#" aria-label="Volgende pagina" class="pagination__next">›</a>
+      </nav>
+    </section>
+  </section>
+</main>

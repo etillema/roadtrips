@@ -1,0 +1,11 @@
+<div class="map-card">
+  {% include google-maps.html %}
+
+  {% if page.locatie.plaats %}
+    <div class="map-card__footer">
+      <a href="https://www.google.com/maps/search/{{ page.naam | url_encode }}+{{ page.locatie.plaats | url_encode }},+{{ page.locatie.land | url_encode }}" target="_blank" rel="noopener" class="button button--primary">
+        Bekijk op Google Maps
+      </a>
+    </div>
+  {% endif %}
+</div>

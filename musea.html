@@ -1,30 +1,10 @@
 ---
-layout: single
+layout: activity-list
 title: Musea
+collection: musea
 ---
 
-<div class="category-intro">
-  <p>Verken cultuur, kunst en geschiedenis in Nederlandse musea. Een rijke verzameling voor elke interesse.</p>
-</div>
-
-<div class="item-grid">
-  {% assign gesorteerd = site.musea | sort: "naam" %}
-  {% for museum in gesorteerd %}
-  <div class="item-kaart">
-    {% if museum.foto %}
-      <img src="{{ museum.foto | relative_url }}" alt="{{ museum.naam }}" loading="lazy" />
-    {% endif %}
-    <div class="kaart-inhoud">
-      <h2><a href="{{ museum.url }}">{{ museum.naam }}</a></h2>
-      <p class="locatie">{{ museum.locatie.plaats }}, {{ museum.locatie.regio }}</p>
-      {% if museum.thema %}
-        <p><small>{{ museum.thema | join: ", " }}</small></p>
-      {% endif %}
-      {% if museum.beschrijving %}
-        <p>{{ museum.beschrijving }}</p>
-      {% endif %}
-      <a href="{{ museum.url }}" class="btn" style="display: inline-block; margin-top: 0.5rem; margin-bottom: 0;">Lees meer</a>
-    </div>
-  </div>
-  {% endfor %}
-</div>
+{% assign gesorteerd = site.musea | sort: "naam" %}
+{% for museum in gesorteerd %}
+  {% include route-card.html item=museum %}
+{% endfor %}

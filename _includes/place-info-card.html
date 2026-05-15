@@ -1,0 +1,38 @@
+<div class="place-info-card">
+  <h3 class="card-title">Informatie</h3>
+
+  {% if page.type %}
+    <div class="info-group">
+      <h4 class="info-label">Type</h4>
+      <p class="info-value">{{ page.type | capitalize }}</p>
+    </div>
+  {% endif %}
+
+  {% if page.locatie.regio %}
+    <div class="info-group">
+      <h4 class="info-label">Regio</h4>
+      <p class="info-value">{{ page.locatie.regio }}</p>
+    </div>
+  {% endif %}
+
+  {% if page.locatie.land %}
+    <div class="info-group">
+      <h4 class="info-label">Land</h4>
+      <p class="info-value">{{ page.locatie.land }}</p>
+    </div>
+  {% endif %}
+
+  {% if page.website %}
+    <div class="info-group">
+      <h4 class="info-label">Website</h4>
+      <p class="info-value"><a href="{{ page.website }}" target="_blank" rel="noopener" class="text-link">Bezoek website →</a></p>
+    </div>
+  {% endif %}
+
+  {% if page.review_datum %}
+    <div class="info-group">
+      <h4 class="info-label">Bijgewerkt</h4>
+      <p class="info-value">{{ page.review_datum | date: "%d %B %Y" }}</p>
+    </div>
+  {% endif %}
+</div>

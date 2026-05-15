@@ -1,0 +1,28 @@
+<div class="activity-card soft-card">
+  <div class="activity-card__header">
+    <h4 class="activity-card__title">
+      {% if include.activity.titel %}
+        {{ include.activity.titel }}
+      {% else %}
+        {{ include.activity.beschrijving | strip_html | truncatewords: 5 }}
+      {% endif %}
+    </h4>
+    <span class="activity-type">{{ include.category | capitalize | replace: "_", " " }}</span>
+  </div>
+
+  {% if include.activity.beschrijving %}
+    <p class="activity-card__description">
+      {{ include.activity.beschrijving | strip_html | truncatewords: 15 }}
+    </p>
+  {% endif %}
+
+  {% if include.activity.afstand_km %}
+    <div class="activity-card__distance">
+      {{ include.activity.afstand_km }} km van de camping
+    </div>
+  {% endif %}
+
+  {% if include.activity.url %}
+    <a href="{{ include.activity.url }}" target="_blank" rel="noopener" class="activity-card__link">Meer info →</a>
+  {% endif %}
+</div>

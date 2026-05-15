@@ -1,0 +1,6 @@
+<a class="category-card" href="{{ include.url }}">
+  <div class="category-card__icon">{{ include.icon }}</div>
+  <h3>{{ include.title }}</h3>
+  <p>{{ include.count }} {% if include.count == 1 %}item{% else %}items{% endif %}</p>
+  <span class="category-card__arrow">→</span>
+</a>

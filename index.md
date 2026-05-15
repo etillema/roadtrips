@@ -1,38 +1,31 @@
 ---
-layout: single
+layout: default
 title: Roadtrips
 ---
 
-<div class="homepage-hero">
-  <h1>Fietsen, wandelen & kamperen in Nederland</h1>
-  <p>Ontdek je volgende avontuur met onze verzameling mooie routes, campings, plaatsen en musea</p>
-</div>
+{% include home-hero.html %}
 
-## Verken onze categorieën
+<main class="page-shell home-page">
+  <section class="category-section">
+    <div class="section-heading">
+      <h2>Verken onze categorieën</h2>
+    </div>
 
-<div class="categorie-grid">
-  <a class="categorie-kaart" href="{{ '/campings/' | relative_url }}">
-    <h2>Campings</h2>
-    <p>{{ site.campings | size }} camping(s)</p>
-  </a>
-  <a class="categorie-kaart" href="{{ '/fietstochten/' | relative_url }}">
-    <h2>Fietstochten</h2>
-    <p>{{ site.fietstochten | size }} fietstocht(en)</p>
-  </a>
-  <a class="categorie-kaart" href="{{ '/wandelroutes/' | relative_url }}">
-    <h2>Wandelroutes</h2>
-    <p>{{ site.wandelroutes | size }} wandelroute(s)</p>
-  </a>
-  <a class="categorie-kaart" href="{{ '/kano-suproutes/' | relative_url }}">
-    <h2>Kano & SUP</h2>
-    <p>{{ site.kano_suproutes | size }} route(s)</p>
-  </a>
-  <a class="categorie-kaart" href="{{ '/plaats/' | relative_url }}">
-    <h2>Plaatsen en steden</h2>
-    <p>{{ site.plaats | size }} plaats(en)</p>
-  </a>
-  <a class="categorie-kaart" href="{{ '/musea/' | relative_url }}">
-    <h2>Musea</h2>
-    <p>{{ site.musea | size }} museum/musea</p>
-  </a>
-</div>
+    <div class="category-grid">
+      {% include category-card.html title="Campings" count=site.campings.size url="/campings/" icon="△" %}
+      {% include category-card.html title="Fietstochten" count=site.fietstochten.size url="/fietstochten/" icon="○" %}
+      {% include category-card.html title="Wandelroutes" count=site.wandelroutes.size url="/wandelroutes/" icon="⌁" %}
+      {% include category-card.html title="Musea" count=site.musea.size url="/musea/" icon="▣" %}
+      {% include category-card.html title="Kano & SUP" count=site.kano_suproutes.size url="/kano-suproutes/" icon="≈" %}
+      {% include category-card.html title="Plaatsen & steden" count=site.plaats.size url="/plaats/" icon="▢" %}
+    </div>
+  </section>
+
+  <section class="home-quote">
+    <div class="home-quote__icon">⌾</div>
+    <div>
+      <h2>Buiten is het mooiste</h2>
+      <p>Maak herinneringen, ontdek nieuwe plekken en geniet van de natuur.</p>
+    </div>
+  </section>
+</main>

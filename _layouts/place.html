@@ -1,0 +1,188 @@
+---
+layout: default
+---
+
+{% include place-hero.html %}
+
+<main class="page-shell place-page">
+  <section class="place-layout">
+    <article class="place-content">
+      <section class="prose-card">
+        <h2>Over {{ page.title }}</h2>
+        {% if page.omschrijving_sfeer %}
+          {{ page.omschrijving_sfeer | markdownify }}
+        {% elsif page.beschrijving %}
+          <p>{{ page.beschrijving }}</p>
+        {% endif %}
+        {{ content }}
+      </section>
+
+      {% if page.bezienswaardigheden %}
+        <section class="prose-card">
+          <h3>Bezienswaardigheden</h3>
+          <ul class="link-list">
+            {% for item in page.bezienswaardigheden %}
+              <li>
+                {% if item.url %}
+                  <a href="{{ item.url }}" class="link-card" target="_blank" rel="noopener">
+                    <div>
+                      <h4>{{ item.titel | default: item.beschrijving | default: item }}</h4>
+                    </div>
+                    <span>→</span>
+                  </a>
+                {% else %}
+                  <div class="link-card-static">
+                    <h4>{{ item.titel | default: item.beschrijving | default: item }}</h4>
+                    <span>•</span>
+                  </div>
+                {% endif %}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      {% endif %}
+
+      {% if page.activiteiten %}
+        <section class="prose-card">
+          <h3>Activiteiten in de omgeving</h3>
+
+          {% assign fietsen = page.activiteiten.fietsen | where_exp: "a", "a.beschrijving != ''" %}
+          {% if fietsen.size > 0 %}
+            <div class="activity-subsection">
+              <h4 class="activity-subheader">Fietstochten</h4>
+              <ul class="link-list">
+                {% for item in fietsen limit: 3 %}
+                  <li>
+                    {% if item.url %}
+                      <a href="{{ item.url }}" class="link-card" target="_blank" rel="noopener">
+                        <div>
+                          <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                          {% if item.afstand_km %}<p class="link-meta">{{ item.afstand_km }} km</p>{% endif %}
+                        </div>
+                        <span>→</span>
+                      </a>
+                    {% else %}
+                      <div class="link-card-static">
+                        <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                        {% if item.afstand_km %}<p class="link-meta">{{ item.afstand_km }} km</p>{% endif %}
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% assign wandelen = page.activiteiten.wandelen | where_exp: "a", "a.beschrijving != ''" %}
+          {% if wandelen.size > 0 %}
+            <div class="activity-subsection">
+              <h4 class="activity-subheader">Wandelroutes</h4>
+              <ul class="link-list">
+                {% for item in wandelen limit: 3 %}
+                  <li>
+                    {% if item.url %}
+                      <a href="{{ item.url }}" class="link-card" target="_blank" rel="noopener">
+                        <div>
+                          <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                          {% if item.afstand_km %}<p class="link-meta">{{ item.afstand_km }} km</p>{% endif %}
+                        </div>
+                        <span>→</span>
+                      </a>
+                    {% else %}
+                      <div class="link-card-static">
+                        <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                        {% if item.afstand_km %}<p class="link-meta">{{ item.afstand_km }} km</p>{% endif %}
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% assign musea = page.activiteiten.musea | where_exp: "a", "a.beschrijving != ''" %}
+          {% if musea.size > 0 %}
+            <div class="activity-subsection">
+              <h4 class="activity-subheader">Musea</h4>
+              <ul class="link-list">
+                {% for item in musea limit: 3 %}
+                  <li>
+                    {% if item.url %}
+                      <a href="{{ item.url }}" class="link-card" target="_blank" rel="noopener">
+                        <div>
+                          <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                        </div>
+                        <span>→</span>
+                      </a>
+                    {% else %}
+                      <div class="link-card-static">
+                        <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% assign campings = page.activiteiten.campings | where_exp: "a", "a.beschrijving != ''" %}
+          {% if campings.size > 0 %}
+            <div class="activity-subsection">
+              <h4 class="activity-subheader">Campings</h4>
+              <ul class="link-list">
+                {% for item in campings limit: 3 %}
+                  <li>
+                    {% if item.url %}
+                      <a href="{{ item.url }}" class="link-card" target="_blank" rel="noopener">
+                        <div>
+                          <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                        </div>
+                        <span>→</span>
+                      </a>
+                    {% else %}
+                      <div class="link-card-static">
+                        <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% assign plaatsen = page.activiteiten.plaatsen_en_dorpen | where_exp: "a", "a.beschrijving != ''" %}
+          {% if plaatsen.size > 0 %}
+            <div class="activity-subsection">
+              <h4 class="activity-subheader">Plaatsen en dorpen in de buurt</h4>
+              <ul class="link-list">
+                {% for item in plaatsen limit: 3 %}
+                  <li>
+                    {% if item.url %}
+                      <a href="{{ item.url }}" class="link-card" target="_blank" rel="noopener">
+                        <div>
+                          <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                          {% if item.afstand_km %}<p class="link-meta">{{ item.afstand_km }} km</p>{% endif %}
+                        </div>
+                        <span>→</span>
+                      </a>
+                    {% else %}
+                      <div class="link-card-static">
+                        <h5>{{ item.titel | default: item.beschrijving }}</h5>
+                        {% if item.afstand_km %}<p class="link-meta">{{ item.afstand_km }} km</p>{% endif %}
+                      </div>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+        </section>
+      {% endif %}
+    </article>
+
+    <aside class="place-sidebar">
+      {% include map-card.html %}
+      {% include place-info-card.html %}
+    </aside>
+  </section>
+</main>

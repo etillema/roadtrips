@@ -45,7 +45,7 @@ defaults:
       path: ""
       type: "campings"
     values:
-      layout: "item"
+      layout: "camping"
       categorie: "campings"
   - scope:
       path: ""
@@ -63,7 +63,7 @@ defaults:
       path: ""
       type: "plaats"
     values:
-      layout: "item"
+      layout: "place"
       categorie: "plaats"
   - scope:
       path: ""

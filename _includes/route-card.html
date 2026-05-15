@@ -1,0 +1,38 @@
+<div class="route-card">
+  {% if include.item.foto %}
+    <div class="route-card__image">
+      <img src="{{ include.item.foto | relative_url }}" alt="{{ include.item.naam }}" loading="lazy" />
+    </div>
+  {% endif %}
+
+  <div class="route-card__content">
+    <h3><a href="{{ include.item.url }}" class="route-card__title">{{ include.item.naam }}</a></h3>
+
+    {% if include.item.locatie %}
+      <p class="route-card__location">
+        {% if include.item.locatie.plaats %}{{ include.item.locatie.plaats }}{% endif %}
+        {% if include.item.locatie.regio %}, {{ include.item.locatie.regio }}{% endif %}
+      </p>
+    {% endif %}
+
+    <div class="route-card__meta">
+      {% if include.item.afstand_km %}
+        <span class="route-card__distance">{{ include.item.afstand_km }} km</span>
+      {% endif %}
+      {% if include.item.duur_uren %}
+        <span class="route-card__duration">{{ include.item.duur_uren }} uur</span>
+      {% endif %}
+      {% if include.item.type %}
+        <span class="route-card__type">{{ include.item.type }}</span>
+      {% endif %}
+    </div>
+
+    {% if include.item.beschrijving %}
+      <p class="route-card__description">{{ include.item.beschrijving | strip_html | truncatewords: 25 }}</p>
+    {% endif %}
+  </div>
+
+  <div class="route-card__action">
+    <a href="{{ include.item.url }}" class="button button--primary">Bekijk route</a>
+  </div>
+</div>

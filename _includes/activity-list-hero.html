@@ -1,0 +1,70 @@
+<section class="activity-list-hero page-shell">
+  <div class="activity-hero__panel">
+    <div class="activity-hero__content">
+      <h1>{{ page.title }}</h1>
+      <div class="title-accent"></div>
+
+      {% if page.intro_text %}
+        <p>{{ page.intro_text }}</p>
+      {% elsif page.collection == "fietstochten" %}
+        <p>Verken Nederland op het fietspad. Van vlakke polderroutes tot bergachtige tochten met prachtige vergezichten.</p>
+      {% elsif page.collection == "wandelroutes" %}
+        <p>Wandel door de mooiste landschappen van Nederland. Van rustige boswandeldelen tot uitdagende bergpaden.</p>
+      {% elsif page.collection == "kano_suproutes" %}
+        <p>Peddel door Nederlandse wateroevers en rivieren. Avontuurlijke routes voor beginners en gevorderden.</p>
+      {% elsif page.collection == "musea" %}
+        <p>Ontdek cultuur, kunst en geschiedenis in Nederlandse musea. Inspirerende plekken voor alle leeftijden.</p>
+      {% elsif page.collection == "plaats" %}
+        <p>Mooie plaatsen en steden om te verkennen. Alles van pittoreske dorpjes tot levendige steden.</p>
+      {% elsif page.collection == "campings" %}
+        <p>Fijne campings voor je volgende avontuur. Van natuurcampings tot luxe glamping.</p>
+      {% endif %}
+
+      <div class="hero-features">
+        {% if page.collection == "fietstochten" %}
+          <span class="hero-feature">De mooiste routes</span>
+          <span class="hero-feature">Duidelijke kaarten</span>
+          <span class="hero-feature">Voor elk niveau</span>
+        {% elsif page.collection == "wandelroutes" %}
+          <span class="hero-feature">Waardeloze voetpaden</span>
+          <span class="hero-feature">Goede beschrijvingen</span>
+          <span class="hero-feature">Voor iedereen</span>
+        {% elsif page.collection == "kano_suproutes" %}
+          <span class="hero-feature">Verschillende niveaus</span>
+          <span class="hero-feature">Veilige routes</span>
+          <span class="hero-feature">Voor beginners & experts</span>
+        {% elsif page.collection == "musea" %}
+          <span class="hero-feature">Diverse collecties</span>
+          <span class="hero-feature">Inspirerend</span>
+          <span class="hero-feature">Voor alle leeftijden</span>
+        {% elsif page.collection == "plaats" %}
+          <span class="hero-feature">Diverse sferen</span>
+          <span class="hero-feature">Ontdekkingen</span>
+          <span class="hero-feature">Voor alle smaken</span>
+        {% elsif page.collection == "campings" %}
+          <span class="hero-feature">Goede faciliteiten</span>
+          <span class="hero-feature">Mooie locaties</span>
+          <span class="hero-feature">Voor elk budget</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="activity-hero__image-wrap">
+      {% if page.hero_image %}
+        <img src="{{ page.hero_image | relative_url }}" alt="{{ page.title }}" class="activity-hero__image" loading="lazy" />
+      {% elsif page.collection == "fietstochten" %}
+        <img src="/assets/images/hero-fietstochten.jpg" alt="Fietstochten" class="activity-hero__image" loading="lazy" />
+      {% elsif page.collection == "wandelroutes" %}
+        <img src="/assets/images/hero-wandelroutes.jpg" alt="Wandelroutes" class="activity-hero__image" loading="lazy" />
+      {% elsif page.collection == "kano_suproutes" %}
+        <img src="/assets/images/hero-kano-sup.jpg" alt="Kano & SUP" class="activity-hero__image" loading="lazy" />
+      {% elsif page.collection == "musea" %}
+        <img src="/assets/images/hero-musea.jpg" alt="Musea" class="activity-hero__image" loading="lazy" />
+      {% elsif page.collection == "plaats" %}
+        <img src="/assets/images/hero-plaatsen.jpg" alt="Plaatsen" class="activity-hero__image" loading="lazy" />
+      {% elsif page.collection == "campings" %}
+        <img src="/assets/images/hero-campings.jpg" alt="Campings" class="activity-hero__image" loading="lazy" />
+      {% endif %}
+    </div>
+  </div>
+</section>

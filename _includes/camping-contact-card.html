@@ -1,0 +1,41 @@
+<div class="contact-card">
+  <h3 class="contact-card__title">Contact & info</h3>
+
+  {% if page.adres %}
+    <div class="contact-item">
+      <span class="contact-label">Adres</span>
+      <p class="contact-value">{{ page.adres }}</p>
+    </div>
+  {% endif %}
+
+  {% if page.telefoon %}
+    <div class="contact-item">
+      <span class="contact-label">Telefoon</span>
+      <p class="contact-value">
+        <a href="tel:{{ page.telefoon | replace: ' ', '' }}">{{ page.telefoon }}</a>
+      </p>
+    </div>
+  {% endif %}
+
+  {% if page.email %}
+    <div class="contact-item">
+      <span class="contact-label">E-mail</span>
+      <p class="contact-value">
+        <a href="mailto:{{ page.email }}">{{ page.email }}</a>
+      </p>
+    </div>
+  {% endif %}
+
+  {% if page.type or page.aantal_plaatsen %}
+    <div class="contact-item contact-item--last">
+      {% if page.type %}
+        <span class="contact-label">Type</span>
+        <p class="contact-value">{{ page.type | capitalize }}</p>
+      {% endif %}
+      {% if page.aantal_plaatsen and page.aantal_plaatsen > 0 %}
+        <span class="contact-label">Plaatsen</span>
+        <p class="contact-value">{{ page.aantal_plaatsen }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
