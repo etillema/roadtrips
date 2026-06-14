@@ -13,7 +13,8 @@ class ContentSearch {
     this.wizardState = {
       selectedLand: null,
       selectedRegios: [],
-      selectedTypes: []
+      selectedTypes: [],
+      selectedActivities: []
     };
 
     // Elements
@@ -28,7 +29,9 @@ class ContentSearch {
     this.landTagsContainer = document.getElementById('landTags');
     this.regioTagsContainer = document.getElementById('regioTags');
     this.wizardTypeTagsContainer = document.getElementById('typeTags');
+    this.wizardActivityTagsContainer = document.getElementById('activityTags');
     this.wizardResultsContainer = document.getElementById('wizardResults');
+    this.wizardResultsFiltersContainer = document.getElementById('wizardResultsFilters');
 
     if (this.searchInput || this.landTagsContainer) {
       this.init();
@@ -58,7 +61,12 @@ class ContentSearch {
     const locations = new Set();
     this.allItems.forEach(item => {
       if (item.land) locations.add(item.land);
-      if (item.regio) locations.add(item.regio);
+      // Prefer gebied if available, otherwise add regio
+      if (item.gebied) {
+        locations.add(item.gebied);
+      } else if (item.regio) {
+        locations.add(item.regio);
+      }
     });
     return Array.from(locations).sort();
   }
@@ -121,6 +129,31 @@ class ContentSearch {
     document.addEventListener('click', (e) => {
       if (e.target.classList.contains('wizard-tag') && e.target.closest('#step-type')) {
         this.handleWizardTypeSelect(e.target);
+      }
+    });
+
+    // Wizard - Toggle filter options
+    const toggleFilters = document.getElementById('toggleFilters');
+    if (toggleFilters) {
+      toggleFilters.addEventListener('change', (e) => {
+        const filterCheckboxes = document.getElementById('filterCheckboxes');
+        if (e.target.checked) {
+          filterCheckboxes.style.display = 'block';
+        } else {
+          filterCheckboxes.style.display = 'none';
+          // Clear selected filters when toggling off
+          this.wizardState.selectedActivities = [];
+          document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+          // Update results when clearing filters
+          this.showWizardFilters();
+        }
+      });
+    }
+
+    // Wizard - Skip buttons
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('wizard-skip-regio')) {
+        this.handleWizardRegioNext();
       }
     });
 
@@ -187,7 +220,7 @@ class ContentSearch {
     const suggestions = new Map();
 
     this.allItems.forEach(item => {
-      const searchFields = [item.naam, item.land, item.regio];
+      const searchFields = [item.naam, item.land, item.regio, item.gebied];
       const match = searchFields.some(field =>
         field && field.toLowerCase().includes(query)
       );
@@ -248,7 +281,7 @@ class ContentSearch {
 
   filterBySearch(query) {
     this.filteredItems = this.allItems.filter(item => {
-      const matches = [item.naam, item.land, item.regio].some(field =>
+      const matches = [item.naam, item.land, item.regio, item.gebied].some(field =>
         field && field.toLowerCase().includes(query)
       );
       return matches && this.matchesFilters(item);
@@ -263,9 +296,12 @@ class ContentSearch {
 
   matchesFilters(item) {
     if (this.selectedFilters.locations.length > 0) {
-      const hasLocation = this.selectedFilters.locations.some(loc =>
-        item.land === loc || item.regio === loc
-      );
+      const hasLocation = this.selectedFilters.locations.some(loc => {
+        if (item.land === loc) return true;
+        // Check against gebied first, then regio
+        const itemLocation = item.gebied || item.regio;
+        return itemLocation === loc;
+      });
       if (!hasLocation) return false;
     }
 
@@ -342,8 +378,12 @@ class ContentSearch {
 
     const regios = new Set();
     this.allItems.forEach(item => {
-      if (item.land === this.wizardState.selectedLand && item.regio) {
-        regios.add(item.regio);
+      if (item.land === this.wizardState.selectedLand) {
+        // Prefer gebied if available, otherwise use regio
+        const location = item.gebied || item.regio;
+        if (location) {
+          regios.add(location);
+        }
       }
     });
 
@@ -381,6 +421,13 @@ class ContentSearch {
     this.renderWizardRegioTags();
   }
 
+  handleWizardRegioNext() {
+    // Move to type step
+    document.getElementById('step-regio').classList.add('hidden');
+    document.getElementById('step-type').classList.remove('hidden');
+    this.renderWizardTypeTags();
+  }
+
   handleWizardRegioSelect(button) {
     const regio = button.dataset.value;
     if (this.wizardState.selectedRegios.includes(regio)) {
@@ -390,21 +437,125 @@ class ContentSearch {
       this.wizardState.selectedRegios.push(regio);
       button.classList.add('active');
     }
+
+    // Auto-advance to type step
+    this.handleWizardRegioNext();
   }
 
   handleWizardTypeSelect(button) {
     const type = button.dataset.value;
+
+    // Only allow one type selection
     if (this.wizardState.selectedTypes.includes(type)) {
-      this.wizardState.selectedTypes = this.wizardState.selectedTypes.filter(t => t !== type);
+      this.wizardState.selectedTypes = [];
       button.classList.remove('active');
+      return;
     } else {
-      this.wizardState.selectedTypes.push(type);
+      // Clear previous selection and select only this type
+      document.querySelectorAll('#step-type .wizard-tag').forEach(tag => tag.classList.remove('active'));
+      this.wizardState.selectedTypes = [type];
       button.classList.add('active');
     }
 
-    // Show results
-    this.showWizardResults();
+    // Reset filters and move to filter step
+    this.wizardState.selectedActivities = [];
+    document.getElementById('step-type').classList.add('hidden');
+    document.getElementById('step-filters').classList.remove('hidden');
+    this.showWizardFilters();
   }
+
+  renderFilterCheckboxes() {
+    const filterCheckboxes = document.getElementById('filterCheckboxes');
+    if (!filterCheckboxes) return;
+
+    const type = this.wizardState.selectedTypes[0];
+    let filters = [];
+
+    // Define available filters by type
+    const filterOptions = {
+      'camping': [
+        { value: 'naturcamping', label: 'Naturcamping' },
+        { value: 'familiecamping', label: 'Familiecamping' },
+        { value: 'glamping', label: 'Glamping' },
+        { value: 'minicamping', label: 'Minicamping' }
+      ],
+      'plaats': [
+        { value: 'dorp', label: 'Dorp' },
+        { value: 'stad', label: 'Stad' }
+      ]
+    };
+
+    filters = filterOptions[type] || [
+      { value: type, label: type.charAt(0).toUpperCase() + type.slice(1) }
+    ];
+
+    const html = filters.map(filter => `
+      <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; cursor: pointer; font-size: 13px; color: var(--color-primary-dark);">
+        <input type="checkbox" class="filter-checkbox" value="${filter.value}" style="width: 14px; height: 14px; cursor: pointer;">
+        <span>${filter.label}</span>
+      </label>
+    `).join('');
+
+    filterCheckboxes.innerHTML = html;
+
+    // Add change listeners to checkboxes
+    document.querySelectorAll('.filter-checkbox').forEach(checkbox => {
+      checkbox.addEventListener('change', (e) => {
+        if (e.target.checked) {
+          if (!this.wizardState.selectedActivities.includes(e.target.value)) {
+            this.wizardState.selectedActivities.push(e.target.value);
+          }
+        } else {
+          this.wizardState.selectedActivities = this.wizardState.selectedActivities.filter(a => a !== e.target.value);
+        }
+        // Update results in real-time
+        this.showWizardFilters();
+      });
+    });
+  }
+
+  showWizardFilters() {
+    const results = this.allItems.filter(item => {
+      const landMatch = item.land === this.wizardState.selectedLand;
+
+      // Use gebied if available, otherwise fall back to regio
+      const matchLocation = item => {
+        const location = item.gebied || item.regio;
+        return this.wizardState.selectedRegios.includes(location);
+      };
+
+      const regioMatch = this.wizardState.selectedRegios.length === 0 ||
+        matchLocation(item);
+
+      const typeMatch = this.wizardState.selectedTypes.length === 0 ||
+        this.wizardState.selectedTypes.includes(item.type);
+      const activityMatch = this.wizardState.selectedActivities.length === 0 ||
+        this.wizardState.selectedActivities.includes(item.type);
+
+      return landMatch && regioMatch && typeMatch && activityMatch;
+    });
+
+    const typeLabels = {
+      'camping': 'Camping',
+      'fietstocht': 'Fietstocht',
+      'wandelroute': 'Wandelroute',
+      'kano-sup': 'Kano & SUP',
+      'plaats': 'Plaats',
+      'museum': 'Museum'
+    };
+
+    const html = results.slice(0, 6).map(item => `
+      <a href="${item.url}" class="result-card">
+        <div class="result-type">${typeLabels[item.type] || item.type}</div>
+        <div class="result-title">${item.naam}</div>
+        <div class="result-meta">${item.land}${item.regio ? ' • ' + item.regio : ''}</div>
+      </a>
+    `).join('');
+
+    this.wizardResultsFiltersContainer.innerHTML = html || '<p>Geen resultaten gevonden</p>';
+    this.renderFilterCheckboxes();
+  }
+
 
   showWizardResults() {
     const results = this.allItems.filter(item => {
@@ -413,8 +564,10 @@ class ContentSearch {
         this.wizardState.selectedRegios.includes(item.regio);
       const typeMatch = this.wizardState.selectedTypes.length === 0 ||
         this.wizardState.selectedTypes.includes(item.type);
+      const activityMatch = this.wizardState.selectedActivities.length === 0 ||
+        this.wizardState.selectedActivities.includes(item.type);
 
-      return landMatch && regioMatch && typeMatch;
+      return landMatch && regioMatch && typeMatch && activityMatch;
     });
 
     const typeLabels = {
@@ -436,7 +589,7 @@ class ContentSearch {
 
     this.wizardResultsContainer.innerHTML = html || '<p>Geen resultaten gevonden</p>';
 
-    document.getElementById('step-type').classList.add('hidden');
+    document.getElementById('step-filters').classList.add('hidden');
     document.getElementById('step-results').classList.remove('hidden');
   }
 
@@ -448,11 +601,22 @@ class ContentSearch {
       this.wizardState.selectedRegios = [];
       document.getElementById('step-land').classList.remove('hidden');
       document.getElementById('step-regio').classList.add('hidden');
+      document.querySelectorAll('#step-regio .wizard-tag').forEach(tag => tag.classList.remove('active'));
     } else if (step === 'type') {
       this.wizardState.selectedTypes = [];
       document.querySelectorAll('#step-type .wizard-tag').forEach(tag => tag.classList.remove('active'));
       document.getElementById('step-regio').classList.remove('hidden');
       document.getElementById('step-type').classList.add('hidden');
+    } else if (step === 'type') {
+      this.wizardState.selectedActivities = [];
+      document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+      const toggleFilters = document.getElementById('toggleFilters');
+      if (toggleFilters) {
+        toggleFilters.checked = false;
+        document.getElementById('filterCheckboxes').style.display = 'none';
+      }
+      document.getElementById('step-type').classList.remove('hidden');
+      document.getElementById('step-filters').classList.add('hidden');
     }
   }
 
@@ -460,15 +624,24 @@ class ContentSearch {
     this.wizardState = {
       selectedLand: null,
       selectedRegios: [],
-      selectedTypes: []
+      selectedTypes: [],
+      selectedActivities: []
     };
 
     document.getElementById('step-land').classList.remove('hidden');
     document.getElementById('step-regio').classList.add('hidden');
     document.getElementById('step-type').classList.add('hidden');
+    document.getElementById('step-filters').classList.add('hidden');
     document.getElementById('step-results').classList.add('hidden');
 
     document.querySelectorAll('.wizard-tag').forEach(tag => tag.classList.remove('active'));
+    document.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+
+    const toggleFilters = document.getElementById('toggleFilters');
+    if (toggleFilters) {
+      toggleFilters.checked = false;
+      document.getElementById('filterCheckboxes').style.display = 'none';
+    }
   }
 }
 

@@ -1,64 +1,223 @@
----
-layout: null
----
 [
-  {% for camping in site.campings %}
+  
+  
   {
-    "naam": "{{ camping.naam | escape }}",
-    "type": "camping",
-    "land": "{{ camping.locatie.land | escape }}",
-    "regio": "{{ camping.locatie.regio | escape }}",
-    "url": "{{ camping.url | escape }}"
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  {% if site.campings.size > 0 %},{% endif %}
-  {% for fietstocht in site.fietstochten %}
-  {
-    "naam": "{{ fietstocht.naam | escape }}",
-    "type": "fietstocht",
-    "land": "{{ fietstocht.locatie.land | escape }}",
-    "regio": "{{ fietstocht.locatie.regio | escape }}",
-    "url": "{{ fietstocht.url | escape }}"
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  {% if site.fietstochten.size > 0 %},{% endif %}
-  {% for wandelroute in site.wandelroutes %}
-  {
-    "naam": "{{ wandelroute.naam | escape }}",
-    "type": "wandelroute",
-    "land": "{{ wandelroute.locatie.land | escape }}",
-    "regio": "{{ wandelroute.locatie.regio | escape }}",
-    "url": "{{ wandelroute.url | escape }}"
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  {% if site.wandelroutes.size > 0 %},{% endif %}
-  {% for museum in site.musea %}
-  {
-    "naam": "{{ museum.naam | escape }}",
-    "type": "museum",
-    "land": "{{ museum.locatie.land | escape }}",
-    "regio": "{{ museum.locatie.regio | escape }}",
-    "url": "{{ museum.url | escape }}"
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  {% if site.musea.size > 0 %},{% endif %}
-  {% for plaats in site.plaats %}
-  {
-    "naam": "{{ plaats.naam | escape }}",
+    "naam": "Bad Pyrmont",
     "type": "plaats",
-    "land": "{{ plaats.locatie.land | escape }}",
-    "regio": "{{ plaats.locatie.regio | escape }}",
-    "url": "{{ plaats.url | escape }}"
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-  {% if site.plaats.size > 0 %},{% endif %}
-  {% for route in site.kano_suproutes %}
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/plaats/bad-pyrmont/"
+  },
+  
+  
   {
-    "naam": "{{ route.naam | escape }}",
+    "naam": "Berdorf",
+    "type": "plaats",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/plaats/berdorf/"
+  },
+  
+  
+  {
+    "naam": "Camping Noord Meer",
+    "type": "camping",
+    "land": "Nederland",
+    "regio": "Overijssel",
+    "gebied": "Vechtdal",
+    "url": "/campings/camping-noord-meer/"
+  },
+  
+  
+  {
+    "naam": "Camping Park Beaufort",
+    "type": "camping",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/campings/camping-park-beaufort/"
+  },
+  
+  
+  {
+    "naam": "Camping Reitdiep",
+    "type": "camping",
+    "land": "Nederland",
+    "regio": "Groningen",
+    "gebied": "Hogeland",
+    "url": "/campings/camping-reitdiep/"
+  },
+  
+  
+  {
+    "naam": "Durch das Habichtstal (Po 2)",
+    "type": "wandelroute",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/wandelroutes/durch-das-habichtstal/"
+  },
+  
+  
+  {
+    "naam": "Hameln",
+    "type": "plaats",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/plaats/hameln/"
+  },
+  
+  
+  {
+    "naam": "Höxter",
+    "type": "plaats",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/plaats/hoexter/"
+  },
+  
+  
+  {
+    "naam": "Kanoroute Linderbeek - Regge",
     "type": "kano-sup",
-    "land": "{{ route.locatie.land | escape }}",
-    "regio": "{{ route.locatie.regio | escape }}",
-    "url": "{{ route.url | escape }}"
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
+    "land": "Nederland",
+    "regio": "Overijssel",
+    "gebied": "Vechtdal",
+    "url": "/kano-suproutes/kanoroute-linderbeek-regge/"
+  },
+  
+  
+  {
+    "naam": "Kastelen van Beaufort",
+    "type": "museum",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/musea/kastelen-van-beaufort/"
+  },
+  
+  
+  {
+    "naam": "Klooster Corvey",
+    "type": "museum",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/musea/klooster-corvey/"
+  },
+  
+  
+  {
+    "naam": "Larochette",
+    "type": "plaats",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/plaats/larochette/"
+  },
+  
+  
+  {
+    "naam": "Lokale wandelroute B7 – Beaufort",
+    "type": "wandelroute",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/wandelroutes/lokale-wandelroute-b7-beaufort/"
+  },
+  
+  
+  {
+    "naam": "Mountainbikeroute Berdorf-Beaufort",
+    "type": "fietstocht",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/fietstochten/mountainbikeroute-berdorf-beaufort/"
+  },
+  
+  
+  {
+    "naam": "Mullerthal Trail Route 2",
+    "type": "wandelroute",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/wandelroutes/mullerthal-trail-route-2/"
+  },
+  
+  
+  {
+    "naam": "Mullerthal Trail Route 3",
+    "type": "wandelroute",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/wandelroutes/mullerthal-trail-route-3/"
+  },
+  
+  
+  {
+    "naam": "Museum im Schloss Bad Pyrmont",
+    "type": "museum",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/musea/museum-schloss-bad-pyrmont/"
+  },
+  
+  
+  {
+    "naam": "Ommen",
+    "type": "plaats",
+    "land": "Nederland",
+    "regio": "Overijssel",
+    "gebied": "Vechtdal",
+    "url": "/plaats/ommen/"
+  },
+  
+  
+  {
+    "naam": "Polle",
+    "type": "plaats",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/plaats/polle/"
+  },
+  
+  
+  {
+    "naam": "Wandeling richting Schiessentümpel waterval",
+    "type": "wandelroute",
+    "land": "Luxemburg",
+    "regio": "Müllerthal",
+    "gebied": "Müllerthal (Klein-Zwitserland)",
+    "url": "/wandelroutes/wandeling-schiessentumpel/"
+  },
+  
+  
+  {
+    "naam": "Weser-Radweg: Höxter - Hameln",
+    "type": "fietstocht",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/fietstochten/weser-radweg-hoexter-hameln/"
+  },
+  
+  
+  {
+    "naam": "Weserterrassen",
+    "type": "camping",
+    "land": "Duitsland",
+    "regio": "Niedersachsen",
+    "gebied": "Weserbergland",
+    "url": "/campings/weserterrassen/"
+  }
+  
 ]
