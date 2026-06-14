@@ -1,4 +1,6 @@
 ---
+# layout: item
+# categorie: campings
 naam: "Weserterrassen"
 review_datum: "2025-09"
 
@@ -82,12 +84,17 @@ activiteiten:
       beschrijving: "Rondwandeling van 7,1 km door bossen en het achterland van Polle, langs de burchtruïne"
       afstand_km: 0
       url: "https://www.outdooractive.com/de/route/wanderung/solling-vogler-region/durch-das-habichtstal-po-2-/7445931/"
+      fotos:
+        - "/assets/images/wandelroutes/durch-das-habichtstal/IMG_1686-wandelen-weser.jpeg"
+        - "/assets/images/wandelroutes/durch-das-habichtstal/IMG_1692-wandelen-weser.jpeg"
 
   fietsen:
     - titel: "Weser-Radweg etappe Höxter–Hameln"
       beschrijving: "De camping ligt direct aan de route. Mooie fietspaden en kleine weggetjes. Let op bedrijfstijden veerpontjes, niet veel bruggen in de omgeving."
       afstand_km: 68
       url: "https://nl.teutoburgerwald.de/natuur/mijn-dag-in-de-natuur/tour/weser-radweg-hoexter-hameln"
+      fotos:
+        - "/assets/images/fietstochten/weser-radweg/IMG_1660-fietsen-weser.jpeg"
 
   kano_en_sup:
     - titel: ""
@@ -100,10 +107,15 @@ activiteiten:
       beschrijving: "Klein dorp direct bij de camping, met burchtruïne boven het dorp"
       afstand_km: 0
       url: "https://nl.teutoburgerwald.de/regio/excursies/mijn-bestemming/burcht-polle"
+      fotos: 
+        - "/assets/images/plaatsen/polle/IMG_1701-ruine-polle.jpeg"
     - titel: "Höxter"
       beschrijving: "Een van de mooiste plaatsen in de omgeving, vlakke fietstocht langs de Weser"
       afstand_km: 0
       url: ""
+      fotos:
+        - "/assets/images/plaatsen/höxter/IMG_1789-stadje-höxter.jpeg"
+        - "/assets/images/plaatsen/höxter/IMG_1803-stadje-höxter.jpeg"
     - titel: "Hameln"
       beschrijving: "Een van de mooiste plaatsen in de omgeving, vlakke fietstocht langs de Weser"
       afstand_km: 0
@@ -112,12 +124,17 @@ activiteiten:
       beschrijving: "Leuke plaats, fietstocht bevat wel hoogtemeters"
       afstand_km: 0
       url: ""
+      fotos:
+        - "/assets/images/plaatsen/bad-pyrmont/IMG_1812-kurpark-bad-pyrmond.jpeg"
+        - "/assets/images/plaatsen/bad-pyrmont/IMG_1817-kurpark-bad-pyrmond.jpeg"
 
   musea:
     - titel: "Burg Polle Schloss"
       beschrijving: "Kleine burcht, maar wel leuk om even, omheen en doorheen te lopen. Mooi uitzicht over de Weser"
       afstand_km: 0
       url: "https://maps.app.goo.gl/6z1f6uHjYXzf75rV7"
+      fotos: 
+        - "/assets/images/plaatsen/polle/IMG_1701-ruine-polle.jpeg"
     - titel: "Museum im Schloss Bad Pyrmont"
       beschrijving: "Slot met museum en mooi kuurpark"
       afstand_km: 0
@@ -126,6 +143,12 @@ activiteiten:
       beschrijving: "UNESCO-Werelderfgoed met mooie kerk, indrukwekkende bibliotheek en mooie tuin"
       afstand_km: 0
       url: "https://www.hoexter-tourismus.de/entdecken/unesco-welterbe-corvey"
+      fotos:
+        - "/assets/images/musea/klooster-corvey/IMG_1753-klooster-corvey.jpeg"
+        - "/assets/images/musea/klooster-corvey/IMG_1769-klooster-corvey.jpeg"
+        - "/assets/images/musea/klooster-corvey/IMG_1772-klooster-corvey.jpeg"
 
-foto: ""
+fotos:
+  - "/assets/images/campings/weserterrassen/IMG_1664-camping-weserterrassen.jpeg"
+  - "/assets/images/campings/weserterrassen/IMG_1730-camping-weserterrassen.jpeg"
 ---

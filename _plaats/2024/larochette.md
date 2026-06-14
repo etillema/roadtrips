@@ -96,5 +96,6 @@ activiteiten:
       afstand_km: 12
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-foto: "/assets/images/plaatsen/larochette.jpg"
+fotos:
+  - "/assets/images/plaatsen/larochette.jpg"
 ---

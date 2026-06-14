@@ -34,6 +34,6 @@ activiteiten:
       afstand_km: 0
       url: "https://www.hoexter-tourismus.de/entdecken/unesco-welterbe-corvey"
 
-foto: ""
+fotos: []
 review_datum: "2025-09"
 ---

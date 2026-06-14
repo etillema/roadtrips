@@ -39,6 +39,6 @@ route_url: "https://nl.teutoburgerwald.de/natuur/mijn-dag-in-de-natuur/tour/wese
 
 horeca: []
 
-foto: ""
+fotos: []
 review_datum: "2025-09"
 ---

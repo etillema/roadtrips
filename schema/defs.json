@@ -19,7 +19,8 @@
         "titel":        { "type": "string" },
         "beschrijving": { "type": "string" },
         "afstand_km":   { "type": "number", "minimum": 0 },
-        "url":          { "type": "string", "format": "uri" }
+        "url":          { "type": "string", "format": "uri" },
+        "fotos":        { "type": "array", "items": { "type": "string" } }
       },
       "additionalProperties": false
     },

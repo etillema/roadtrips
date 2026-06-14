@@ -37,6 +37,6 @@ activiteiten:
       afstand_km: 0
       url: "https://www.museumpyrmont.de/"
 
-foto: ""
+fotos: []
 review_datum: "2025-09"
 ---

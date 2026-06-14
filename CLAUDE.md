@@ -2,7 +2,7 @@
 
 ## Over dit project
 
-Een Nederlandse Jekyll-website voor het bijhouden van roadtrip-informatie: campings, fietstochten, wandelroutes, kano- en suproutes, plaatsen en musea. Items zijn onderling gekoppeld op basis van land en regio. Elke detailpagina toont een Google Maps-kaartje en aanbevelingen voor andere items in dezelfde regio.
+Een Jekyll-website voor het bijhouden van roadtrip-informatie in Noord-West Europa: campings, fietstochten, wandelroutes, kano- en suproutes, plaatsen en musea. Dekt Nederland, Duitsland, België, Frankrijk, Luxemburg, Oostenrijk en omliggende landen. Items zijn onderling gekoppeld op basis van land en regio. Elke detailpagina toont een Google Maps-kaartje en aanbevelingen voor andere items in dezelfde regio.
 
 ## Werkwijze met Claude Code
 
@@ -38,10 +38,11 @@ Alle items worden rechtstreeks als Markdown-bestanden aangemaakt in de juiste co
 | Jekyll versie   | 4.3                                    |
 | Deployment      | GitHub Actions                         |
 | Content formaat | Markdown met front matter (collections)|
-| Taal            | Nederlands (nl)                        |
+| Taal            | Nederlands (nl) + Engels (mogelijk)     |
 | Theme           | Minimal Mistakes (gem)                 |
 | Tags            | Categorie-specifiek (kenmerken / thema)|
-| Meertalig       | Nee                                    |
+| Meertalig       | Nee (maar multi-land/multi-regio)      |
+| Regio's         | Noord-West Europa                      |
 
 ## Projectstructuur
 
@@ -144,8 +145,10 @@ voorzieningen:
     - naam: ""
       type: ""                 # restaurant | koffie | snackbar
       opmerking: ""
-  supermarkten:
+  winkels:
     - naam: ""
+      type: ""                 # supermarkt | bakker | drogist | etc.
+      site: ""                 # (optioneel) Google Maps link
       afstand: ""              # bijv. "5 km"
   horeca_in_de_buurt:
     - naam: ""
@@ -156,31 +159,44 @@ voorzieningen:
 
 activiteiten:
   algemeen:
-    - beschrijving: ""
+    - titel: ""                # (optioneel) titel van de activiteit
+      beschrijving: ""
       afstand_km: 0           # (optioneel) afstand van camping naar startpunt
       url: ""
+      fotos: []                # (optioneel) foto's
   wandelen:
-    - beschrijving: ""
+    - titel: ""
+      beschrijving: ""
       afstand_km: 0
       url: ""
+      fotos: []
   fietsen:
-    - beschrijving: ""
+    - titel: ""
+      beschrijving: ""
       afstand_km: 0
       url: ""
+      fotos: []
   kano_en_sup:
-    - beschrijving: ""
+    - titel: ""
+      beschrijving: ""
       afstand_km: 0
       url: ""
+      fotos: []
   plaatsen_en_dorpen:
-    - beschrijving: ""
+    - titel: ""
+      beschrijving: ""
       afstand_km: 0
       url: ""
+      fotos: []
   musea:
-    - beschrijving: ""
+    - titel: ""
+      beschrijving: ""
       afstand_km: 0
       url: ""
+      fotos: []
 
-foto: "/assets/images/campings/bestandsnaam.jpg"
+fotos:                         # (optioneel) foto's van de camping
+  - "/assets/images/campings/bestandsnaam.jpg"
 review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 ---
 ```
@@ -225,7 +241,8 @@ horeca:
     url: ""
     opmerking: ""
 
-foto: "/assets/images/fietstochten/bestandsnaam.jpg"
+fotos:                         # (optioneel) foto's
+  - "/assets/images/fietstochten/bestandsnaam.jpg"
 review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 ---
 ```
@@ -273,7 +290,8 @@ horeca:
     url: ""
     opmerking: ""
 
-foto: "/assets/images/wandelroutes/bestandsnaam.jpg"
+fotos:                         # (optioneel) foto's
+  - "/assets/images/wandelroutes/bestandsnaam.jpg"
 review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 ---
 ```
@@ -302,7 +320,8 @@ horeca: []
 beschrijving: >
   Korte beschrijving voor de overzichtspagina.
 
-foto: "/assets/images/plaats/bestandsnaam.jpg"
+fotos:                         # (optioneel) foto's
+  - "/assets/images/plaats/bestandsnaam.jpg"
 review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 ---
 ```
@@ -334,7 +353,8 @@ horeca: []
 beschrijving: >
   Korte beschrijving voor de overzichtspagina.
 
-foto: "/assets/images/musea/bestandsnaam.jpg"
+fotos:                         # (optioneel) foto's
+  - "/assets/images/musea/bestandsnaam.jpg"
 review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 ---
 ```
@@ -388,7 +408,8 @@ horeca:
     url: ""
     opmerking: ""
 
-foto: "/assets/images/kano-en-sup/bestandsnaam.jpg"
+fotos:                         # (optioneel) foto's
+  - "/assets/images/kano-en-sup/bestandsnaam.jpg"
 review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 ---
 ```
@@ -397,13 +418,14 @@ review_datum: "2026-05-12"     # (optioneel) datum van laatste review
 
 Gebruik een consistente regio-indeling per land — dit is de basis voor de "Meer in [regio]"-koppelingen:
 
-| Land        | Gebruik                        | Voorbeelden                              |
-|-------------|--------------------------------|------------------------------------------|
-| Nederland   | Provincienaam                  | Friesland, Drenthe, Gelderland           |
-| Duitsland   | Deelstaat of streek            | Niedersachsen, Eifel, Schwarzwald        |
-| Frankrijk   | Regio of departement           | Bretagne, Normandie, Dordogne            |
-| België      | Provincie                      | West-Vlaanderen, Luik, Limburg           |
-| Oostenrijk  | Bundesland                     | Tirol, Salzburgerland, Karinthie         |
+| Land        | Gebruik                        | Voorbeelden                                                          |
+|-------------|--------------------------------|----------------------------------------------------------------------|
+| Nederland   | Provincienaam                  | Friesland, Drenthe, Gelderland, Noord-Holland, Limburg              |
+| Duitsland   | Bundesland of streek           | Niedersachsen, Nordrhein-Westfalen, Hessen, Bayern, Schleswig-Holstein, Eifel, Schwarzwald |
+| België      | Provincie                      | West-Vlaanderen, Oost-Vlaanderen, Vlaams-Brabant, Luik, Limburg     |
+| Frankrijk   | Regio (région)                 | Bretagne, Normandie, Occitanie, Auvergne-Rhône-Alpes, Dordogne    |
+| Luxemburg   | Canton of landstreek           | Luxemburg-Stad, Ardenne, Eifel (grensgebied)                       |
+| Oostenrijk  | Bundesland                     | Tirol, Salzburgerland, Vorarlberg, Oberösterreich, Steiermark      |
 
 ## Afbeeldingen
 

@@ -13,7 +13,15 @@ layout: default
         </p>
       </header>
 
-      {% if page.foto %}
+      {% if page.fotos %}
+      <div class="item-gallery">
+        {% for f in page.fotos %}
+          {% if f and f != "" %}
+            <img src="{{ f | relative_url }}" alt="{{ page.naam }}" loading="lazy" class="gallery-image" />
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% elsif page.foto %}
       <div class="item-hero">
         <img src="{{ page.foto | relative_url }}" alt="{{ page.naam }}" loading="lazy" />
       </div>
@@ -117,6 +125,15 @@ layout: default
                         {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
                       {% endif %}
                       {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                      {% if a.fotos %}
+                        <div class="activiteit-gallery">
+                          {% for f in a.fotos %}
+                            {% if f and f != "" %}<img src="{{ f | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />{% endif %}
+                          {% endfor %}
+                        </div>
+                      {% elsif a.foto %}
+                        <img src="{{ a.foto | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />
+                      {% endif %}
                     </li>
                   {% endfor %}
                 </ul>
@@ -133,6 +150,15 @@ layout: default
                         {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
                       {% endif %}
                       {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                      {% if a.fotos %}
+                        <div class="activiteit-gallery">
+                          {% for f in a.fotos %}
+                            {% if f and f != "" %}<img src="{{ f | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />{% endif %}
+                          {% endfor %}
+                        </div>
+                      {% elsif a.foto %}
+                        <img src="{{ a.foto | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />
+                      {% endif %}
                     </li>
                   {% endfor %}
                 </ul>
@@ -165,6 +191,15 @@ layout: default
                         {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
                       {% endif %}
                       {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                      {% if a.fotos %}
+                        <div class="activiteit-gallery">
+                          {% for f in a.fotos %}
+                            {% if f and f != "" %}<img src="{{ f | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />{% endif %}
+                          {% endfor %}
+                        </div>
+                      {% elsif a.foto %}
+                        <img src="{{ a.foto | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />
+                      {% endif %}
                     </li>
                   {% endfor %}
                 </ul>
@@ -181,6 +216,15 @@ layout: default
                         {% if a.url and a.url != "" %}<a href="{{ a.url }}" target="_blank" rel="noopener">{{ a.beschrijving }}</a>{% else %}{{ a.beschrijving }}{% endif %}
                       {% endif %}
                       {% if a.afstand_km and a.afstand_km > 0 %} <span class="activiteit-afstand">— {{ a.afstand_km }} km van de camping</span>{% endif %}
+                      {% if a.fotos %}
+                        <div class="activiteit-gallery">
+                          {% for f in a.fotos %}
+                            {% if f and f != "" %}<img src="{{ f | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />{% endif %}
+                          {% endfor %}
+                        </div>
+                      {% elsif a.foto %}
+                        <img src="{{ a.foto | relative_url }}" alt="{{ a.titel }}" loading="lazy" class="activity-image" />
+                      {% endif %}
                     </li>
                   {% endfor %}
                 </ul>

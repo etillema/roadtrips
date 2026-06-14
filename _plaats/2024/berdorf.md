@@ -101,5 +101,6 @@ activiteiten:
       afstand_km: 8
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-foto: "/assets/images/plaatsen/berdorf.jpg"
+fotos:
+  - "/assets/images/plaatsen/berdorf.jpg"
 ---

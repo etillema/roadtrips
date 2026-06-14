@@ -92,5 +92,6 @@ activiteiten:
       afstand_km: 0
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-foto: "/assets/images/wandelroutes/lokale-wandelroute-b7-beaufort.jpg"
+fotos:
+  - "/assets/images/wandelroutes/lokale-wandelroute-b7-beaufort.jpg"
 ---

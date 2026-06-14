@@ -9,8 +9,7 @@
     "website",
     "thema",
     "beschrijving",
-    "omschrijving_sfeer",
-    "foto"
+    "omschrijving_sfeer"
   ],
   "properties": {
     "naam":             { "type": "string" },
@@ -30,7 +29,7 @@
       "items": { "$ref": "./defs.json#/$defs/horecaItem" }
     },
     "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
-    "foto":         { "type": "string" }
+    "fotos":        { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": false
 }

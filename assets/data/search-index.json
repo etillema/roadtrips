@@ -1,0 +1,64 @@
+---
+layout: null
+---
+[
+  {% for camping in site.campings %}
+  {
+    "naam": "{{ camping.naam | escape }}",
+    "type": "camping",
+    "land": "{{ camping.locatie.land | escape }}",
+    "regio": "{{ camping.locatie.regio | escape }}",
+    "url": "{{ camping.url | escape }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% if site.campings.size > 0 %},{% endif %}
+  {% for fietstocht in site.fietstochten %}
+  {
+    "naam": "{{ fietstocht.naam | escape }}",
+    "type": "fietstocht",
+    "land": "{{ fietstocht.locatie.land | escape }}",
+    "regio": "{{ fietstocht.locatie.regio | escape }}",
+    "url": "{{ fietstocht.url | escape }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% if site.fietstochten.size > 0 %},{% endif %}
+  {% for wandelroute in site.wandelroutes %}
+  {
+    "naam": "{{ wandelroute.naam | escape }}",
+    "type": "wandelroute",
+    "land": "{{ wandelroute.locatie.land | escape }}",
+    "regio": "{{ wandelroute.locatie.regio | escape }}",
+    "url": "{{ wandelroute.url | escape }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% if site.wandelroutes.size > 0 %},{% endif %}
+  {% for museum in site.musea %}
+  {
+    "naam": "{{ museum.naam | escape }}",
+    "type": "museum",
+    "land": "{{ museum.locatie.land | escape }}",
+    "regio": "{{ museum.locatie.regio | escape }}",
+    "url": "{{ museum.url | escape }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% if site.musea.size > 0 %},{% endif %}
+  {% for plaats in site.plaats %}
+  {
+    "naam": "{{ plaats.naam | escape }}",
+    "type": "plaats",
+    "land": "{{ plaats.locatie.land | escape }}",
+    "regio": "{{ plaats.locatie.regio | escape }}",
+    "url": "{{ plaats.url | escape }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+  {% if site.plaats.size > 0 %},{% endif %}
+  {% for route in site.kano_suproutes %}
+  {
+    "naam": "{{ route.naam | escape }}",
+    "type": "kano-sup",
+    "land": "{{ route.locatie.land | escape }}",
+    "regio": "{{ route.locatie.regio | escape }}",
+    "url": "{{ route.url | escape }}"
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

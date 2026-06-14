@@ -27,6 +27,6 @@ activiteiten:
       afstand_km: 0
       url: "https://nl.teutoburgerwald.de/natuur/mijn-dag-in-de-natuur/tour/weser-radweg-hoexter-hameln"
 
-foto: ""
+fotos: []
 review_datum: "2025-09"
 ---

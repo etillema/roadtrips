@@ -7,10 +7,6 @@ title: Roadtrips
 
 <main class="page-shell home-page">
   <section class="category-section">
-    <div class="section-heading">
-      <h2>Verken onze categorieën</h2>
-    </div>
-
     <div class="category-grid">
       {% include category-card.html title="Campings" count=site.campings.size url="/campings/" icon="△" %}
       {% include category-card.html title="Fietstochten" count=site.fietstochten.size url="/fietstochten/" icon="○" %}

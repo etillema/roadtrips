@@ -3,19 +3,81 @@
     <div class="home-hero__content">
       <h1>Roadtrips</h1>
       <div class="title-accent"></div>
-      <h2>Fietsen, wandelen & kamperen in Nederland</h2>
+      <h2>Fietsen, wandelen & kamperen in Noord-West Europa</h2>
       <p>Ontdek je volgende avontuur met onze verzameling mooie routes, campings, plaatsen en musea.</p>
 
-      <div class="home-quick-links">
-        <a href="/fietstochten/">Fietstochten</a>
-        <a href="/wandelroutes/">Wandelroutes</a>
-        <a href="/campings/">Campings</a>
-        <a href="/plaats/">Plaatsen</a>
+      <div class="search-container">
+        <!-- TAB SELECTOR -->
+        <div class="search-tabs">
+          <button class="search-tab active" data-tab="wizard">Stap voor stap</button>
+          <button class="search-tab" data-tab="freeform">Vrij zoeken</button>
+        </div>
+
+        <!-- WIZARD / GUIDED SEARCH -->
+        <div class="search-tab-content active" id="wizard">
+          <div class="wizard-steps">
+            <div class="wizard-step" id="step-land">
+              <h4>Stap 1: Kies een land</h4>
+              <div class="wizard-tags" id="landTags"></div>
+            </div>
+
+            <div class="wizard-step hidden" id="step-regio">
+              <h4>Stap 2: Kies een regio</h4>
+              <div class="wizard-tags" id="regioTags"></div>
+              <button class="wizard-back" data-back="land">← Terug</button>
+            </div>
+
+            <div class="wizard-step hidden" id="step-type">
+              <h4>Stap 3: Kies een type</h4>
+              <div class="wizard-tags" id="typeTags"></div>
+              <button class="wizard-back" data-back="regio">← Terug</button>
+            </div>
+
+            <div class="wizard-results hidden" id="step-results">
+              <h4>Resultaten</h4>
+              <div id="wizardResults"></div>
+              <button class="wizard-back" data-back="type">← Terug</button>
+              <button class="wizard-reset">Start opnieuw</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- FREEFORM SEARCH -->
+        <div class="search-tab-content" id="freeform">
+          <div class="search-section">
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Zoek op land, plaats, regio, activiteit..."
+              id="searchInput"
+            />
+            <div class="search-suggestions" id="searchSuggestions"></div>
+          </div>
+
+          <div class="filters-section">
+            <div class="filter-group">
+              <h4>Op locatie:</h4>
+              <div class="filter-tags" id="locationTags"></div>
+            </div>
+
+            <div class="filter-group">
+              <h4>Op type:</h4>
+              <div class="filter-tags" id="freeformTypeTags"></div>
+            </div>
+
+            <button class="filter-reset" id="resetFilters">Filters wissen</button>
+          </div>
+
+          <div class="search-results" id="searchResults"></div>
+        </div>
       </div>
     </div>
 
     <div class="home-hero__image-wrap">
-      <img src="/assets/images/hero-roadtrip.jpg" alt="Roadtrip door de natuur" class="home-hero__image" loading="lazy" />
+      <img src="/assets/images/weserbergland/IMG_1739-weserbergland.jpeg" alt="Weserbergland in Duitsland" class="home-hero__image" loading="lazy" />
+      <p class="hero-image-caption"><a href="/campings/">Weserbergland – camping Weserterrassen</a></p>
     </div>
   </div>
 </section>
+
+<script src="/assets/js/search.js" defer></script>

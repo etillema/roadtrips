@@ -118,5 +118,6 @@ activiteiten:
       afstand_km: 10
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-foto: "/assets/images/wandelroutes/mullerthal-trail-route-2.jpg"
+fotos:
+  - "/assets/images/wandelroutes/mullerthal-trail-route-2.jpg"
 ---

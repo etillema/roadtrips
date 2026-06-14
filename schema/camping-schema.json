@@ -91,7 +91,7 @@
       "additionalProperties": false
     },
     "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
-    "foto": { "type": "string" }
+    "fotos": { "type": "array", "items": { "type": "string" } }
   },
   "additionalProperties": false
 }

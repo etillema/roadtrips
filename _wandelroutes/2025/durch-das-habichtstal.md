@@ -39,6 +39,6 @@ ov_tip: ""
 
 horeca: []
 
-foto: ""
+fotos: []
 review_datum: "2025-09"
 ---

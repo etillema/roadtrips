@@ -77,5 +77,6 @@ activiteiten:
       afstand_km: 0
       url: "https://campingpark-beaufort.lu"
 
-foto: "/assets/images/wandelroutes/wandeling-schiessentumpel.jpg"
+fotos:
+  - "/assets/images/wandelroutes/wandeling-schiessentumpel.jpg"
 ---
