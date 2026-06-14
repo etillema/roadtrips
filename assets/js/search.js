@@ -8,6 +8,7 @@ class ContentSearch {
     this.filteredItems = [];
     this.selectedFilters = {
       locations: [],
+      areas: [],
       types: []
     };
     this.wizardState = {
@@ -21,6 +22,7 @@ class ContentSearch {
     this.searchInput = document.getElementById('searchInput');
     this.suggestionsContainer = document.getElementById('searchSuggestions');
     this.locationTagsContainer = document.getElementById('locationTags');
+    this.areaTagsContainer = document.getElementById('areaTags');
     this.typeTagsContainer = document.getElementById('freeformTypeTags');
     this.resultsContainer = document.getElementById('searchResults');
     this.resetButton = document.getElementById('resetFilters');
@@ -41,6 +43,7 @@ class ContentSearch {
   async init() {
     await this.loadContent();
     this.renderLocationTags();
+    this.renderAreaTags();
     this.renderTypeTags();
     this.renderWizardLandTags();
     this.attachEventListeners();
@@ -61,14 +64,21 @@ class ContentSearch {
     const locations = new Set();
     this.allItems.forEach(item => {
       if (item.land) locations.add(item.land);
-      // Prefer gebied if available, otherwise add regio
-      if (item.gebied) {
-        locations.add(item.gebied);
-      } else if (item.regio) {
-        locations.add(item.regio);
-      }
     });
     return Array.from(locations).sort();
+  }
+
+  getUniqueAreas() {
+    const areas = new Set();
+    this.allItems.forEach(item => {
+      // Prefer gebied if available, otherwise add regio
+      if (item.gebied) {
+        areas.add(item.gebied);
+      } else if (item.regio) {
+        areas.add(item.regio);
+      }
+    });
+    return Array.from(areas).sort();
   }
 
   getUniqueTypes() {
@@ -85,6 +95,14 @@ class ContentSearch {
       `<button class="filter-tag" data-type="location" data-value="${loc}">${loc}</button>`
     ).join('');
     this.locationTagsContainer.innerHTML = html;
+  }
+
+  renderAreaTags() {
+    const areas = this.getUniqueAreas();
+    const html = areas.map(area =>
+      `<button class="filter-tag" data-type="area" data-value="${area}">${area}</button>`
+    ).join('');
+    this.areaTagsContainer.innerHTML = html;
   }
 
   renderTypeTags() {
@@ -265,12 +283,16 @@ class ContentSearch {
     if (button.classList.contains('active')) {
       if (type === 'location') {
         this.selectedFilters.locations.push(value);
+      } else if (type === 'area') {
+        this.selectedFilters.areas.push(value);
       } else {
         this.selectedFilters.types.push(value);
       }
     } else {
       if (type === 'location') {
         this.selectedFilters.locations = this.selectedFilters.locations.filter(v => v !== value);
+      } else if (type === 'area') {
+        this.selectedFilters.areas = this.selectedFilters.areas.filter(v => v !== value);
       } else {
         this.selectedFilters.types = this.selectedFilters.types.filter(v => v !== value);
       }
@@ -296,13 +318,12 @@ class ContentSearch {
 
   matchesFilters(item) {
     if (this.selectedFilters.locations.length > 0) {
-      const hasLocation = this.selectedFilters.locations.some(loc => {
-        if (item.land === loc) return true;
-        // Check against gebied first, then regio
-        const itemLocation = item.gebied || item.regio;
-        return itemLocation === loc;
-      });
-      if (!hasLocation) return false;
+      if (!this.selectedFilters.locations.includes(item.land)) return false;
+    }
+
+    if (this.selectedFilters.areas.length > 0) {
+      const itemArea = item.gebied || item.regio;
+      if (!this.selectedFilters.areas.includes(itemArea)) return false;
     }
 
     if (this.selectedFilters.types.length > 0) {
@@ -338,7 +359,7 @@ class ContentSearch {
   }
 
   reset() {
-    this.selectedFilters = { locations: [], types: [] };
+    this.selectedFilters = { locations: [], areas: [], types: [] };
     if (this.searchInput) {
       this.searchInput.value = '';
     }
