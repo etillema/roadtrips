@@ -15,6 +15,8 @@
             placeholder="Zoek op naam, plaats, regio, activiteit..."
             id="searchInput"
           />
+          <div class="suggestions-dropdown" id="suggestionsDropdown"></div>
+          <div class="active-tags" id="activeTags"></div>
         </div>
 
         <div class="filters-bar">
@@ -62,6 +64,8 @@ class FilteredSearch {
   constructor() {
     this.allItems = [];
     this.filteredItems = [];
+    this.suggestions = [];
+    this.selectedTags = [];
 
     // Get DOM elements
     this.searchInput = document.getElementById('searchInput');
@@ -71,6 +75,8 @@ class FilteredSearch {
     this.resultsContainer = document.getElementById('searchResults');
     this.resultsHeader = document.getElementById('resultsHeader');
     this.resetButton = document.getElementById('resetFilters');
+    this.suggestionsDropdown = document.getElementById('suggestionsDropdown');
+    this.activeTagsContainer = document.getElementById('activeTags');
 
     if (this.searchInput) {
       this.init();
@@ -146,7 +152,18 @@ class FilteredSearch {
   }
 
   attachListeners() {
-    this.searchInput.addEventListener('input', () => this.updateResults());
+    this.searchInput.addEventListener('input', () => {
+      this.updateSuggestions();
+      this.updateResults();
+    });
+    this.searchInput.addEventListener('blur', () => {
+      setTimeout(() => this.suggestionsDropdown.classList.remove('active'), 200);
+    });
+    this.searchInput.addEventListener('focus', () => {
+      if (this.suggestions.length > 0) {
+        this.suggestionsDropdown.classList.add('active');
+      }
+    });
     this.filterLand.addEventListener('change', () => {
       this.updateGebieden();
       this.updateResults();
@@ -156,6 +173,139 @@ class FilteredSearch {
     this.resetButton.addEventListener('click', () => this.reset());
   }
 
+  updateSuggestions() {
+    const query = this.searchInput.value.toLowerCase().trim();
+
+    if (!query) {
+      this.suggestions = [];
+      this.renderSuggestions();
+      return;
+    }
+
+    // Collect tags: item-namen + velden (gebieden, regio's, landen, types)
+    const tagMap = new Map();
+    const selectedTagKeys = new Set(this.selectedTags.map(t => `${t.type}:${t.value}`));
+
+    this.allItems.forEach(item => {
+      // Item naam
+      if (item.naam.toLowerCase().includes(query)) {
+        const key = `naam:${item.naam}`;
+        if (!tagMap.has(key) && !selectedTagKeys.has(key)) {
+          tagMap.set(key, {
+            value: item.naam,
+            type: 'naam',
+            label: this.getTypeLabel(item.type)
+          });
+        }
+      }
+
+      // Velden: regio, gebied, land, type
+      const fields = [
+        { value: item.regio, type: 'regio', label: 'Regio' },
+        { value: item.gebied, type: 'gebied', label: 'Gebied' },
+        { value: item.land, type: 'land', label: 'Land' },
+        { value: item.type, type: 'type', label: this.getTypeLabel(item.type) }
+      ];
+
+      fields.forEach(field => {
+        if (field.value && field.value.toLowerCase().includes(query)) {
+          const key = `${field.type}:${field.value}`;
+          if (!tagMap.has(key) && !selectedTagKeys.has(key)) {
+            tagMap.set(key, {
+              value: field.value,
+              type: field.type,
+              label: field.label
+            });
+          }
+        }
+      });
+    });
+
+    // Convert to array and sort by type, then limit to 10
+    this.suggestions = Array.from(tagMap.values())
+      .sort((a, b) => {
+        const typeOrder = { 'naam': 0, 'plaats': 0.5, 'regio': 1, 'gebied': 2, 'land': 3, 'type': 4 };
+        return (typeOrder[a.type] || 5) - (typeOrder[b.type] || 5);
+      })
+      .slice(0, 10);
+
+    this.renderSuggestions();
+  }
+
+  getTypeLabel(type) {
+    const typeLabels = {
+      'camping': 'Campings',
+      'fietstocht': 'Fietstochten',
+      'wandelroute': 'Wandelroutes',
+      'kano-sup': 'Kano & SUP',
+      'plaats': 'Plaatsen',
+      'museum': 'Musea'
+    };
+    return typeLabels[type] || type;
+  }
+
+  renderSuggestions() {
+    if (this.suggestions.length === 0) {
+      this.suggestionsDropdown.classList.remove('active');
+      this.suggestionsDropdown.innerHTML = '';
+      return;
+    }
+
+    const html = this.suggestions.map((tag, idx) => `
+      <div class="suggestion-item" data-index="${idx}">
+        <div class="suggestion-item__content">
+          <div class="suggestion-item__text">
+            <div class="suggestion-item__name">${tag.value}</div>
+            <div class="suggestion-item__type">${tag.label}</div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    this.suggestionsDropdown.innerHTML = html;
+    this.suggestionsDropdown.classList.add('active');
+
+    // Add click listeners to suggestions
+    this.suggestionsDropdown.querySelectorAll('.suggestion-item').forEach(el => {
+      el.addEventListener('click', () => {
+        const idx = parseInt(el.getAttribute('data-index'));
+        const tag = this.suggestions[idx];
+        this.selectedTags.push(tag);
+        this.searchInput.value = '';
+        this.renderActiveTags();
+        this.updateSuggestions();
+        this.updateResults();
+        this.searchInput.focus();
+      });
+    });
+  }
+
+  renderActiveTags() {
+    if (this.selectedTags.length === 0) {
+      this.activeTagsContainer.innerHTML = '';
+      return;
+    }
+
+    const html = this.selectedTags.map((tag, idx) => `
+      <div class="tag-chip">
+        <span class="tag-chip__label">${tag.value}</span>
+        <button class="tag-chip__remove" data-index="${idx}" type="button">×</button>
+      </div>
+    `).join('');
+
+    this.activeTagsContainer.innerHTML = html;
+
+    this.activeTagsContainer.querySelectorAll('.tag-chip__remove').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.getAttribute('data-index'));
+        this.selectedTags.splice(idx, 1);
+        this.renderActiveTags();
+        this.updateSuggestions();
+        this.updateResults();
+      });
+    });
+  }
+
   updateResults() {
     const query = this.searchInput.value.toLowerCase().trim();
     const land = this.filterLand.value;
@@ -163,7 +313,7 @@ class FilteredSearch {
     const type = this.filterType.value;
 
     this.filteredItems = this.allItems.filter(item => {
-      // Text search
+      // Text search (vrije tekst in invoerveld)
       if (query) {
         const matches = [item.naam, item.land, item.regio, item.gebied]
           .filter(Boolean)
@@ -171,7 +321,16 @@ class FilteredSearch {
         if (!matches) return false;
       }
 
-      // Filters
+      // Tag-chips filter (AND-logica: alle tags moeten matchen)
+      for (const tag of this.selectedTags) {
+        if (tag.type === 'naam' && item.naam !== tag.value) return false;
+        if (tag.type === 'type' && item.type !== tag.value) return false;
+        if (tag.type === 'land' && item.land !== tag.value) return false;
+        if (tag.type === 'regio' && item.regio !== tag.value) return false;
+        if (tag.type === 'gebied' && (item.gebied || item.regio) !== tag.value) return false;
+      }
+
+      // Dropdown-filters (legacy)
       if (land && item.land !== land) return false;
       if (gebied && (item.gebied || item.regio) !== gebied) return false;
       if (type && item.type !== type) return false;
@@ -218,9 +377,11 @@ class FilteredSearch {
 
   reset() {
     this.searchInput.value = '';
+    this.selectedTags = [];
     this.filterLand.value = '';
     this.filterGebied.value = '';
     this.filterType.value = '';
+    this.renderActiveTags();
     this.updateGebieden();
     this.updateResults();
   }
