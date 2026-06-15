@@ -1188,13 +1188,21 @@ a {
 
 .home-hero__panel {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(460px, 1.15fr);
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
   padding: 56px;
   border-radius: var(--radius-lg);
   background: linear-gradient(135deg, #fffdf8 0%, #f1eadf 100%);
   box-shadow: var(--shadow-soft);
+}
+
+.home-hero__image-wrap {
+  order: 2;
+}
+
+.home-hero__content {
+  order: 1;
 }
 
 .home-hero__content h1 {
