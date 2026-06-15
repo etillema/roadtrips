@@ -28,14 +28,14 @@ jobs:
           ruby-version: '3.3'
           bundler-cache: true
 
-      - name: Generate recipe pages from YAML
-        run: ruby scripts/generate_recipes.rb
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
 
-      - name: Generate category pages from YAML
-        run: ruby scripts/generate_categories.rb
-
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
+      - name: Build met Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
