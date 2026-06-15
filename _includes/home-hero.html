@@ -22,8 +22,8 @@
             </div>
 
             <div class="wizard-step hidden" id="step-regio">
-              <h4>Stap 2: Kies een regio</h4>
-              <p style="color: var(--color-primary-dark); font-size: 13px; margin: 0 0 12px; font-weight: 500;">Klik op een regio of ga direct naar alle types</p>
+              <h4>Stap 2: Kies een gebied</h4>
+              <p style="color: var(--color-primary-dark); font-size: 13px; margin: 0 0 12px; font-weight: 500;">Klik op een gebied of ga direct naar activiteiten</p>
               <div class="wizard-tags" id="regioTags"></div>
               <div style="margin-top: 12px;">
                 <button class="wizard-skip-regio">Skip →</button>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="wizard-step hidden" id="step-type">
-              <h4>Stap 3: Kies een type</h4>
+              <h4>Stap 3: Kies een activiteit</h4>
               <div class="wizard-tags" id="typeTags"></div>
               <div style="margin-top: 12px;">
                 <button class="wizard-back" data-back="regio">← Terug</button>
@@ -74,25 +74,6 @@
               id="searchInput"
             />
             <div class="search-suggestions" id="searchSuggestions"></div>
-          </div>
-
-          <div class="filters-section">
-            <div class="filter-group">
-              <h4>Op land:</h4>
-              <div class="filter-tags" id="locationTags"></div>
-            </div>
-
-            <div class="filter-group">
-              <h4>Op gebied:</h4>
-              <div class="filter-tags" id="areaTags"></div>
-            </div>
-
-            <div class="filter-group">
-              <h4>Op type:</h4>
-              <div class="filter-tags" id="freeformTypeTags"></div>
-            </div>
-
-            <button class="filter-reset" id="resetFilters">Filters wissen</button>
           </div>
 
           <div class="search-results" id="searchResults"></div>

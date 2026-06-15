@@ -1,6 +1,4 @@
 main:
-  - title: "Home"
-    url: /
   - title: "Campings"
     url: /campings/
   - title: "Fietstochten"
@@ -13,5 +11,5 @@ main:
     url: /musea/
   - title: "Kano & SUP"
     url: /kano-suproutes/
-  - title: "Zoeken"
-    url: /zoeken/
+  - title: "Filteren"
+    url: /filteren/

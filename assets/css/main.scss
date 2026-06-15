@@ -1581,24 +1581,34 @@ a {
   display: inline-block;
   padding: 8px 14px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: #e8f0e1;
+  color: var(--color-primary-dark);
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: color 150ms ease;
+  border: 1px solid rgba(47, 111, 62, 0.2);
+  transition: all 150ms ease;
   user-select: none;
 
-  &:hover {
-    color: rgba(255, 255, 255, 0.7);
+  &:hover:not(:disabled):not(.disabled) {
+    background: #dcebd8;
+    color: var(--color-primary-dark);
   }
 
   &.active {
-    background: white;
-    color: var(--color-primary-dark);
-    border-color: white;
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
     font-weight: 600;
+  }
+
+  &:disabled,
+  &.disabled {
+    background: #f0f0f0;
+    color: #bbb;
+    cursor: not-allowed;
+    opacity: 0.4;
+    border-color: #ddd;
   }
 }
 

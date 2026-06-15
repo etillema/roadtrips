@@ -1,12 +1,12 @@
 ---
 layout: single
-title: Zoeken
+title: Filteren
 ---
 
-<div class="zoek-container">
+<div class="filter-container">
   <p>Selecteer een land en regio om te zien wat er te vinden is.</p>
 
-  <div class="zoek-formulier">
+  <div class="filter-formulier">
     <div>
       <label for="filter-land">Land:</label>
       <select id="filter-land">
@@ -33,7 +33,7 @@ title: Zoeken
     </div>
   </div>
 
-  <div id="zoek-resultaten"></div>
+  <div id="filter-resultaten"></div>
 </div>
 
 <script id="alle-items-data" type="application/json">
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var landSelect      = document.getElementById('filter-land');
   var regioSelect     = document.getElementById('filter-regio');
   var categorieSelect = document.getElementById('filter-categorie');
-  var resultaten      = document.getElementById('zoek-resultaten');
+  var filterResultaten      = document.getElementById('filter-resultaten');
 
   var categorieLabels = {
     campings:     'Campings',
@@ -101,6 +101,44 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  function updateAvailableTags() {
+    var land = landSelect.value;
+
+    // Get available areas for selected land
+    var availableAreas = new Set();
+    items.forEach(function (item) {
+      if (!land || item.land === land) {
+        availableAreas.add(item.regio);
+      }
+    });
+
+    // Get available categories for selected land
+    var availableCategories = new Set();
+    items.forEach(function (item) {
+      if (!land || item.land === land) {
+        availableCategories.add(item.categorie);
+      }
+    });
+
+    // Update regio select - disable/enable options
+    Array.from(regioSelect.options).forEach(function (option) {
+      if (option.value === '') {
+        option.disabled = false;
+      } else {
+        option.disabled = !availableAreas.has(option.value);
+      }
+    });
+
+    // Update categorie select - disable/enable options
+    Array.from(categorieSelect.options).forEach(function (option) {
+      if (option.value === '') {
+        option.disabled = false;
+      } else {
+        option.disabled = !availableCategories.has(option.value);
+      }
+    });
+  }
+
   function toonResultaten() {
     var land      = landSelect.value;
     var regio     = regioSelect.value;
@@ -112,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (categorie) gefilterd = gefilterd.filter(function (i) { return i.categorie === categorie; });
 
     if (gefilterd.length === 0) {
-      resultaten.innerHTML = '<p>Geen resultaten gevonden.</p>';
+      filterResultaten.innerHTML = '<p>Geen resultaten gevonden.</p>';
       return;
     }
 
@@ -153,14 +191,15 @@ document.addEventListener('DOMContentLoaded', function () {
       html += '</div>';
     });
 
-    resultaten.innerHTML = html;
+    filterResultaten.innerHTML = html;
   }
 
-  landSelect.addEventListener('change', function () { vulRegios(); toonResultaten(); });
+  landSelect.addEventListener('change', function () { vulRegios(); updateAvailableTags(); toonResultaten(); });
   regioSelect.addEventListener('change', toonResultaten);
   categorieSelect.addEventListener('change', toonResultaten);
 
   vulRegios();
+  updateAvailableTags();
   toonResultaten();
 });
 </script>

@@ -52,10 +52,15 @@ class ContentSearch {
   async loadContent() {
     try {
       const response = await fetch('/assets/data/search-index.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       this.allItems = await response.json();
       this.filteredItems = [...this.allItems];
+      console.log('Loaded', this.allItems.length, 'items');
     } catch (error) {
       console.error('Error loading search index:', error);
+      console.error('Fetch URL:', '/assets/data/search-index.json');
       this.allItems = [];
     }
   }
@@ -98,11 +103,73 @@ class ContentSearch {
   }
 
   renderAreaTags() {
-    const areas = this.getUniqueAreas();
+    const selectedLocation = this.selectedFilters.locations.length > 0 ? this.selectedFilters.locations[0] : null;
+
+    // If a location is selected, only show areas from that location
+    let areas = [];
+    if (selectedLocation) {
+      const areasSet = new Set();
+      this.allItems.forEach(item => {
+        if (item.land === selectedLocation) {
+          const area = item.gebied || item.regio;
+          if (area) areasSet.add(area);
+        }
+      });
+      areas = Array.from(areasSet).sort();
+    } else {
+      // If no location selected, show all areas
+      areas = this.getUniqueAreas();
+    }
+
     const html = areas.map(area =>
       `<button class="filter-tag" data-type="area" data-value="${area}">${area}</button>`
     ).join('');
     this.areaTagsContainer.innerHTML = html;
+    this.updateFilterTagStates();
+  }
+
+  updateFilterTagStates() {
+    const selectedLocation = this.selectedFilters.locations.length > 0 ? this.selectedFilters.locations[0] : null;
+
+    // Get available areas for selected location
+    const availableAreas = new Set();
+    if (selectedLocation) {
+      this.allItems.forEach(item => {
+        if (item.land === selectedLocation) {
+          const area = item.gebied || item.regio;
+          if (area) availableAreas.add(area);
+        }
+      });
+    }
+
+    // Update all location tag buttons - disable if another location is selected
+    document.querySelectorAll('[data-type="location"]').forEach(button => {
+      const location = button.dataset.value;
+      const isSelected = location === selectedLocation;
+      const isDisabled = selectedLocation && !isSelected;
+
+      if (isDisabled) {
+        button.disabled = true;
+        button.classList.add('disabled');
+      } else {
+        button.disabled = false;
+        button.classList.remove('disabled');
+      }
+    });
+
+    // Update all area tag buttons
+    document.querySelectorAll('[data-type="area"]').forEach(button => {
+      const area = button.dataset.value;
+      const isDisabled = selectedLocation && !availableAreas.has(area);
+
+      if (isDisabled) {
+        button.disabled = true;
+        button.classList.add('disabled');
+      } else {
+        button.disabled = false;
+        button.classList.remove('disabled');
+      }
+    });
   }
 
   renderTypeTags() {
@@ -276,6 +343,11 @@ class ContentSearch {
   }
 
   handleFilterClick(button) {
+    // Don't allow clicking disabled buttons
+    if (button.disabled || button.classList.contains('disabled')) {
+      return;
+    }
+
     button.classList.toggle('active');
     const type = button.dataset.type;
     const value = button.dataset.value;
@@ -298,6 +370,11 @@ class ContentSearch {
       }
     }
 
+    // Re-render area tags if location changed
+    if (type === 'location') {
+      this.renderAreaTags();
+    }
+
     this.applyFilters();
   }
 
@@ -313,6 +390,7 @@ class ContentSearch {
 
   applyFilters() {
     this.filteredItems = this.allItems.filter(item => this.matchesFilters(item));
+    this.updateFilterTagStates();
     this.renderResults();
   }
 
@@ -383,6 +461,11 @@ class ContentSearch {
   }
 
   renderWizardLandTags() {
+    if (!this.landTagsContainer) {
+      console.error('landTagsContainer not found');
+      return;
+    }
+
     const lands = new Set();
     this.allItems.forEach(item => {
       if (item.land) lands.add(item.land);
@@ -415,7 +498,22 @@ class ContentSearch {
   }
 
   renderWizardTypeTags() {
-    const types = this.getUniqueTypes();
+    if (!this.wizardState.selectedLand) return;
+
+    const selectedLand = this.wizardState.selectedLand;
+    const selectedRegios = this.wizardState.selectedRegios;
+
+    // Get available types for selected land and regions
+    let types = new Set();
+    this.allItems.forEach(item => {
+      if (item.land === selectedLand) {
+        // If regions are selected, only include items from those regions
+        if (selectedRegios.length === 0 || selectedRegios.includes(item.regio) || selectedRegios.includes(item.gebied)) {
+          types.add(item.type);
+        }
+      }
+    });
+
     const typeLabels = {
       'camping': 'Campings',
       'fietstocht': 'Fietstochten',
@@ -425,7 +523,7 @@ class ContentSearch {
       'museum': 'Musea'
     };
 
-    const html = types.map(type => {
+    const html = Array.from(types).sort().map(type => {
       const label = typeLabels[type] || type;
       return `<button class="wizard-tag" data-value="${type}">${label}</button>`;
     }).join('');
