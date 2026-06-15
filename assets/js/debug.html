@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Debug</title><style>body{font-family:monospace;margin:20px;background:#f0f0f0}pre{background:#000;color:#0f0;padding:20px;border-radius:5px;overflow-auto}</style></head>
+<body>
+<h1>Search Debug Info</h1>
+<pre id="output">Loading...</pre>
+<script>
+document.getElementById('output').textContent = localStorage.getItem('SEARCH_DEBUG') || 'No debug info yet. Visit http://localhost:4000 first.';
+// Reload every 2 seconds
+setInterval(() => {
+  document.getElementById('output').textContent = localStorage.getItem('SEARCH_DEBUG') || 'No debug info yet.';
+}, 2000);
+</script>
+</body>
+</html>

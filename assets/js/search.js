@@ -3,7 +3,7 @@ class FilteredSearch {
     this.allItems = [];
     this.filteredItems = [];
 
-    // Elements
+    // Get DOM elements
     this.searchInput = document.getElementById('searchInput');
     this.filterLand = document.getElementById('filterLand');
     this.filterGebied = document.getElementById('filterGebied');
@@ -36,7 +36,7 @@ class FilteredSearch {
   }
 
   populateSelects() {
-    // Landen
+    // Populate Land (Landen)
     const lands = [...new Set(this.allItems.map(i => i.land))].sort();
     lands.forEach(land => {
       const opt = document.createElement('option');
@@ -45,7 +45,7 @@ class FilteredSearch {
       this.filterLand.appendChild(opt);
     });
 
-    // Typen
+    // Populate Type
     const types = {
       'camping': 'Campings',
       'fietstocht': 'Fietstochten',
@@ -60,6 +60,9 @@ class FilteredSearch {
       opt.textContent = label;
       this.filterType.appendChild(opt);
     });
+
+    // Initialize Gebied with all areas
+    this.updateGebieden();
   }
 
   updateGebieden() {
@@ -163,4 +166,11 @@ class FilteredSearch {
   }
 }
 
-new FilteredSearch();
+// Initialize when page is loaded
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new FilteredSearch();
+  });
+} else {
+  new FilteredSearch();
+}
