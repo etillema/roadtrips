@@ -7,75 +7,44 @@
       <p>Ontdek je volgende avontuur met onze verzameling mooie routes, campings, plaatsen en musea.</p>
 
       <div class="search-container">
-        <!-- TAB SELECTOR -->
-        <div class="search-tabs">
-          <button class="search-tab active" data-tab="wizard">Stap voor stap</button>
-          <button class="search-tab" data-tab="freeform">Vrij zoeken</button>
+        <!-- SEARCH & FILTERS -->
+        <div class="search-section">
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Zoek op naam, plaats, regio, activiteit..."
+            id="searchInput"
+          />
         </div>
 
-        <!-- WIZARD / GUIDED SEARCH -->
-        <div class="search-tab-content active" id="wizard">
-          <div class="wizard-steps">
-            <div class="wizard-step" id="step-land">
-              <h4>Stap 1: Kies een land</h4>
-              <div class="wizard-tags" id="landTags"></div>
-            </div>
-
-            <div class="wizard-step hidden" id="step-regio">
-              <h4>Stap 2: Kies een gebied</h4>
-              <p style="color: var(--color-primary-dark); font-size: 13px; margin: 0 0 12px; font-weight: 500;">Klik op een gebied of ga direct naar activiteiten</p>
-              <div class="wizard-tags" id="regioTags"></div>
-              <div style="margin-top: 12px;">
-                <button class="wizard-skip-regio">Skip →</button>
-                <button class="wizard-back" data-back="land">← Terug</button>
-              </div>
-            </div>
-
-            <div class="wizard-step hidden" id="step-type">
-              <h4>Stap 3: Kies een activiteit</h4>
-              <div class="wizard-tags" id="typeTags"></div>
-              <div style="margin-top: 12px;">
-                <button class="wizard-back" data-back="regio">← Terug</button>
-              </div>
-            </div>
-
-            <div class="wizard-step hidden" id="step-filters">
-              <h4>Resultaten</h4>
-              <div id="wizardResultsFilters" style="margin-bottom: 16px;"></div>
-
-              <label style="display: flex; align-items: center; gap: 8px; margin: 16px 0; cursor: pointer; font-size: 13px; color: var(--color-primary-dark);">
-                <input type="checkbox" id="toggleFilters" style="width: 14px; height: 14px; cursor: pointer;">
-                <span>Extra filteren</span>
-              </label>
-
-              <div id="filterCheckboxes" style="display: none; margin-top: 12px; margin-bottom: 16px;"></div>
-
-              <div style="margin-top: 20px;">
-                <button class="wizard-back" data-back="type">← Terug</button>
-              </div>
-            </div>
-
-            <div class="wizard-results hidden" id="step-results">
-              <h4>Resultaten</h4>
-              <div id="wizardResults"></div>
-              <button class="wizard-back" data-back="filters">← Terug</button>
-              <button class="wizard-reset">Start opnieuw</button>
-            </div>
+        <div class="filters-bar">
+          <div class="filter-wrapper">
+            <label for="filterLand">Land:</label>
+            <select id="filterLand">
+              <option value="">Alle landen</option>
+            </select>
           </div>
+
+          <div class="filter-wrapper">
+            <label for="filterGebied">Gebied:</label>
+            <select id="filterGebied">
+              <option value="">Alle gebieden</option>
+            </select>
+          </div>
+
+          <div class="filter-wrapper">
+            <label for="filterType">Type:</label>
+            <select id="filterType">
+              <option value="">Alle types</option>
+            </select>
+          </div>
+
+          <button class="filter-reset-btn" id="resetFilters">Filters wissen</button>
         </div>
 
-        <!-- FREEFORM SEARCH -->
-        <div class="search-tab-content" id="freeform">
-          <div class="search-section">
-            <input
-              type="text"
-              class="search-input"
-              placeholder="Zoek op land, plaats, regio, activiteit..."
-              id="searchInput"
-            />
-            <div class="search-suggestions" id="searchSuggestions"></div>
-          </div>
-
+        <!-- RESULTS -->
+        <div class="results-container">
+          <div class="results-header" id="resultsHeader"></div>
           <div class="search-results" id="searchResults"></div>
         </div>
       </div>
