@@ -2909,7 +2909,10 @@ a {
 }
 
 .results-container {
-  margin-top: 24px;
+  padding: 56px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, #fffdf8 0%, #f1eadf 100%);
+  box-shadow: var(--shadow-soft);
 }
 
 .results-header {
@@ -2920,16 +2923,13 @@ a {
 }
 
 .search-results {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
-
-  @media (max-width: 768px) {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .result-card {
+  width: 100%;
   background: white;
   border-radius: 12px;
   overflow: hidden;

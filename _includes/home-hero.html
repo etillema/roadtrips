@@ -48,14 +48,14 @@
 
           <button class="filter-reset-btn" id="resetFilters">Filters wissen</button>
         </div>
-
-        <!-- RESULTS -->
-        <div class="results-container">
-          <div class="results-header" id="resultsHeader"></div>
-          <div class="search-results" id="searchResults"></div>
-        </div>
       </div>
     </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-container">
+    <div class="results-header" id="resultsHeader"></div>
+    <div class="search-results" id="searchResults"></div>
   </div>
 </section>
 
@@ -348,6 +348,14 @@ class FilteredSearch {
         ? 'Geen resultaten gevonden'
         : `${this.filteredItems.length} resultaat${this.filteredItems.length !== 1 ? 'en' : ''} gevonden`;
 
+    // Sort results by type order
+    const typeOrder = { 'camping': 1, 'fietstocht': 2, 'wandelroute': 3, 'museum': 4, 'kano-sup': 5, 'plaats': 6 };
+    const sortedItems = [...this.filteredItems].sort((a, b) => {
+      const orderA = typeOrder[a.type] || 999;
+      const orderB = typeOrder[b.type] || 999;
+      return orderA - orderB;
+    });
+
     // Results
     const typeLabels = {
       'camping': 'Camping',
@@ -358,10 +366,10 @@ class FilteredSearch {
       'museum': 'Museum'
     };
 
-    const html = this.filteredItems.map(item => {
+    const html = sortedItems.map(item => {
       const location = [item.plaats, item.regio].filter(Boolean).join(', ');
       return `
-      <a href="${item.url}" class="result-card">
+      <a href="${item.url}" class="result-card" data-type="${item.type}">
         ${item.foto ? `<img src="${item.foto}" alt="${item.naam}" class="result-card__image" loading="lazy">` : ''}
         <div class="result-card__content">
           <div class="result-card__type">${typeLabels[item.type] || item.type}</div>
