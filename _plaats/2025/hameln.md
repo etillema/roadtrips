@@ -1,4 +1,6 @@
 ---
+layout: item
+categorie: plaats
 naam: "Hameln"
 
 locatie:

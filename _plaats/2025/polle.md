@@ -1,4 +1,6 @@
 ---
+layout: item
+categorie: plaats
 naam: "Polle"
 
 locatie:
@@ -40,6 +42,7 @@ activiteiten:
       afstand_km: 0
       url: "https://weserterrassen.de/"
 
-fotos: []
+fotos:
+  - "/assets/images/plaatsen/polle/IMG_1701-ruine-polle-1280x960.webp"
 review_datum: "2025-09"
 ---

@@ -1,4 +1,6 @@
 ---
+layout: item
+categorie: plaats
 naam: "Bad Pyrmont"
 
 locatie:
@@ -37,6 +39,8 @@ activiteiten:
       afstand_km: 0
       url: "https://www.museumpyrmont.de/"
 
-fotos: []
+fotos:
+  - "/assets/images/plaatsen/bad-pyrmont/IMG_1812-kurpark-bad-pyrmond-1280x960.webp"
+  - "/assets/images/plaatsen/bad-pyrmont/IMG_1817-kurpark-bad-pyrmond-1280x960.webp"
 review_datum: "2025-09"
 ---

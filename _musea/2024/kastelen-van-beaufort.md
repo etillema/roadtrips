@@ -93,6 +93,5 @@ activiteiten:
       afstand_km: 12
       url: "https://www.mullerthal.lu/nl/attractie/kasteel-larochette"
 
-fotos:
-  - "/assets/images/musea/kastelen-van-beaufort.jpg"
+fotos: []
 ---

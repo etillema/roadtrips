@@ -182,6 +182,5 @@ activiteiten:
       afstand_km: 0.5
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-fotos:
-  - "/assets/images/campings/camping-park-beaufort.jpg"
+fotos: []
 ---

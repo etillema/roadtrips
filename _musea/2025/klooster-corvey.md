@@ -1,4 +1,6 @@
 ---
+layout: item
+categorie: musea
 naam: "Klooster Corvey"
 
 locatie:
@@ -34,6 +36,9 @@ activiteiten:
       afstand_km: 0
       url: ""
 
-fotos: []
+fotos:
+  - "/assets/images/musea/klooster-corvey/IMG_1753-klooster-corvey-1280x960.webp"
+  - "/assets/images/musea/klooster-corvey/IMG_1769-klooster-corvey-1280x960.webp"
+  - "/assets/images/musea/klooster-corvey/IMG_1772-klooster-corvey-1280x960.webp"
 review_datum: "2025-09"
 ---

@@ -85,6 +85,5 @@ activiteiten:
       afstand_km: 0
       url: "https://www.visitberdorf.lu"
 
-fotos:
-  - "/assets/images/fietstochten/mountainbikeroute-berdorf-beaufort.jpg"
+fotos: []
 ---

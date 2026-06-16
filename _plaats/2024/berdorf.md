@@ -1,4 +1,6 @@
 ---
+layout: item
+categorie: plaats
 # =============================================================
 # Plaats: Berdorf
 # =============================================================
@@ -101,6 +103,5 @@ activiteiten:
       afstand_km: 8
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-fotos:
-  - "/assets/images/plaatsen/berdorf.jpg"
+fotos: []
 ---

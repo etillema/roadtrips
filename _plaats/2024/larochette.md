@@ -1,4 +1,6 @@
 ---
+layout: item
+categorie: plaats
 # =============================================================
 # Plaats: Larochette
 # =============================================================
@@ -96,6 +98,5 @@ activiteiten:
       afstand_km: 12
       url: "https://maps.app.goo.gl/UQsKHVEd678KAHem6"
 
-fotos:
-  - "/assets/images/plaatsen/larochette.jpg"
+fotos: []
 ---

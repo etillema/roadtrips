@@ -249,6 +249,15 @@ layout: default
           {% endif %}
 
         {% elsif page.categorie == "fietstochten" %}
+          {% if page.fotos %}
+          <div class="item-gallery">
+            {% for f in page.fotos %}
+              {% if f and f != "" %}
+                <img src="{{ f | relative_url }}" alt="{{ page.naam }}" loading="lazy" class="gallery-image" />
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if page.beschrijving and page.beschrijving != "" %}
             <p><strong>{{ page.beschrijving }}</strong></p>
           {% endif %}
@@ -279,6 +288,15 @@ layout: default
           {% endif %}
 
         {% elsif page.categorie == "wandelroutes" %}
+          {% if page.fotos %}
+          <div class="item-gallery">
+            {% for f in page.fotos %}
+              {% if f and f != "" %}
+                <img src="{{ f | relative_url }}" alt="{{ page.naam }}" loading="lazy" class="gallery-image" />
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if page.beschrijving and page.beschrijving != "" %}
             <p><strong>{{ page.beschrijving }}</strong></p>
           {% endif %}
@@ -314,6 +332,15 @@ layout: default
           {% endif %}
 
         {% elsif page.categorie == "plaats" %}
+          {% if page.fotos %}
+          <div class="item-gallery">
+            {% for f in page.fotos %}
+              {% if f and f != "" %}
+                <img src="{{ f | relative_url }}" alt="{{ page.naam }}" loading="lazy" class="gallery-image" />
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if page.beschrijving and page.beschrijving != "" %}
             <p><strong>{{ page.beschrijving }}</strong></p>
           {% endif %}
@@ -370,6 +397,15 @@ layout: default
           {% endif %}
 
         {% elsif page.categorie == "musea" %}
+          {% if page.fotos %}
+          <div class="item-gallery">
+            {% for f in page.fotos %}
+              {% if f and f != "" %}
+                <img src="{{ f | relative_url }}" alt="{{ page.naam }}" loading="lazy" class="gallery-image" />
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if page.beschrijving and page.beschrijving != "" %}
             <p><strong>{{ page.beschrijving }}</strong></p>
           {% endif %}
@@ -406,6 +442,15 @@ layout: default
           {% endif %}
 
         {% elsif page.categorie == "kano_suproutes" %}
+          {% if page.fotos %}
+          <div class="item-gallery">
+            {% for f in page.fotos %}
+              {% if f and f != "" %}
+                <img src="{{ f | relative_url }}" alt="{{ page.naam }}" loading="lazy" class="gallery-image" />
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
           {% if page.beschrijving and page.beschrijving != "" %}
             <p><strong>{{ page.beschrijving }}</strong></p>
           {% endif %}
