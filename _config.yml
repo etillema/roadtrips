@@ -9,6 +9,7 @@ theme: beautiful-jekyll-theme
 
 # Navigation menu
 navbar-links:
+  "Home": "/"
   "Campings": "/campings/"
   "Fietstochten": "/fietstochten/"
   "Wandelroutes": "/wandelroutes/"
