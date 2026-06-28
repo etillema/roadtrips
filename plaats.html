@@ -4,9 +4,18 @@ title: Plaatsen & Steden
 collection: plaats
 ---
 
-{% assign gesorteerd = site.plaats | sort: "naam" %}
-{% for plaats in gesorteerd %}
-  <a href="{{ plaats.url }}" class="item-card">
+{% assign filtered_items = site.plaats | sort: "naam" %}
+
+{% comment %}
+Apply filters based on query parameters
+{% endcomment %}
+{% if page.url contains '?regio=' %}
+  {% assign regio_param = page.url | split: '?regio=' | last | split: '&' | first | replace: '%20', ' ' %}
+  {% assign filtered_items = site.plaats | where_exp: "item", "item.locatie.regio == regio_param" | sort: "naam" %}
+{% endif %}
+
+{% for plaats in filtered_items %}
+  <a href="{{ plaats.url }}" class="item-card" data-regio="{{ plaats.locatie.regio }}">
     {% if plaats.fotos and plaats.fotos.size > 0 %}
       <img src="{{ plaats.fotos[0] }}" alt="{{ plaats.naam }}" loading="lazy">
     {% else %}
@@ -15,12 +24,12 @@ collection: plaats
 
     <div class="item-content">
       <h3>{{ plaats.naam }}</h3>
-      <p class="item-location">📍 {{ plaats.locatie.regio }}</p>
+      <p class="item-location">{{ plaats.locatie.regio }}</p>
       <p class="item-description">{{ plaats.beschrijving | truncatewords: 20 }}</p>
 
       <div class="item-meta">
         {% if plaats.type %}
-          <span>🏘️ {{ plaats.type }}</span>
+          <span>{{ plaats.type }}</span>
         {% endif %}
       </div>
     </div>

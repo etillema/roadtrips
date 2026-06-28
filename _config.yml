@@ -7,16 +7,18 @@ favicon: "/assets/images/favicon.ico"
 
 theme: beautiful-jekyll-theme
 
+# Custom CSS
+common-css:
+  - "/assets/css/main.css"
+
 # Navigation menu
 navbar-links:
-  "Home": "/"
-  "Campings": "/campings/"
+  "Campings": "/"
   "Fietstochten": "/fietstochten/"
   "Wandelroutes": "/wandelroutes/"
   "Plaatsen": "/plaats/"
   "Musea": "/musea/"
   "Kano & SUP": "/kano-suproutes/"
-  "Filteren": "/filteren/"
 
 # Build settings
 markdown: kramdown

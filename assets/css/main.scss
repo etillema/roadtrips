@@ -13,6 +13,8 @@
   color: white !important;
   font-weight: 500;
   transition: all 0.2s ease;
+  min-width: 130px;
+  text-align: center;
 
   &:hover {
     background-color: #1f5c2e;
@@ -213,6 +215,92 @@
   }
 }
 
+// ─── Category Filters ──────────────────────────────────────────────
+.category-filters {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #f9f7f4;
+  border-radius: 12px;
+  border-left: 4px solid #2d7a3f;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #2d2d2d;
+  }
+
+  .filter-reset {
+    background: #2d7a3f;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: #1f5c2e;
+    }
+  }
+}
+
+.filter-menu {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.filter-group h4 {
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  color: #2d7a3f;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.filter-chip {
+  display: inline-block;
+  background: white;
+  border: 2px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  color: #2d2d2d;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #2d7a3f;
+    background: #f0ede8;
+  }
+
+  &.active {
+    background: #2d7a3f;
+    color: white;
+    border-color: #2d7a3f;
+  }
+}
+
 // ─── Category Layout: Sidebar + Grid ───────────────────────────────
 .category-layout {
   display: grid;
@@ -273,6 +361,9 @@
   transition: all 0.2s ease;
   cursor: pointer;
   text-align: left;
+  min-width: 120px;
+  width: 100%;
+  box-sizing: border-box;
 
   &:hover {
     background: #f0ede8;
@@ -285,6 +376,25 @@
     color: white;
     border-color: #2d7a3f;
     font-weight: 500;
+  }
+}
+
+.filter-reset-link {
+  display: inline-block;
+  background: #2d7a3f;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: 100%;
+  text-align: center;
+
+  &:hover {
+    background: #1f5c2e;
+    box-shadow: 0 4px 8px rgba(45, 122, 63, 0.2);
   }
 }
 
@@ -310,8 +420,12 @@
 // ─── Items Grid ───────────────────────────────────────────────────
 .items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;

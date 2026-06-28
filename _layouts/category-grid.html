@@ -2,26 +2,50 @@
 layout: default
 ---
 
+<link rel="stylesheet" href="/assets/css/main.css">
+
 <div class="category-layout">
   <!-- Sidebar Filter -->
   <aside class="filter-sidebar">
+    {% assign current_page = page.url %}
+
+    <!-- Reset link -->
+    {% if current_page contains '?' %}
+      <div class="filter-section">
+        <a href="{{ page.url | split: '?' | first }}" class="filter-reset-link">Alles tonen</a>
+      </div>
+    {% endif %}
+
+    {% assign base_url = page.url | split: '?' | first | replace: '.html', '' %}
+    {% if base_url == '' or base_url == '/' %}
+      {% assign base_url = '/' %}
+    {% endif %}
+
+    <!-- Nederland -->
     <div class="filter-section">
-      <h3>Regio's</h3>
+      <h3>Nederland</h3>
       <div class="filter-tags">
-        <a href="#" class="filter-tag active">Alle</a>
-        <a href="#" class="filter-tag">Nederland</a>
-        <a href="#" class="filter-tag">Duitsland</a>
-        <a href="#" class="filter-tag">België</a>
-        <a href="#" class="filter-tag">Frankrijk</a>
+        <a href="{{ base_url }}?gebied=Hogeland" class="filter-tag {% if current_page contains 'gebied=Hogeland' %}active{% endif %}">Hogeland</a>
+        <a href="{{ base_url }}?gebied=Vechtdal" class="filter-tag {% if current_page contains 'gebied=Vechtdal' %}active{% endif %}">Vechtdal</a>
+        <a href="{{ base_url }}?regio=Groningen" class="filter-tag {% if current_page contains 'regio=Groningen' %}active{% endif %}">Groningen</a>
+        <a href="{{ base_url }}?regio=Overijssel" class="filter-tag {% if current_page contains 'regio=Overijssel' %}active{% endif %}">Overijssel</a>
       </div>
     </div>
 
+    <!-- Duitsland -->
     <div class="filter-section">
-      <h3>Sorteren</h3>
+      <h3>Duitsland</h3>
       <div class="filter-tags">
-        <a href="#" class="filter-tag active">Alfabetisch</a>
-        <a href="#" class="filter-tag">Nieuw</a>
-        <a href="#" class="filter-tag">Populair</a>
+        <a href="{{ base_url }}?gebied=Weserbergland" class="filter-tag {% if current_page contains 'gebied=Weserbergland' %}active{% endif %}">Weserbergland</a>
+        <a href="{{ base_url }}?regio=Niedersachsen" class="filter-tag {% if current_page contains 'regio=Niedersachsen' %}active{% endif %}">Niedersachsen</a>
+      </div>
+    </div>
+
+    <!-- Luxemburg -->
+    <div class="filter-section">
+      <h3>Luxemburg</h3>
+      <div class="filter-tags">
+        <a href="{{ base_url }}?gebied=M%C3%BCllerthal%20%28Klein-Zwitserland%29" class="filter-tag {% if current_page contains 'Müllerthal' %}active{% endif %}">Müllerthal</a>
       </div>
     </div>
   </aside>
@@ -30,11 +54,47 @@ layout: default
   <main class="category-main">
     <div class="category-header">
       <h1>{{ page.title }}</h1>
-      <p class="category-count">{{ content | number_of_words }} items gevonden</p>
     </div>
 
-    <div class="items-grid">
+    <div class="items-grid" id="items-grid">
       {{ content }}
     </div>
   </main>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get query parameters
+  const params = new URLSearchParams(window.location.search);
+  const gebied = params.get('gebied');
+  const regio = params.get('regio');
+
+  // Get all item cards
+  const items = document.querySelectorAll('.item-card');
+
+  // Filter items based on query parameter
+  if (gebied || regio) {
+    items.forEach(item => {
+      const itemGebied = item.getAttribute('data-gebied');
+      const itemRegio = item.getAttribute('data-regio');
+
+      if (gebied && itemGebied === gebied) {
+        item.style.display = 'flex';
+      } else if (regio && itemRegio === regio) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // Mark active filter button
+  const filterTags = document.querySelectorAll('.filter-tag');
+  filterTags.forEach(tag => {
+    const href = tag.getAttribute('href');
+    if (href && window.location.search && href.includes(window.location.search)) {
+      tag.classList.add('active');
+    }
+  });
+});
+</script>

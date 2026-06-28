@@ -4,9 +4,18 @@ title: Musea
 collection: musea
 ---
 
-{% assign gesorteerd = site.musea | sort: "naam" %}
-{% for museum in gesorteerd %}
-  <a href="{{ museum.url }}" class="item-card">
+{% assign filtered_items = site.musea | sort: "naam" %}
+
+{% comment %}
+Apply filters based on query parameters
+{% endcomment %}
+{% if page.url contains '?regio=' %}
+  {% assign regio_param = page.url | split: '?regio=' | last | split: '&' | first | replace: '%20', ' ' %}
+  {% assign filtered_items = site.musea | where_exp: "item", "item.locatie.regio == regio_param" | sort: "naam" %}
+{% endif %}
+
+{% for museum in filtered_items %}
+  <a href="{{ museum.url }}" class="item-card" data-regio="{{ museum.locatie.regio }}">
     {% if museum.fotos and museum.fotos.size > 0 %}
       <img src="{{ museum.fotos[0] }}" alt="{{ museum.naam }}" loading="lazy">
     {% else %}
@@ -15,13 +24,13 @@ collection: musea
 
     <div class="item-content">
       <h3>{{ museum.naam }}</h3>
-      <p class="item-location">📍 {{ museum.locatie.plaats }}, {{ museum.locatie.regio }}</p>
+      <p class="item-location">{{ museum.locatie.plaats }}, {{ museum.locatie.regio }}</p>
       <p class="item-description">{{ museum.beschrijving | truncatewords: 20 }}</p>
 
       <div class="item-meta">
-        <span>🎨 Museum</span>
+        <span>Museum</span>
         {% if museum.toegangsprijs %}
-          <span>€ {{ museum.toegangsprijs }}</span>
+          <span>{{ museum.toegangsprijs }}</span>
         {% endif %}
       </div>
     </div>

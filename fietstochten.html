@@ -4,9 +4,21 @@ title: Fietstochten
 collection: fietstochten
 ---
 
-{% assign gesorteerd = site.fietstochten | sort: "naam" %}
-{% for tocht in gesorteerd %}
-  <a href="{{ tocht.url }}" class="item-card">
+{% assign filtered_items = site.fietstochten | sort: "naam" %}
+
+{% comment %}
+Apply filters based on query parameters
+{% endcomment %}
+{% if page.url contains '?gebied=' %}
+  {% assign gebied_param = page.url | split: '?gebied=' | last | split: '&' | first | replace: '%20', ' ' | replace: '%28', '(' | replace: '%29', ')' %}
+  {% assign filtered_items = site.fietstochten | where_exp: "item", "item.locatie.gebied == gebied_param" | sort: "naam" %}
+{% elsif page.url contains '?regio=' %}
+  {% assign regio_param = page.url | split: '?regio=' | last | split: '&' | first | replace: '%20', ' ' %}
+  {% assign filtered_items = site.fietstochten | where_exp: "item", "item.locatie.regio == regio_param" | sort: "naam" %}
+{% endif %}
+
+{% for tocht in filtered_items %}
+  <a href="{{ tocht.url }}" class="item-card" data-gebied="{{ tocht.locatie.gebied }}" data-regio="{{ tocht.locatie.regio }}">
     {% if tocht.fotos and tocht.fotos.size > 0 %}
       <img src="{{ tocht.fotos[0] }}" alt="{{ tocht.naam }}" loading="lazy">
     {% else %}
@@ -15,11 +27,14 @@ collection: fietstochten
 
     <div class="item-content">
       <h3>{{ tocht.naam }}</h3>
-      <p class="item-location">📍 {{ tocht.locatie.plaats }}, {{ tocht.locatie.regio }}</p>
+      <p class="item-location">{{ tocht.locatie.plaats }}, {{ tocht.locatie.regio }}</p>
+      {% if tocht.locatie.gebied %}
+        <p class="item-gebied">{{ tocht.locatie.gebied }}</p>
+      {% endif %}
       <p class="item-description">{{ tocht.beschrijving | truncatewords: 20 }}</p>
 
       <div class="item-meta">
-        <span>🚴 {{ tocht.afstand_km }} km</span>
+        <span>{{ tocht.afstand_km }} km</span>
         {% if tocht.type %}
           <span>{{ tocht.type }}</span>
         {% endif %}

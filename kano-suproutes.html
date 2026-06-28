@@ -4,9 +4,18 @@ title: Kano & SUP Routes
 collection: kano_suproutes
 ---
 
-{% assign gesorteerd = site.kano_suproutes | sort: "naam" %}
-{% for route in gesorteerd %}
-  <a href="{{ route.url }}" class="item-card">
+{% assign filtered_items = site.kano_suproutes | sort: "naam" %}
+
+{% comment %}
+Apply filters based on query parameters
+{% endcomment %}
+{% if page.url contains '?regio=' %}
+  {% assign regio_param = page.url | split: '?regio=' | last | split: '&' | first | replace: '%20', ' ' %}
+  {% assign filtered_items = site.kano_suproutes | where_exp: "item", "item.locatie.regio == regio_param" | sort: "naam" %}
+{% endif %}
+
+{% for route in filtered_items %}
+  <a href="{{ route.url }}" class="item-card" data-gebied="{{ route.locatie.gebied }}" data-regio="{{ route.locatie.regio }}">
     {% if route.fotos and route.fotos.size > 0 %}
       <img src="{{ route.fotos[0] }}" alt="{{ route.naam }}" loading="lazy">
     {% else %}
@@ -15,12 +24,15 @@ collection: kano_suproutes
 
     <div class="item-content">
       <h3>{{ route.naam }}</h3>
-      <p class="item-location">📍 {{ route.locatie.plaats }}, {{ route.locatie.regio }}</p>
+      <p class="item-location">{{ route.locatie.plaats }}, {{ route.locatie.regio }}</p>
+      {% if route.locatie.gebied %}
+        <p class="item-gebied">{{ route.locatie.gebied }}</p>
+      {% endif %}
       <p class="item-description">{{ route.beschrijving | truncatewords: 20 }}</p>
 
       <div class="item-meta">
-        <span>🚣 {{ route.afstand_km }} km</span>
-        <span>⏱️ {{ route.duur_uren }}u</span>
+        <span>{{ route.afstand_km }} km</span>
+        <span>{{ route.duur_uren }}u</span>
       </div>
     </div>
   </a>
