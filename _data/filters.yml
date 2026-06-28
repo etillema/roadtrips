@@ -1,0 +1,20 @@
+# Dynamisch gegenereerde filter data
+# Bevat alleen gebieden/regio's die daadwerkelijk in items voorkomen
+
+gebieden:
+  Nederland:
+    - Hogeland
+    - Vechtdal
+  Duitsland:
+    - Weserbergland
+  Luxemburg:
+    - Müllerthal (Klein-Zwitserland)
+
+regio:
+  Nederland:
+    - Groningen
+    - Overijssel
+  Duitsland:
+    - Niedersachsen
+  Luxemburg:
+    - Müllerthal
