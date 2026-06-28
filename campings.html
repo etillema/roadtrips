@@ -1,10 +1,31 @@
 ---
-layout: activity-list
+layout: category-grid
 title: Campings
 collection: campings
 ---
 
 {% assign gesorteerd = site.campings | sort: "naam" %}
 {% for camping in gesorteerd %}
-  {% include route-card.html item=camping %}
+  <a href="{{ camping.url }}" class="item-card">
+    {% if camping.fotos and camping.fotos.size > 0 %}
+      <img src="{{ camping.fotos[0] }}" alt="{{ camping.naam }}" loading="lazy">
+    {% else %}
+      <div style="width: 100%; height: 220px; background: linear-gradient(135deg, #2d7a3f 0%, #7fb3d5 100%);"></div>
+    {% endif %}
+
+    <div class="item-content">
+      <h3>{{ camping.naam }}</h3>
+      <p class="item-location">📍 {{ camping.locatie.plaats }}, {{ camping.locatie.regio }}</p>
+      <p class="item-description">{{ camping.beschrijving | truncatewords: 20 }}</p>
+
+      <div class="item-meta">
+        {% if camping.type %}
+          <span>🏕️ {{ camping.type }}</span>
+        {% endif %}
+        {% if camping.aantal_plaatsen %}
+          <span>👥 {{ camping.aantal_plaatsen }} plaatsen</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
 {% endfor %}

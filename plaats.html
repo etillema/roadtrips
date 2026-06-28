@@ -1,10 +1,28 @@
 ---
-layout: activity-list
-title: Plaatsen en steden
+layout: category-grid
+title: Plaatsen & Steden
 collection: plaats
 ---
 
 {% assign gesorteerd = site.plaats | sort: "naam" %}
 {% for plaats in gesorteerd %}
-  {% include route-card.html item=plaats %}
+  <a href="{{ plaats.url }}" class="item-card">
+    {% if plaats.fotos and plaats.fotos.size > 0 %}
+      <img src="{{ plaats.fotos[0] }}" alt="{{ plaats.naam }}" loading="lazy">
+    {% else %}
+      <div style="width: 100%; height: 220px; background: linear-gradient(135deg, #2d7a3f 0%, #7fb3d5 100%);"></div>
+    {% endif %}
+
+    <div class="item-content">
+      <h3>{{ plaats.naam }}</h3>
+      <p class="item-location">📍 {{ plaats.locatie.regio }}</p>
+      <p class="item-description">{{ plaats.beschrijving | truncatewords: 20 }}</p>
+
+      <div class="item-meta">
+        {% if plaats.type %}
+          <span>🏘️ {{ plaats.type }}</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
 {% endfor %}

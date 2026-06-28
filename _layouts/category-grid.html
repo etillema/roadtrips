@@ -1,0 +1,40 @@
+---
+layout: default
+---
+
+<div class="category-layout">
+  <!-- Sidebar Filter -->
+  <aside class="filter-sidebar">
+    <div class="filter-section">
+      <h3>Regio's</h3>
+      <div class="filter-tags">
+        <a href="#" class="filter-tag active">Alle</a>
+        <a href="#" class="filter-tag">Nederland</a>
+        <a href="#" class="filter-tag">Duitsland</a>
+        <a href="#" class="filter-tag">België</a>
+        <a href="#" class="filter-tag">Frankrijk</a>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <h3>Sorteren</h3>
+      <div class="filter-tags">
+        <a href="#" class="filter-tag active">Alfabetisch</a>
+        <a href="#" class="filter-tag">Nieuw</a>
+        <a href="#" class="filter-tag">Populair</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="category-main">
+    <div class="category-header">
+      <h1>{{ page.title }}</h1>
+      <p class="category-count">{{ content | number_of_words }} items gevonden</p>
+    </div>
+
+    <div class="items-grid">
+      {{ content }}
+    </div>
+  </main>
+</div>

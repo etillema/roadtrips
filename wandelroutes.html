@@ -1,10 +1,27 @@
 ---
-layout: activity-list
+layout: category-grid
 title: Wandelroutes
 collection: wandelroutes
 ---
 
 {% assign gesorteerd = site.wandelroutes | sort: "naam" %}
 {% for route in gesorteerd %}
-  {% include route-card.html item=route %}
+  <a href="{{ route.url }}" class="item-card">
+    {% if route.fotos and route.fotos.size > 0 %}
+      <img src="{{ route.fotos[0] }}" alt="{{ route.naam }}" loading="lazy">
+    {% else %}
+      <div style="width: 100%; height: 220px; background: linear-gradient(135deg, #2d7a3f 0%, #e8b4c4 100%);"></div>
+    {% endif %}
+
+    <div class="item-content">
+      <h3>{{ route.naam }}</h3>
+      <p class="item-location">📍 {{ route.locatie.plaats }}, {{ route.locatie.regio }}</p>
+      <p class="item-description">{{ route.beschrijving | truncatewords: 20 }}</p>
+
+      <div class="item-meta">
+        <span>🥾 {{ route.afstand_km }} km</span>
+        <span>⏱️ {{ route.duur_uren }}u</span>
+      </div>
+    </div>
+  </a>
 {% endfor %}
