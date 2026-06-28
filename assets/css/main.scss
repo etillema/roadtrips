@@ -144,6 +144,60 @@
   }
 }
 
+// ─── Countries & Regions Section ──────────────────────────────────
+.countries-section,
+.regions-section {
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #2d2d2d;
+    text-align: center;
+  }
+}
+
+.countries-grid,
+.regions-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.country-btn,
+.region-btn {
+  background: white;
+  border: 2px solid #ddd;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #2d2d2d;
+
+  &:hover {
+    border-color: #2d7a3f;
+    color: #2d7a3f;
+  }
+
+  &.active {
+    background: #2d7a3f;
+    color: white;
+    border-color: #2d7a3f;
+  }
+}
+
+.region-btn {
+  background: #f9f7f4;
+  border-color: #e0e0e0;
+
+  &:hover {
+    background: #f0ede8;
+  }
+}
+
 // ─── Home Tagline ────────────────────────────────────────────────
 .home-tagline {
   background: #f9f7f4;
