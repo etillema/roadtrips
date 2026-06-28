@@ -3,6 +3,34 @@
 
 @charset "utf-8";
 
+// Navbar links als buttons
+.navbar-nav .nav-link {
+  display: inline-block;
+  padding: 0.5rem 1rem !important;
+  margin: 0.25rem !important;
+  border-radius: 6px;
+  background-color: #2d7a3f;
+  color: white !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #1f5c2e;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(45, 122, 63, 0.3);
+  }
+}
+
+// Navbar container flexbox voor beter spacing
+.navbar-collapse {
+  .navbar-nav {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 // ── Kleurenpalet ──────────────────────────────────────────────────────────────
 $color-primary: #2d7a3f;
 $color-primary-hover: #1f5c2e;

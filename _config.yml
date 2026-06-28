@@ -7,6 +7,16 @@ favicon: "/assets/images/favicon.ico"
 
 theme: beautiful-jekyll-theme
 
+# Navigation menu
+navbar-links:
+  "Campings": "/campings/"
+  "Fietstochten": "/fietstochten/"
+  "Wandelroutes": "/wandelroutes/"
+  "Plaatsen": "/plaats/"
+  "Musea": "/musea/"
+  "Kano & SUP": "/kano-suproutes/"
+  "Filteren": "/filteren/"
+
 # Build settings
 markdown: kramdown
 encoding: utf-8
