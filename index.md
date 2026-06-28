@@ -3,25 +3,58 @@ layout: default
 title: Roadtrips
 ---
 
-{% include home-hero.html %}
+<div class="home-header">
+  <div class="home-header-content">
+    <h1>Roadtrips Noord-West Europa</h1>
+    <p>Campings, fietstochten, wandelroutes, en nog veel meer</p>
+  </div>
+</div>
 
-<main class="page-shell home-page">
-  <section class="category-section">
-    <div class="category-grid">
-      {% include category-card.html title="Campings" count=site.campings.size url="/campings/" icon="△" %}
-      {% include category-card.html title="Fietstochten" count=site.fietstochten.size url="/fietstochten/" icon="○" %}
-      {% include category-card.html title="Wandelroutes" count=site.wandelroutes.size url="/wandelroutes/" icon="⌁" %}
-      {% include category-card.html title="Musea" count=site.musea.size url="/musea/" icon="▣" %}
-      {% include category-card.html title="Kano & SUP" count=site.kano_suproutes.size url="/kano-suproutes/" icon="≈" %}
-      {% include category-card.html title="Plaatsen & steden" count=site.plaats.size url="/plaats/" icon="▢" %}
+<main class="home-main">
+  <section class="categories-showcase">
+    <h2>Kies een categorie</h2>
+    
+    <div class="category-tiles">
+      <a href="/campings/" class="category-tile">
+        <div class="tile-icon">🏕️</div>
+        <h3>Campings</h3>
+        <p class="tile-count">{{ site.campings.size }} plekken</p>
+      </a>
+
+      <a href="/fietstochten/" class="category-tile">
+        <div class="tile-icon">🚴</div>
+        <h3>Fietstochten</h3>
+        <p class="tile-count">{{ site.fietstochten.size }} routes</p>
+      </a>
+
+      <a href="/wandelroutes/" class="category-tile">
+        <div class="tile-icon">🥾</div>
+        <h3>Wandelroutes</h3>
+        <p class="tile-count">{{ site.wandelroutes.size }} routes</p>
+      </a>
+
+      <a href="/plaats/" class="category-tile">
+        <div class="tile-icon">🏘️</div>
+        <h3>Plaatsen & Steden</h3>
+        <p class="tile-count">{{ site.plaats.size }} plaatsen</p>
+      </a>
+
+      <a href="/musea/" class="category-tile">
+        <div class="tile-icon">🎨</div>
+        <h3>Musea</h3>
+        <p class="tile-count">{{ site.musea.size }} musea</p>
+      </a>
+
+      <a href="/kano-suproutes/" class="category-tile">
+        <div class="tile-icon">🚣</div>
+        <h3>Kano & SUP</h3>
+        <p class="tile-count">{{ site.kano_suproutes.size }} routes</p>
+      </a>
     </div>
   </section>
 
-  <section class="home-quote">
-    <div class="home-quote__icon">⌾</div>
-    <div>
-      <h2>Buiten is het mooiste</h2>
-      <p>Maak herinneringen, ontdek nieuwe plekken en geniet van de natuur.</p>
-    </div>
+  <section class="home-tagline">
+    <h2>Buiten is het mooiste 🌳</h2>
+    <p>Maak herinneringen, ontdek nieuwe plekken en geniet van de natuur in Noord-West Europa.</p>
   </section>
 </main>
