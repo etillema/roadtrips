@@ -11,25 +11,91 @@ title: Roadtrips
 </div>
 
 <main class="home-main">
-  <!-- Countries/Landen -->
-  <section class="countries-section">
-    <h2>Kies je bestemming</h2>
-    <div class="countries-grid">
-      <button class="country-btn active" data-country="all">🌍 Alles</button>
-      <button class="country-btn" data-country="Nederland">🇳🇱 Nederland</button>
-      <button class="country-btn" data-country="Duitsland">🇩🇪 Duitsland</button>
-      <button class="country-btn" data-country="België">🇧🇪 België</button>
-      <button class="country-btn" data-country="Frankrijk">🇫🇷 Frankrijk</button>
-      <button class="country-btn" data-country="Luxemburg">🇱🇺 Luxemburg</button>
-      <button class="country-btn" data-country="Oostenrijk">🇦🇹 Oostenrijk</button>
+  <!-- Regio's per Land - ALLES ZICHTBAAR -->
+  <section class="countries-regions">
+    <h2>Zoeken op Land & Regio</h2>
+    
+    <!-- Nederland -->
+    <div class="country-block">
+      <h3>🇳🇱 Nederland</h3>
+      <div class="regions-buttons">
+        <a href="/campings/?regio=Friesland" class="region-link">Friesland</a>
+        <a href="/campings/?regio=Drenthe" class="region-link">Drenthe</a>
+        <a href="/campings/?regio=Groningen" class="region-link">Groningen</a>
+        <a href="/campings/?regio=Overijssel" class="region-link">Overijssel</a>
+        <a href="/campings/?regio=Flevoland" class="region-link">Flevoland</a>
+        <a href="/campings/?regio=Gelderland" class="region-link">Gelderland</a>
+        <a href="/campings/?regio=Noord-Holland" class="region-link">Noord-Holland</a>
+        <a href="/campings/?regio=Utrecht" class="region-link">Utrecht</a>
+        <a href="/campings/?regio=Noord-Brabant" class="region-link">Noord-Brabant</a>
+        <a href="/campings/?regio=Limburg" class="region-link">Limburg</a>
+        <a href="/campings/?regio=Zeeland" class="region-link">Zeeland</a>
+      </div>
     </div>
-  </section>
 
-  <!-- Regions/Regio's -->
-  <section class="regions-section">
-    <h2>Kies een regio</h2>
-    <div class="regions-grid" id="regionsContainer">
-      <!-- Dynamisch gevuld met JavaScript -->
+    <!-- Duitsland -->
+    <div class="country-block">
+      <h3>🇩🇪 Duitsland</h3>
+      <div class="regions-buttons">
+        <a href="/campings/?regio=Schleswig-Holstein" class="region-link">Schleswig-Holstein</a>
+        <a href="/campings/?regio=Niedersachsen" class="region-link">Niedersachsen</a>
+        <a href="/campings/?regio=Nordrhein-Westfalen" class="region-link">Nordrhein-Westfalen</a>
+        <a href="/campings/?regio=Hessen" class="region-link">Hessen</a>
+        <a href="/campings/?regio=Rheinland-Pfalz" class="region-link">Rheinland-Pfalz</a>
+        <a href="/campings/?regio=Baden-Württemberg" class="region-link">Baden-Württemberg</a>
+        <a href="/campings/?regio=Bayern" class="region-link">Bayern</a>
+        <a href="/campings/?regio=Eifel" class="region-link">Eifel</a>
+        <a href="/campings/?regio=Schwarzwald" class="region-link">Schwarzwald</a>
+      </div>
+    </div>
+
+    <!-- België -->
+    <div class="country-block">
+      <h3>🇧🇪 België</h3>
+      <div class="regions-buttons">
+        <a href="/campings/?regio=West-Vlaanderen" class="region-link">West-Vlaanderen</a>
+        <a href="/campings/?regio=Oost-Vlaanderen" class="region-link">Oost-Vlaanderen</a>
+        <a href="/campings/?regio=Vlaams-Brabant" class="region-link">Vlaams-Brabant</a>
+        <a href="/campings/?regio=Limburg" class="region-link">Limburg</a>
+        <a href="/campings/?regio=Luik" class="region-link">Luik</a>
+        <a href="/campings/?regio=Hainaut" class="region-link">Hainaut</a>
+        <a href="/campings/?regio=Namur" class="region-link">Namur</a>
+      </div>
+    </div>
+
+    <!-- Frankrijk -->
+    <div class="country-block">
+      <h3>🇫🇷 Frankrijk</h3>
+      <div class="regions-buttons">
+        <a href="/campings/?regio=Bretagne" class="region-link">Bretagne</a>
+        <a href="/campings/?regio=Normandie" class="region-link">Normandie</a>
+        <a href="/campings/?regio=Nouvelle-Aquitaine" class="region-link">Nouvelle-Aquitaine</a>
+        <a href="/campings/?regio=Auvergne-Rhône-Alpes" class="region-link">Auvergne-Rhône-Alpes</a>
+        <a href="/campings/?regio=Occitanie" class="region-link">Occitanie</a>
+        <a href="/campings/?regio=Dordogne" class="region-link">Dordogne</a>
+      </div>
+    </div>
+
+    <!-- Luxemburg -->
+    <div class="country-block">
+      <h3>🇱🇺 Luxemburg</h3>
+      <div class="regions-buttons">
+        <a href="/campings/?regio=Luxemburg-Stad" class="region-link">Luxemburg-Stad</a>
+        <a href="/campings/?regio=Ardenne" class="region-link">Ardenne</a>
+        <a href="/campings/?regio=Eifel" class="region-link">Eifel</a>
+      </div>
+    </div>
+
+    <!-- Oostenrijk -->
+    <div class="country-block">
+      <h3>🇦🇹 Oostenrijk</h3>
+      <div class="regions-buttons">
+        <a href="/campings/?regio=Vorarlberg" class="region-link">Vorarlberg</a>
+        <a href="/campings/?regio=Tirol" class="region-link">Tirol</a>
+        <a href="/campings/?regio=Salzburgerland" class="region-link">Salzburgerland</a>
+        <a href="/campings/?regio=Oberösterreich" class="region-link">Oberösterreich</a>
+        <a href="/campings/?regio=Steiermark" class="region-link">Steiermark</a>
+      </div>
     </div>
   </section>
 
@@ -81,56 +147,3 @@ title: Roadtrips
     <p>Maak herinneringen, ontdek nieuwe plekken en geniet van de natuur in Noord-West Europa.</p>
   </section>
 </main>
-
-<script>
-// Regio's per land
-const regions = {
-  "Nederland": ["Friesland", "Drenthe", "Gelderland", "Noord-Holland", "Utrecht", "Flevoland", "Overijssel", "Limburg", "Noord-Brabant", "Zeeland", "Groningen"],
-  "Duitsland": ["Niedersachsen", "Nordrhein-Westfalen", "Hessen", "Bayern", "Schleswig-Holstein", "Baden-Württemberg", "Eifel", "Schwarzwald", "Rheinland-Pfalz"],
-  "België": ["West-Vlaanderen", "Oost-Vlaanderen", "Vlaams-Brabant", "Luik", "Limburg", "Hainaut", "Namur"],
-  "Frankrijk": ["Bretagne", "Normandie", "Occitanie", "Auvergne-Rhône-Alpes", "Dordogne", "Nouvelle-Aquitaine"],
-  "Luxemburg": ["Luxemburg-Stad", "Ardenne", "Eifel"],
-  "Oostenrijk": ["Tirol", "Salzburgerland", "Vorarlberg", "Oberösterreich", "Steiermark"]
-};
-
-// Initialize regions on page load
-function initializeRegions() {
-  const selected = document.querySelector('.country-btn.active').dataset.country;
-  updateRegions(selected);
-}
-
-// Update regions when country is clicked
-document.querySelectorAll('.country-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.country-btn').forEach(b => b.classList.remove('active'));
-    this.classList.add('active');
-    updateRegions(this.dataset.country);
-  });
-});
-
-function updateRegions(country) {
-  const container = document.getElementById('regionsContainer');
-  container.innerHTML = '';
-  
-  let regionsToShow = [];
-  if (country === 'all') {
-    Object.values(regions).forEach(r => regionsToShow = regionsToShow.concat(r));
-  } else {
-    regionsToShow = regions[country] || [];
-  }
-  
-  regionsToShow.forEach(region => {
-    const btn = document.createElement('button');
-    btn.className = 'region-btn';
-    btn.textContent = region;
-    btn.addEventListener('click', function() {
-      // TODO: Filter items by region
-      alert('Filter voor ' + region + ' (nog te implementeren)');
-    });
-    container.appendChild(btn);
-  });
-}
-
-// Initialize on page load
-initializeRegions();
-</script>

@@ -145,56 +145,54 @@
 }
 
 // ─── Countries & Regions Section ──────────────────────────────────
-.countries-section,
-.regions-section {
-  margin-bottom: 3rem;
+.countries-regions {
+  margin-bottom: 4rem;
 
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 2.5rem;
     color: #2d2d2d;
     text-align: center;
   }
 }
 
-.countries-grid,
-.regions-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-}
+.country-block {
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: #f9f7f4;
+  border-radius: 12px;
+  border-left: 4px solid #2d7a3f;
 
-.country-btn,
-.region-btn {
-  background: white;
-  border: 2px solid #ddd;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
-  cursor: pointer;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  color: #2d2d2d;
-
-  &:hover {
-    border-color: #2d7a3f;
-    color: #2d7a3f;
+  h3 {
+    font-size: 1.3rem;
+    margin: 0 0 1.5rem;
+    color: #2d2d2d;
   }
 
-  &.active {
+  .regions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+}
+
+.region-link {
+  display: inline-block;
+  background: white;
+  border: 2px solid #ddd;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  color: #2d2d2d;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+  &:hover {
     background: #2d7a3f;
     color: white;
     border-color: #2d7a3f;
-  }
-}
-
-.region-btn {
-  background: #f9f7f4;
-  border-color: #e0e0e0;
-
-  &:hover {
-    background: #f0ede8;
+    transform: translateY(-2px);
   }
 }
 
