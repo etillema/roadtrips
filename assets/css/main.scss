@@ -3,9 +3,6 @@
 
 @charset "utf-8";
 
-@import "minimal-mistakes/skins/default"; // {{ site.minimal_mistakes_skin | default: 'default' }}
-@import "minimal-mistakes";
-
 // ── Kleurenpalet ──────────────────────────────────────────────────────────────
 $color-primary: #2d7a3f;
 $color-primary-hover: #1f5c2e;

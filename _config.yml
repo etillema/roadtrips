@@ -5,8 +5,7 @@ url: ""
 lang: nl
 favicon: "/assets/images/favicon.ico"
 
-theme: minimal-mistakes-jekyll
-minimal_mistakes_skin: default
+theme: beautiful-jekyll-theme
 
 # Build settings
 markdown: kramdown

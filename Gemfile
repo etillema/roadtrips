@@ -1,8 +1,7 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
-gem "minimal-mistakes-jekyll"
-gem "sassc", "~> 2.4"
+gem "beautiful-jekyll-theme"
 
 group :jekyll_plugins do
   gem "jekyll-feed"
