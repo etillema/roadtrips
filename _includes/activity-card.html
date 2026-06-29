@@ -1,5 +1,20 @@
 <div class="activity-card soft-card">
   <div class="activity-card__header">
+    {% assign icon_map = "wandelen:ti-walk,fietsen:ti-bike,kano_en_sup:ti-kayak,plaatsen_en_dorpen:ti-tower,musea:ti-building-bank" | split: "," %}
+    {% assign icon = "" %}
+    {% for mapping in icon_map %}
+      {% assign parts = mapping | split: ":" %}
+      {% if parts[0] == include.category %}
+        {% assign icon = parts[1] %}
+      {% endif %}
+    {% endfor %}
+
+    {% if icon %}
+      <svg class="activity-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <use href="https://cdn.jsdelivr.net/npm/@tabler/icons@latest/tabler-sprite.svg#{{ icon }}"></use>
+      </svg>
+    {% endif %}
+
     <h4 class="activity-card__title">
       {% if include.activity.titel %}
         {{ include.activity.titel }}

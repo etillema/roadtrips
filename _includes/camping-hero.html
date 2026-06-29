@@ -1,4 +1,8 @@
 <section class="camping-hero page-shell">
+  {% if page.review_datum %}
+    <div class="review-date">Bezocht: {{ page.review_datum | date: "%d %b %Y" }}</div>
+  {% endif %}
+
   <div class="camping-hero__content">
     <a href="/campings/" class="breadcrumb">← Terug naar alle campings</a>
 
