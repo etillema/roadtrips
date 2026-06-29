@@ -1,7 +1,7 @@
 title: Roadtrips
 description: "Campings, fietstochten, wandelroutes, kano- en suproutes, mooie plaatsen en musea"
-baseurl: ""
-url: ""
+baseurl: "https://etillema.github.io"
+url: "/roadtrips"
 lang: nl
 favicon: "/assets/images/favicon.ico"
 
