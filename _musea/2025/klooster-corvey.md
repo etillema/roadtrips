@@ -1,6 +1,4 @@
 ---
-layout: item
-categorie: musea
 naam: "Klooster Corvey"
 
 locatie:

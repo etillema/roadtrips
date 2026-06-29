@@ -1,6 +1,4 @@
 ---
-layout: item
-categorie: campings
 naam: "Weserterrassen"
 review_datum: "2025-09"
 

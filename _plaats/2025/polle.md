@@ -1,6 +1,4 @@
 ---
-layout: item
-categorie: plaats
 naam: "Polle"
 
 locatie:

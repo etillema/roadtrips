@@ -552,12 +552,12 @@ a {
 
   &.btn--secondary {
     background-color: $color-accent-rose;
-    &:hover { background-color: darken($color-accent-rose, 10%); }
+    &:hover { background-color: adjust-color($color-accent-rose, $lightness: -10%); }
   }
 
   &.btn--tertiary {
     background-color: $color-accent-blue;
-    &:hover { background-color: darken($color-accent-blue, 10%); }
+    &:hover { background-color: adjust-color($color-accent-blue, $lightness: -10%); }
   }
 }
 
