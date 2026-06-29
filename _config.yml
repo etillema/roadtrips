@@ -8,7 +8,7 @@ favicon: "/assets/images/favicon.ico"
 theme: beautiful-jekyll-theme
 
 # Custom CSS
-common-css:
+site-css:
   - "/assets/css/main.css"
 
 # Navigation menu
