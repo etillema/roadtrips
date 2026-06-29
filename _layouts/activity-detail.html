@@ -1,0 +1,155 @@
+---
+layout: default
+---
+
+{% include activity-hero.html %}
+
+{% include camping-photo-gallery.html %}
+
+<main class="page-shell camping-page">
+
+  <section class="content-grid">
+    <article class="prose-card">
+      <h2>Over deze activiteit</h2>
+      {% if page.beschrijving %}
+        <p class="intro-text">{{ page.beschrijving }}</p>
+      {% endif %}
+      {% if page.omschrijving_route %}
+        <div class="sfeer-content">
+          {{ page.omschrijving_route | markdownify }}
+        </div>
+      {% endif %}
+
+      {% if page.website %}
+        <p><a href="{{ page.website }}" target="_blank" rel="noopener" class="text-link">Bezoek de website →</a></p>
+      {% endif %}
+
+      {% if page.startpunt or page.eindpunt or page.afstand_km or page.duur_uren or page.type or page.ondergrond %}
+        <hr class="soft-divider" />
+
+        {% if page.startpunt %}
+          <div class="detail-block">
+            <h3 class="detail-label">Startpunt</h3>
+            <p>{{ page.startpunt }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.eindpunt %}
+          <div class="detail-block">
+            <h3 class="detail-label">Eindpunt</h3>
+            <p>{{ page.eindpunt }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.afstand_km %}
+          <div class="detail-block">
+            <h3 class="detail-label">Afstand</h3>
+            <p>{{ page.afstand_km }} km</p>
+          </div>
+        {% endif %}
+
+        {% if page.duur_uren %}
+          <div class="detail-block">
+            <h3 class="detail-label">Duur</h3>
+            <p>{{ page.duur_uren }} uur</p>
+          </div>
+        {% endif %}
+
+        {% if page.type %}
+          <div class="detail-block">
+            <h3 class="detail-label">Type</h3>
+            <p>{{ page.type | capitalize }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.ondergrond %}
+          <div class="detail-block">
+            <h3 class="detail-label">Ondergrond</h3>
+            <p>{{ page.ondergrond | capitalize }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.stroming %}
+          <div class="detail-block">
+            <h3 class="detail-label">Stroming</h3>
+            <p>{{ page.stroming | capitalize }}</p>
+          </div>
+        {% endif %}
+
+        {% if page.type_water %}
+          <div class="detail-block">
+            <h3 class="detail-label">Type water</h3>
+            <p>{{ page.type_water | capitalize }}</p>
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {{ content }}
+    </article>
+
+    <aside class="side-stack">
+      {% if page.locatie %}
+        <div class="soft-card">
+          <div class="map-card">
+            <div class="google-maps-blok">
+              <div class="google-maps-embed">
+                <iframe
+                  src="https://maps.google.com/maps?q={{ page.locatie.plaats }}%20{{ page.locatie.regio }}&z=13&output=embed"
+                  style="width: 100%; height: 100%; border: 0; border-radius: 8px;"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Kaart van {{ page.locatie.plaats }}"
+                ></iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </aside>
+  </section>
+
+  {% if page.bezienswaardigheden_onderweg %}
+    {% assign bezienswaardigheden = page.bezienswaardigheden_onderweg | where_exp: "b", "b.beschrijving != ''" %}
+    {% if bezienswaardigheden.size > 0 %}
+      <section class="nearby-section">
+        <h2>Bezienswaardigheden onderweg</h2>
+        <div class="horeca-grid">
+          {% for b in bezienswaardigheden %}
+            <div class="horeca-card">
+              <div class="horeca-header">
+                {% if b.url %}<a href="{{ b.url }}" target="_blank" rel="noopener" class="horeca-name">{{ b.beschrijving | truncatewords: 5 }}</a>{% else %}<div class="horeca-name">{{ b.beschrijving | truncatewords: 5 }}</div>{% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
+
+  {% if page.horeca %}
+    {% assign horeca = page.horeca | where_exp: "h", "h.naam != ''" %}
+    {% if horeca.size > 0 %}
+      <section class="nearby-section">
+        <h2>Eten en drinken</h2>
+        <div class="horeca-grid">
+          {% for h in horeca %}
+            <div class="horeca-card">
+              <div class="horeca-header">
+                {% if h.url %}<a href="{{ h.url }}" target="_blank" rel="noopener" class="horeca-name">{{ h.naam }}</a>{% else %}<div class="horeca-name">{{ h.naam }}</div>{% endif %}
+              </div>
+              {% if h.plaats %}<p class="horeca-meta">{{ h.plaats }}</p>{% endif %}
+              {% if h.type %}<p class="horeca-meta">{{ h.type }}</p>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endif %}
+
+  {% if page.omschrijving_route %}
+    <div class="closing-quote-block">
+      <p class="closing-quote">"{{ page.omschrijving_route | strip_html | truncatewords: 20 }}"</p>
+    </div>
+  {% endif %}
+
+</main>

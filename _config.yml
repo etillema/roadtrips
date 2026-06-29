@@ -63,13 +63,13 @@ defaults:
       path: ""
       type: "fietstochten"
     values:
-      layout: "item"
+      layout: "activity-detail"
       categorie: "fietstochten"
   - scope:
       path: ""
       type: "wandelroutes"
     values:
-      layout: "item"
+      layout: "activity-detail"
       categorie: "wandelroutes"
   - scope:
       path: ""
@@ -81,11 +81,11 @@ defaults:
       path: ""
       type: "musea"
     values:
-      layout: "item"
+      layout: "activity-detail"
       categorie: "musea"
   - scope:
       path: ""
       type: "kano_suproutes"
     values:
-      layout: "item"
+      layout: "activity-detail"
       categorie: "kano_suproutes"

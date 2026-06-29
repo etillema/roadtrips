@@ -37,7 +37,13 @@
     </div>
   {% endif %}
 
-  {% if include.activity.url %}
-    <a href="{{ include.activity.url }}" target="_blank" rel="noopener" class="activity-card__link">Meer info →</a>
+  {% if include.internal_only %}
+    {% if include.activity.interne_url %}
+      <a href="{{ include.activity.interne_url | relative_url }}" class="activity-card__link">Meer info →</a>
+    {% endif %}
+  {% else %}
+    {% if include.activity.url %}
+      <a href="{{ include.activity.url }}" target="_blank" rel="noopener" class="activity-card__link">Meer info →</a>
+    {% endif %}
   {% endif %}
 </div>

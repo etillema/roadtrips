@@ -142,17 +142,66 @@ layout: default
         <a href="/activiteiten/" class="text-link">Bekijk alle activiteiten →</a>
       </div>
 
-      <div class="activity-grid">
-        {% assign algemeen = page.activiteiten.algemeen | where_exp: "a", "a.beschrijving != ''" %}
-        {% for activity in algemeen limit: 4 %}
-          {% include activity-card.html activity=activity category="algemeen" %}
-        {% endfor %}
+      {% assign algemeen = page.activiteiten.algemeen | where_exp: "a", "a.beschrijving != ''" %}
+      {% assign wandelen = page.activiteiten.wandelen | where_exp: "a", "a.beschrijving != ''" %}
+      {% assign fietsen = page.activiteiten.fietsen | where_exp: "a", "a.beschrijving != ''" %}
+      {% assign kano = page.activiteiten.kano_en_sup | where_exp: "a", "a.beschrijving != ''" %}
+      {% assign plaatsen = page.activiteiten.plaatsen_en_dorpen | where_exp: "a", "a.beschrijving != ''" %}
+      {% assign musea = page.activiteiten.musea | where_exp: "a", "a.beschrijving != ''" %}
 
-        {% assign wandelen = page.activiteiten.wandelen | where_exp: "a", "a.beschrijving != ''" %}
-        {% for activity in wandelen limit: 4 %}
-          {% include activity-card.html activity=activity category="wandelen" %}
-        {% endfor %}
-      </div>
+      {% if algemeen.size > 0 %}
+        <h3 class="activity-category-title">Algemeen</h3>
+        <div class="activity-grid">
+          {% for activity in algemeen limit: 4 %}
+            {% include activity-card.html activity=activity category="algemeen" internal_only=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if wandelen.size > 0 %}
+        <h3 class="activity-category-title">Wandelen</h3>
+        <div class="activity-grid">
+          {% for activity in wandelen limit: 4 %}
+            {% include activity-card.html activity=activity category="wandelen" internal_only=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if fietsen.size > 0 %}
+        <h3 class="activity-category-title">Fietsen</h3>
+        <div class="activity-grid">
+          {% for activity in fietsen limit: 4 %}
+            {% include activity-card.html activity=activity category="fietsen" internal_only=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if kano.size > 0 %}
+        <h3 class="activity-category-title">Kano & SUP</h3>
+        <div class="activity-grid">
+          {% for activity in kano limit: 4 %}
+            {% include activity-card.html activity=activity category="kano_en_sup" internal_only=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if plaatsen.size > 0 %}
+        <h3 class="activity-category-title">Plaatsen & Dorpen</h3>
+        <div class="activity-grid">
+          {% for activity in plaatsen limit: 4 %}
+            {% include activity-card.html activity=activity category="plaatsen_en_dorpen" internal_only=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if musea.size > 0 %}
+        <h3 class="activity-category-title">Musea</h3>
+        <div class="activity-grid">
+          {% for activity in musea limit: 4 %}
+            {% include activity-card.html activity=activity category="musea" internal_only=true %}
+          {% endfor %}
+        </div>
+      {% endif %}
     </section>
   {% endif %}
 

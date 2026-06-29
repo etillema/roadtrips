@@ -18,17 +18,4 @@
   <div class="camping-hero__content">
 
   </div>
-
-  {% if page.foto %}
-    <div class="camping-hero__image-wrap">
-      <img src="{{ page.foto | relative_url }}" alt="{{ page.naam }}" class="camping-hero__image" loading="lazy" />
-
-      {% if page.kenmerken_kampeerplek %}
-        {% assign first_kenmerk = page.kenmerken_kampeerplek | first %}
-        {% if first_kenmerk and first_kenmerk contains "vuurtje" %}
-          <div class="floating-badge">Vuurtje stoken toegestaan</div>
-        {% endif %}
-      {% endif %}
-    </div>
-  {% endif %}
 </section>
