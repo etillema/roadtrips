@@ -1,0 +1,102 @@
+{% if page.fotos and page.fotos.size > 0 %}
+<section class="camping-gallery">
+  <div class="gallery-container">
+    <div class="gallery-wrapper">
+      <div class="gallery-slides">
+        {% for foto in page.fotos %}
+          <img src="{{ foto | relative_url }}" alt="Foto van {{ page.naam }}" class="gallery-slide" loading="lazy" />
+        {% endfor %}
+      </div>
+
+      {% if page.fotos.size > 1 %}
+        <button class="gallery-nav gallery-nav--prev" aria-label="Vorige foto">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="gallery-nav gallery-nav--next" aria-label="Volgende foto">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="gallery-dots">
+          {% for foto in page.fotos %}
+            <button class="gallery-dot" data-index="{{ forloop.index0 }}" aria-label="Foto {{ forloop.index }}"></button>
+          {% endfor %}
+        </div>
+
+        <div class="gallery-counter">
+          <span class="gallery-current">1</span> / <span class="gallery-total">{{ page.fotos.size }}</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const slides = document.querySelectorAll('.gallery-slide');
+  const dots = document.querySelectorAll('.gallery-dot');
+  const prevBtn = document.querySelector('.gallery-nav--prev');
+  const nextBtn = document.querySelector('.gallery-nav--next');
+  const currentCounter = document.querySelector('.gallery-current');
+  const wrapper = document.querySelector('.gallery-wrapper');
+
+  if (!slides.length) return;
+
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    currentIndex = (index + slides.length) % slides.length;
+    const offset = -currentIndex * 100;
+    document.querySelector('.gallery-slides').style.transform = `translateX(${offset}%)`;
+
+    dots.forEach(dot => dot.classList.remove('active'));
+    if (dots[currentIndex]) dots[currentIndex].classList.add('active');
+
+    if (currentCounter) currentCounter.textContent = currentIndex + 1;
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      showSlide(parseInt(dot.dataset.index));
+    });
+  });
+
+  // Touch/swipe support
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  wrapper.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, false);
+
+  wrapper.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  }, false);
+
+  function handleSwipe() {
+    if (touchStartX - touchEndX > 50) {
+      nextSlide();
+    } else if (touchEndX - touchStartX > 50) {
+      prevSlide();
+    }
+  }
+
+  showSlide(0);
+});
+</script>
+{% endif %}

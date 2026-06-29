@@ -1121,6 +1121,114 @@ a {
   line-height: 1.4;
 }
 
+// ── PHOTO GALLERY ──────────────────────────────────────────────────────────────
+
+.camping-gallery {
+  padding: 60px 24px;
+  background: var(--color-bg);
+}
+
+.gallery-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gallery-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.gallery-slides {
+  display: flex;
+  transition: transform 300ms ease;
+}
+
+.gallery-slide {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+}
+
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 200ms ease;
+  z-index: 10;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.gallery-nav--prev {
+  left: 12px;
+}
+
+.gallery-nav--next {
+  right: 12px;
+}
+
+.gallery-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.gallery-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: background 200ms ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+
+  &.active {
+    background: white;
+  }
+}
+
+.gallery-counter {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
 // ── CONTENT GRID ──────────────────────────────────────────────────────────────
 
 .content-grid {
@@ -1397,6 +1505,32 @@ a {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+
+.horeca-grid-3col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 32px;
+}
+
+.horeca-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.horeca-column-title {
+  margin: 0 0 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.horeca-column-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .horeca-card {

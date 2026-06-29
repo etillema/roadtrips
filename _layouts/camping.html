@@ -4,6 +4,8 @@ layout: default
 
 {% include camping-hero.html %}
 
+{% include camping-photo-gallery.html %}
+
 <main class="page-shell camping-page">
 
   <section class="content-grid">
@@ -71,44 +73,66 @@ layout: default
     </aside>
   </section>
 
-  {% if page.voorzieningen and page.voorzieningen.horeca_in_de_buurt %}
-    {% assign horeca_buurt = page.voorzieningen.horeca_in_de_buurt | where_exp: "h", "h.naam != ''" %}
-    {% if horeca_buurt.size > 0 %}
-      <section class="nearby-section">
-        <h2>Eten en drinken in de buurt</h2>
-        <div class="horeca-grid">
-          {% for h in horeca_buurt %}
-            <div class="horeca-card">
-              <div class="horeca-header">
-                {% if h.url %}<a href="{{ h.url }}" target="_blank" rel="noopener" class="horeca-name">{{ h.naam }}</a>{% else %}<div class="horeca-name">{{ h.naam }}</div>{% endif %}
-              </div>
-              {% if h.plaats %}<p class="horeca-meta">{{ h.plaats }}</p>{% endif %}
-              {% if h.afstand %}<p class="horeca-distance">{{ h.afstand }}</p>{% endif %}
-              {% if h.opmerking %}<p class="horeca-note">{{ h.opmerking }}</p>{% endif %}
-            </div>
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
-  {% endif %}
+  {% assign winkels = page.voorzieningen.winkels | where_exp: "s", "s.naam != ''" %}
+  {% assign horeca_buurt = page.voorzieningen.horeca_in_de_buurt | where_exp: "h", "h.naam != ''" %}
+  {% assign horeca_op_camping = page.voorzieningen.horeca_op_camping | where_exp: "h", "h.naam != ''" %}
 
-  {% if page.voorzieningen and page.voorzieningen.winkels %}
-    {% assign winkels = page.voorzieningen.winkels | where_exp: "s", "s.naam != ''" %}
-    {% if winkels.size > 0 %}
-      <section class="nearby-section">
-        <h2>Winkels</h2>
-        <div class="horeca-grid">
-          {% for s in winkels %}
-            <div class="horeca-card">
-              <div class="horeca-header">
-                {% if s.site %}<a href="{{ s.site }}" target="_blank" rel="noopener" class="horeca-name">{{ s.naam }}</a>{% else %}<div class="horeca-name">{{ s.naam }}</div>{% endif %}
-              </div>
-              {% if s.afstand %}<p class="horeca-meta">{{ s.afstand }}</p>{% endif %}
+  {% if page.voorzieningen and winkels.size > 0 or horeca_buurt.size > 0 or horeca_op_camping.size > 0 %}
+    <section class="nearby-section">
+      <h2>Winkels en Restaurants</h2>
+      <div class="horeca-grid-3col">
+        {% if winkels.size > 0 %}
+          <div class="horeca-column">
+            <h3 class="horeca-column-title">Winkels</h3>
+            <div class="horeca-column-content">
+              {% for s in winkels %}
+                <div class="horeca-card">
+                  <div class="horeca-header">
+                    {% if s.site %}<a href="{{ s.site }}" target="_blank" rel="noopener" class="horeca-name">{{ s.naam }}</a>{% else %}<div class="horeca-name">{{ s.naam }}</div>{% endif %}
+                  </div>
+                  {% if s.afstand %}<p class="horeca-meta">{{ s.afstand }}</p>{% endif %}
+                </div>
+              {% endfor %}
             </div>
-          {% endfor %}
-        </div>
-      </section>
-    {% endif %}
+          </div>
+        {% endif %}
+
+        {% if horeca_op_camping.size > 0 %}
+          <div class="horeca-column">
+            <h3 class="horeca-column-title">Restaurants</h3>
+            <div class="horeca-column-content">
+              {% for h in horeca_op_camping %}
+                <div class="horeca-card">
+                  <div class="horeca-header">
+                    {% if h.url %}<a href="{{ h.url }}" target="_blank" rel="noopener" class="horeca-name">{{ h.naam }}</a>{% else %}<div class="horeca-name">{{ h.naam }}</div>{% endif %}
+                  </div>
+                  {% if h.type %}<p class="horeca-meta">{{ h.type }}</p>{% endif %}
+                  {% if h.opmerking %}<p class="horeca-note">{{ h.opmerking }}</p>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if horeca_buurt.size > 0 %}
+          <div class="horeca-column">
+            <h3 class="horeca-column-title">In de buurt</h3>
+            <div class="horeca-column-content">
+              {% for h in horeca_buurt %}
+                <div class="horeca-card">
+                  <div class="horeca-header">
+                    {% if h.url %}<a href="{{ h.url }}" target="_blank" rel="noopener" class="horeca-name">{{ h.naam }}</a>{% else %}<div class="horeca-name">{{ h.naam }}</div>{% endif %}
+                  </div>
+                  {% if h.plaats %}<p class="horeca-meta">{{ h.plaats }}</p>{% endif %}
+                  {% if h.afstand %}<p class="horeca-distance">{{ h.afstand }}</p>{% endif %}
+                  {% if h.opmerking %}<p class="horeca-note">{{ h.opmerking }}</p>{% endif %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </section>
   {% endif %}
 
   {% if page.activiteiten %}
