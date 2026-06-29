@@ -474,6 +474,40 @@ GitHub Actions is vereist — de `minimal-mistakes-jekyll` gem is niet whitelist
 
 - Gebruik **geen emojis of icoontjes** in content, templates, navigatie of YAML-velden. De site heeft een zakelijke, informatieve toon — tekst en typografie doen het werk.
 
+## URL's en baseurl
+
+**BELANGRIJK**: Dit project gebruikt `baseurl: "/roadtrips"` voor GitHub Pages. Alle relatieve URL's (links naar detail pagina's, afbeeldingen, CSS/JS bestanden) MOETEN de baseurl meenemen.
+
+### Regels voor URL's in templates:
+
+1. **Detail page links**: Gebruik altijd `{{ item.url | relative_url }}`
+   ```liquid
+   <a href="{{ camping.url | relative_url }}" class="item-card">
+   ```
+
+2. **Afbeelding URLs**: Gebruik altijd `{{ image_path | relative_url }}`
+   ```liquid
+   <img src="{{ camping.fotos[0] | relative_url }}" alt="...">
+   ```
+
+3. **CSS/JS/Asset paths**: Gebruik altijd `{{ site.baseurl }}/assets/...` of `| relative_url`
+   ```liquid
+   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+   <script src="{{ site.baseurl }}/assets/js/script.js"></script>
+   ```
+
+4. **Filter links**: Voeg `site.baseurl` toe aan base_url
+   ```liquid
+   {% assign base_url = site.baseurl | append: page.url | split: '?' | first %}
+   ```
+
+### Waarom?
+
+- **Lokaal** (localhost:4000): baseurl is leeg, dus URL's werken zonder prefix
+- **GitHub Pages** (/roadtrips): baseurl moet `/roadtrips` zijn, dus alle relatieve URL's moeten dit meenemen
+
+De `relative_url` filter voegt automatisch de baseurl toe aan URL's die met `/` beginnen. Dit is de standaard Jekyll-manier en werkt op beide omgevingen.
+
 ## Stijl aanpassen
 
 Het Minimal Mistakes skin wordt ingesteld via `_config.yml`:
