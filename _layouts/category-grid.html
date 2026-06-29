@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
 
 <div class="category-layout">
   <!-- Sidebar Filter -->
@@ -12,11 +12,11 @@ layout: default
     <!-- Reset link -->
     {% if current_page contains '?' %}
       <div class="filter-section">
-        <a href="{{ page.url | split: '?' | first }}" class="filter-reset-link">Alles tonen</a>
+        <a href="{{ site.baseurl }}{{ page.url | split: '?' | first }}" class="filter-reset-link">Alles tonen</a>
       </div>
     {% endif %}
 
-    {% assign base_url = page.url | split: '?' | first | replace: '.html', '' %}
+    {% assign base_url = site.baseurl | append: page.url | split: '?' | first | replace: '.html', '' %}
     {% if base_url == '' or base_url == '/' %}
       {% assign base_url = '/' %}
     {% endif %}
