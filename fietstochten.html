@@ -19,7 +19,7 @@ Apply filters based on query parameters
 {% endif %}
 
 {% for tocht in filtered_items %}
-  <a href="{{ tocht.url }}" class="item-card" data-gebied="{{ tocht.locatie.gebied }}" data-regio="{{ tocht.locatie.regio }}">
+  <a href="{{ tocht.url | relative_url }}" class="item-card" data-gebied="{{ tocht.locatie.gebied }}" data-regio="{{ tocht.locatie.regio }}">
     {% if tocht.fotos and tocht.fotos.size > 0 %}
       <img src="{{ tocht.fotos[0] }}" alt="{{ tocht.naam }}" loading="lazy">
     {% else %}

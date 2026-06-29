@@ -16,7 +16,7 @@ Apply filters based on query parameters
 {% endif %}
 
 {% for plaats in filtered_items %}
-  <a href="{{ plaats.url }}" class="item-card" data-regio="{{ plaats.locatie.regio }}">
+  <a href="{{ plaats.url | relative_url }}" class="item-card" data-regio="{{ plaats.locatie.regio }}">
     {% if plaats.fotos and plaats.fotos.size > 0 %}
       <img src="{{ plaats.fotos[0] }}" alt="{{ plaats.naam }}" loading="lazy">
     {% else %}

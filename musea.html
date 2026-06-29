@@ -16,7 +16,7 @@ Apply filters based on query parameters
 {% endif %}
 
 {% for museum in filtered_items %}
-  <a href="{{ museum.url }}" class="item-card" data-regio="{{ museum.locatie.regio }}">
+  <a href="{{ museum.url | relative_url }}" class="item-card" data-regio="{{ museum.locatie.regio }}">
     {% if museum.fotos and museum.fotos.size > 0 %}
       <img src="{{ museum.fotos[0] }}" alt="{{ museum.naam }}" loading="lazy">
     {% else %}

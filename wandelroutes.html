@@ -19,7 +19,7 @@ Apply filters based on query parameters
 {% endif %}
 
 {% for route in filtered_items %}
-  <a href="{{ route.url }}" class="item-card" data-gebied="{{ route.locatie.gebied }}" data-regio="{{ route.locatie.regio }}">
+  <a href="{{ route.url | relative_url }}" class="item-card" data-gebied="{{ route.locatie.gebied }}" data-regio="{{ route.locatie.regio }}">
     {% if route.fotos and route.fotos.size > 0 %}
       <img src="{{ route.fotos[0] }}" alt="{{ route.naam }}" loading="lazy">
     {% else %}
