@@ -18,7 +18,7 @@ Apply filters based on query parameters
 {% for plaats in filtered_items %}
   <a href="{{ plaats.url | relative_url }}" class="item-card" data-regio="{{ plaats.locatie.regio }}">
     {% if plaats.fotos and plaats.fotos.size > 0 %}
-      <img src="{{ plaats.fotos[0] }}" alt="{{ plaats.naam }}" loading="lazy">
+      <img src="{{ plaats.fotos[0] | relative_url }}" alt="{{ plaats.naam }}" loading="lazy">
     {% else %}
       <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #2d7a3f 0%, #7fb3d5 100%);"></div>
     {% endif %}

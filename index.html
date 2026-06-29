@@ -21,7 +21,7 @@ Apply filters based on query parameters
 {% for camping in filtered_items %}
   <a href="{{ camping.url | relative_url }}" class="item-card" data-gebied="{{ camping.locatie.gebied }}" data-regio="{{ camping.locatie.regio }}">
     {% if camping.fotos and camping.fotos.size > 0 %}
-      <img src="{{ camping.fotos[0] }}" alt="{{ camping.naam }}" loading="lazy">
+      <img src="{{ camping.fotos[0] | relative_url }}" alt="{{ camping.naam }}" loading="lazy">
     {% else %}
       <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #2d7a3f 0%, #7fb3d5 100%);"></div>
     {% endif %}
