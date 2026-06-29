@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Navigatiebar Template - Roadtrips</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background: #f7f3ec;
+    }
+
+    /* ── NAVIGATIEBAR ────────────────────────────────────────────────────── */
+
+    .navbar-custom {
+      background: rgba(247, 243, 236, 0.92);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(38, 49, 38, 0.10);
+      padding: 18px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 20px;
+      color: #1f4f2d;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-nav .nav-link {
+      position: relative;
+      color: #263126;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 15px;
+      transition: color 200ms ease;
+      white-space: nowrap;
+    }
+
+    .navbar-nav .nav-link:hover {
+      color: #2f6f3e;
+    }
+
+    .navbar-nav .nav-link.active {
+      color: #2f6f3e;
+    }
+
+    .navbar-nav .nav-link.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -10px;
+      height: 2px;
+      background: #2f6f3e;
+      border-radius: 999px;
+    }
+
+    /* ── DEMO CONTENT ────────────────────────────────────────────────────── */
+
+    .demo-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    h2 {
+      margin: 40px 0 20px;
+      color: #1f4f2d;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .code-block {
+      background: #fff;
+      border: 1px solid rgba(38, 49, 38, 0.10);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      overflow-x: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .code-block code {
+      color: #2d2d2d;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #e8f5e9 0%, #d4e8d0 100%);
+      border-left: 4px solid #2f6f3e;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+    }
+
+    .info-box h3 {
+      color: #1f4f2d;
+      margin-bottom: 10px;
+    }
+
+    .info-box p {
+      color: #2d2d2d;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-nav {
+        display: none;
+      }
+
+      .navbar-inner {
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATIEBAR VOORBEELD ─────────────────────────────────────────── -->
+
+<nav class="navbar-custom">
+  <div class="navbar-inner">
+    <a class="navbar-brand" href="#">Roadtrips</a>
+    <ul class="navbar-nav">
+      <li><a class="nav-link active" href="#">Campings</a></li>
+      <li><a class="nav-link" href="#">Fietstochten</a></li>
+      <li><a class="nav-link" href="#">Wandelroutes</a></li>
+      <li><a class="nav-link" href="#">Plaatsen</a></li>
+      <li><a class="nav-link" href="#">Musea</a></li>
+      <li><a class="nav-link" href="#">Kano & SUP</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── DEMO CONTENT ───────────────────────────────────────────────────── -->
+
+<div class="demo-container">
+  <h2>📋 Navigatiebar Template</h2>
+
+  <div class="info-box">
+    <h3>Overzicht</h3>
+    <p>
+      De navigatiebar staat bovenaan elke pagina en bevat het site-logo/titel aan de linkerkant en
+      navigatielinks aan de rechterkant. Het design volgt Beautiful Jekyll's stijl met een
+      crème-transparante achtergrond en glasmorphism effect.
+    </p>
+  </div>
+
+  <h2>🎨 Stijl Eigenschappen</h2>
+
+  <div class="info-box">
+    <h3>Kleuren</h3>
+    <p>
+      <strong>Primair:</strong> #2f6f3e (Groen)<br>
+      <strong>Donker:</strong> #1f4f2d (Donkergroen)<br>
+      <strong>Tekst:</strong> #263126 (Donkerbruin)<br>
+      <strong>Achtergrond:</strong> rgba(247, 243, 236, 0.92) (Crème transparant)
+    </p>
+  </div>
+
+  <div class="info-box">
+    <h3>Typografie</h3>
+    <p>
+      <strong>Font:</strong> Source Sans 3<br>
+      <strong>Titel Gewicht:</strong> 800 (Bold)<br>
+      <strong>Link Gewicht:</strong> 500 (Medium)<br>
+      <strong>Titel Grootte:</strong> 20px<br>
+      <strong>Link Grootte:</strong> 15px
+    </p>
+  </div>
+
+  <h2>💻 HTML Structuur</h2>
+
+  <div class="code-block"><code>&lt;nav class="navbar-custom"&gt;
+  &lt;div class="navbar-inner"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;Roadtrips&lt;/a&gt;
+    &lt;ul class="navbar-nav"&gt;
+      &lt;li&gt;&lt;a class="nav-link active" href="#"&gt;Campings&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="nav-link" href="#"&gt;Fietstochten&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="nav-link" href="#"&gt;Wandelroutes&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="nav-link" href="#"&gt;Plaatsen&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="nav-link" href="#"&gt;Musea&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a class="nav-link" href="#"&gt;Kano & SUP&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;</code></div>
+
+  <h2>📐 Layout Eigenschappen</h2>
+
+  <div class="info-box">
+    <h3>Positionering</h3>
+    <p>
+      <strong>Position:</strong> Sticky (blijft bovenaan tijdens scrollen)<br>
+      <strong>Z-index:</strong> 20 (vooraan andere elementen)<br>
+      <strong>Padding:</strong> 18px 24px<br>
+      <strong>Max-width:</strong> 1200px (inhoud gelimiteerd)
+    </p>
+  </div>
+
+  <div class="info-box">
+    <h3>Interactie</h3>
+    <p>
+      <strong>Hover effect:</strong> Link kleur verandert naar groen (#2f6f3e)<br>
+      <strong>Active state:</strong> Groene kleur + onderline<br>
+      <strong>Transition:</strong> 200ms ease<br>
+      <strong>Responsive:</strong> Hamburger-menu op &lt;768px
+    </p>
+  </div>
+
+  <h2>🔧 CSS Classes</h2>
+
+  <div class="code-block"><code>.navbar-custom              /* Main container */
+.navbar-inner              /* Inner wrapper, flex */
+.navbar-brand              /* Site title/logo */
+.navbar-nav                /* Navigation list */
+.nav-link                  /* Individual nav link */
+.nav-link.active           /* Active link state */
+.nav-link:hover            /* Hover state */</code></div>
+
+  <h2>📱 Responsive Gedrag</h2>
+
+  <div class="info-box">
+    <p>
+      Op schermen smaller dan 768px verdwijnt de navigatiebar en verschijnt een hamburger-menu icon.
+      Dit wordt beheerd door Beautiful Jekyll's Bootstrap navbar-toggler component.
+    </p>
+  </div>
+
+</div>
+
+</body>
+</html>

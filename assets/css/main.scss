@@ -3,33 +3,71 @@
 
 @charset "utf-8";
 
-// Navbar links als buttons
+// ── NAVBAR STYLING (GROENE BUTTONS OVERAL) ────────────────────────────────────
+
+// Navbar links als groene buttons — forced everywhere
 .navbar-nav .nav-link {
-  display: inline-block;
+  display: inline-block !important;
   padding: 0.5rem 1rem !important;
   margin: 0.25rem !important;
-  border-radius: 6px;
-  background-color: #2d7a3f;
+  border-radius: 20px !important;
+  background-color: #2f6f3e !important;
   color: white !important;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  min-width: 130px;
-  text-align: center;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+  text-align: center !important;
+  font-size: 13px !important;
+  border: none !important;
+  text-decoration: none !important;
 
   &:hover {
-    background-color: #1f5c2e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(45, 122, 63, 0.3);
+    background-color: #1f4f2d !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(45, 122, 63, 0.3) !important;
+    color: white !important;
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: 0 4px 8px rgba(45, 122, 63, 0.3) !important;
+  }
+
+  &.active {
+    background-color: #2f6f3e !important;
+    color: white !important;
   }
 }
 
 // Navbar container flexbox voor beter spacing
 .navbar-collapse {
   .navbar-nav {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: flex !important;
+    gap: 0.5rem !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+}
+
+// Bootstrap navbar-custom overrides
+.navbar-custom .navbar-nav .nav-link {
+  color: white !important;
+  background-color: #2f6f3e !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px !important;
+  margin: 0.25rem !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  display: inline-block !important;
+  border: none !important;
+
+  &:hover {
+    background-color: #1f4f2d !important;
+    color: white !important;
+  }
+
+  &.active {
+    background-color: #2f6f3e !important;
+    color: white !important;
   }
 }
 
