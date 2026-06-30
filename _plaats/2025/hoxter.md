@@ -12,8 +12,8 @@ website: ""
 type: "stad"
 
 beschrijving: >
-  Een van de mooiste plaatsen in het Weserbergland, op
-  fietsafstand vanaf Polle via een vlakke tocht langs de Weser.
+  Historisch vakwerkstadje aan de Weser, bekend om de Weserrenaissance-gevels 
+  in de oude binnenstad en de nabijgelegen werelderfgoedsite Klooster Corvey.
 
 omschrijving_sfeer: ""
 

@@ -12,14 +12,10 @@ website: ""
 type: "stad"
 
 beschrijving: >
-  Leuke plaats in het Weserbergland. Fietstocht vanaf Polle bevat
-  wel hoogtemeters.
+  Oud kuuroord met een prachtig kurpark om doorheen te wandelen (met o.a. een 
+  palmentuin). De fietstocht hierheen heeft behoorlijk wat hoogtemeters.
 
-omschrijving_sfeer: >
-  Stadje is wel beetje vergaane glorie, maar wel leuk om te bezoeken.
-  Kuurpark is mooi. In stadje zijn diverse winkels en restaurantjes,
-  maar niet bijzonder. Niet echt om te gaan winkelen. Fietstocht vanaf
-  Polle is wel leuk, maar bevat wel wat hoogtemeters.
+omschrijving_sfeer: ""
 
 bezienswaardigheden:
   - beschrijving: "Schloss Bad Pyrmont met museum en mooi kuurpark"

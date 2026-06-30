@@ -12,9 +12,8 @@ website: ""
 type: "dorp"
 
 beschrijving: >
-  Klein dorp aan de Weser in het Weserbergland, met een
-  burchtruïne hoog boven het dorp. Leuk voor een kleine
-  wandeling.
+  Klein dorpje aan de Weser, direct bij de Weserterrassen camping. Bekend door 
+  de middeleeuwse burchtruïne boven het dorp met prachtig uitzicht.
 
 omschrijving_sfeer: ""
 

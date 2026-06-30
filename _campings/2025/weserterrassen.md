@@ -1,6 +1,6 @@
 ---
 naam: "Weserterrassen"
-review_datum: "2025-09"
+title: "Weserterrassen"
 
 locatie:
   plaats: "Polle"
@@ -8,143 +8,116 @@ locatie:
   gebied: "Weserbergland"
   land: "Duitsland"
 
-adres: "Mühlenweg 2, 37647 Polle, Duitsland"
+adres: "37647 Polle, Duitsland"
 website: "https://weserterrassen.de/"
-telefoon: "+49 5535/9999369"
-email: ""
+telefoon: "05535/9999369"
+email: "info@weserterrassen.de"
 
 type: "familiecamping"
 aantal_plaatsen: 200
 
 beschrijving: >
-  Rustig gelegen camping aan de rivier. Vrije indeling van
-  plaatsjes, geen strakke veldjes. Camping heeft eigen restaurant
-  met nette kleine kaart.
+  Camping direct gelegen aan de rivier de Weser, met een vrije indeling van
+  plaatsen (geen strakke veldjes). Ligt direct bij het dorpje Polle, met
+  bakker en supermarkt op loopafstand. De camping beschikt zelf over een
+  restaurant met eenvoudige Duitse keuken, en vanaf de camping kun je mooie
+  fiets- en wandeltochten maken.
 
 omschrijving_sfeer: >
-  De camping ligt direct aan de Weser en voelt lekker ontspannen.
-  Je kiest zelf je plek, zonder paaltjes of strakke grenzen.
-  Overdag kun je vanuit je stoel de rivier zien en 's avonds is
-  het heerlijk rustig. Eigen vuur op een vuurschaal is geen
-  probleem. Het restaurant op de camping is ongedwongen met een
-  kleine maar verzorgde kaart. De omgeving is prachtig om te
-  fietsen, vooral langs de Weser. Direct boven de camping in
-  Polle ligt een ruïne van een oude burcht, leuk om even te
-  bekijken. Let op: op Google Maps staat een fiets- / auto veer direct
-  naast de camping aangegeven, maar dit was najaar 2025 al enige
-  tijd buiten gebruik.
+  Ontspannen sfeer, natuurlijke ligging.
 
-ligging: "water"
+ligging: "rivier"
 
 kenmerken_kampeerplek:
-  - "vrije indeling, geen strakke parzellering"
-  - "plekken dicht aan de Weser mogelijk"
-  - "aantal plaatsen met schaduw beperkt"
+  - "Vrije indeling van plaatsen, geen strakke veldjes"
+  - "Direct aan de Weser gelegen"
 
 sanitair: >
-  Sanitair was schoon maar moest worden vernieuwd. Nieuwe
-  eigenaren waren daar mee gestart.
+  Verouderd maar schoon, gratis douches. De nieuwe eigenaren waren op het
+  moment van bezoek druk bezig met verbeteringen.
 
 voorzieningen:
   broodjesservice: false
   zwemgelegenheid: false
-
   horeca_op_camping:
     - naam: "Restaurant Weserterrassen"
       type: "restaurant"
       url: "https://weserterrassen.de/restaurant/"
-      opmerking: "Eenvoudige Duitse kaart"
-
+      opmerking: "Eenvoudige Duitse keuken"
   winkels:
-    - naam: "Nah & Gut"
-      type: "supermarkt"
-      site: "https://maps.app.goo.gl/9QDNmKQAk7d6xJnx7"
-      afstand: "500 m"
     - naam: "Bäckerei Klingenberg"
       type: "bakker"
-      site: "https://maps.app.goo.gl/h3GeGXd3ReSbH6Zx8"
-      afstand: "500 m"
-
+      site: ""
+      afstand: "0,5 km"
+    - naam: "NP-Markt / Nah und Gut"
+      type: "supermarkt"
+      site: ""
+      afstand: "0,5 km"
   horeca_in_de_buurt: []
 
 activiteiten:
   algemeen:
     - titel: "Freibad Polle"
-      beschrijving: ""
-      afstand_km: 0
-      url: "https://maps.app.goo.gl/jdrLdetCTEtERJUg6"
-    - titel: "Gesloten - Gierseilfähre Polle"
-      beschrijving: "Meteen naast de camping"
-      afstand_km: 0
-      url: "https://maps.app.goo.gl/q6o4qCwoeVaEhwwo6"
+      beschrijving: "Openluchtzwembad in het dorp Polle, geopend van mei tot eind september, met grote ligweides en een beachvolleybalveld."
+      afstand_km: 1
+      url: ""
 
   wandelen:
-    - titel: "Durch das Habichtstal (Po 2)"
-      beschrijving: "Rondwandeling van 7,1 km door bossen en het achterland van Polle, langs de burchtruïne"
+    - titel: "Wandeling Habichtstal"
+      beschrijving: "Rondwandeling van 7,1 km (ca. 2u15) door bos en open vergezichten bij Polle."
       afstand_km: 0
-      url: "https://www.outdooractive.com/de/route/wanderung/solling-vogler-region/durch-das-habichtstal-po-2-/7445931/"
-      fotos:
-        - "/assets/images/wandelroutes/durch-das-habichtstal/IMG_1686-wandelen-weser-1280x960.webp"
-        - "/assets/images/wandelroutes/durch-das-habichtstal/IMG_1692-wandelen-weser-1280x960.webp"
+      url: "https://www.wanderverband.de/wege/alle-wege/durchs-habichtstal-po-2-c87d4fb708"
 
   fietsen:
-    - titel: "Weser-Radweg etappe Höxter–Hameln"
-      beschrijving: "De camping ligt direct aan de route. Mooie fietspaden en kleine weggetjes. Let op bedrijfstijden veerpontjes, niet veel bruggen in de omgeving."
-      afstand_km: 68
-      url: "https://nl.teutoburgerwald.de/natuur/mijn-dag-in-de-natuur/tour/weser-radweg-hoexter-hameln"
-      fotos:
-        - "/assets/images/fietstochten/weser-radweg/IMG_1660-fietsen-weser-1280x960.webp"
+    - titel: "Weser-Radweg (Höxter-Hameln, deeltraject)"
+      beschrijving: "Je kunt vanaf de camping direct een deel van het Weser-Radweg fietsen, een goed begaanbaar fietspad langs de rivier de Weser tussen Höxter en Hameln."
+      afstand_km: 0
+      url: ""
 
   kano_en_sup:
-    - titel: ""
-      beschrijving: "Kanoën op de Weser is mogelijk, verhuur in de omgeving beschikbaar"
+    - titel: "Kanovaren op de Weser"
+      beschrijving: "Vanaf de camping kun je de Weser op om te kanoën, een rustig vaarwater geschikt voor beginners en gevorderden."
       afstand_km: 0
       url: ""
+
+  campings:
+    - titel: "Weserbergland-Camping"
+      beschrijving: ""
+      afstand_km: 4
+      url: "http://www.weserbergland-camping.com/"
 
   plaatsen_en_dorpen:
-    - titel: "Polle"
-      beschrijving: "Klein dorp direct bij de camping, met burchtruïne boven het dorp"
-      afstand_km: 0
-      url: "https://nl.teutoburgerwald.de/regio/excursies/mijn-bestemming/burcht-polle"
-      fotos:
-        - "/assets/images/plaatsen/polle/IMG_1701-ruine-polle-1280x960.webp"
     - titel: "Höxter"
-      beschrijving: "Een van de mooiste plaatsen in de omgeving, vlakke fietstocht langs de Weser"
-      afstand_km: 0
+      beschrijving: "Historisch vakwerkstadje aan de Weser, bekend om de Weserrenaissance-gevels in de oude binnenstad en de nabijgelegen werelderfgoedsite Klooster Corvey."
+      afstand_km: 18
       url: ""
-      fotos: []
-    - titel: "Hameln"
-      beschrijving: "Een van de mooiste plaatsen in de omgeving, vlakke fietstocht langs de Weser"
-      afstand_km: 0
+    - titel: "Bodenwerder"
+      beschrijving: "Leuk vakwerkstadje aan de Weser, bekend als geboorteplaats van baron Von Münchhausen, met standbeelden en fonteinen die zijn verhalen uitbeelden; wel veel leegstand in de binnenstad."
+      afstand_km: 15
       url: ""
     - titel: "Bad Pyrmont"
-      beschrijving: "Leuke plaats, fietstocht bevat wel hoogtemeters"
-      afstand_km: 0
+      beschrijving: "Oud kuuroord met een prachtig kurpark om doorheen te wandelen (met o.a. een palmentuin). De fietstocht hierheen heeft behoorlijk wat hoogtemeters."
+      afstand_km: 25
       url: ""
-      fotos:
-        - "/assets/images/plaatsen/bad-pyrmont/IMG_1812-kurpark-bad-pyrmond-1280x960.webp"
-        - "/assets/images/plaatsen/bad-pyrmont/IMG_1817-kurpark-bad-pyrmond-1280x960.webp"
 
   musea:
-    - titel: "Burg Polle Schloss"
-      beschrijving: "Kleine burcht, maar wel leuk om even, omheen en doorheen te lopen. Mooi uitzicht over de Weser"
+    - titel: "Klooster Corvey"
+      beschrijving: "UNESCO-werelderfgoed bij Höxter, met het 1200 jaar oude karolingische Westwerk van de abdijkerk, een mooie kloostertuin en een indrukwekkende bibliotheek met zeer oude boeken."
+      afstand_km: 15
+      url: ""
+    - titel: "Münchhausen-Museum"
+      beschrijving: "Klein museum over het leven en de verzonnen verhalen van baron Von Münchhausen, gevestigd in de historische Schulenburg; klein maar grappig om te bekijken."
+      afstand_km: 15
+      url: ""
+    - titel: "Schloss Hämelschenburg"
+      beschrijving: "Waterkasteel uit 1588-1613 in Emmerthal, hoofdwerk van de Weserrenaissance, nog altijd bewoond door familie Von Klencke, met historische interieurs, kunstcollecties en tuinen."
+      afstand_km: 21
+      url: ""
+    - titel: "Burgruine Polle"
+      beschrijving: "Middeleeuwse burchtruïne direct boven de camping, met een beklimbare ronde toren en een prachtig uitzicht over de Weser. In het bijbehorende kleine museum zijn archeologische vondsten te zien."
       afstand_km: 0
-      url: "https://maps.app.goo.gl/6z1f6uHjYXzf75rV7"
-      fotos: []
-    - titel: "Museum im Schloss Bad Pyrmont"
-      beschrijving: "Slot met museum en mooi kuurpark"
-      afstand_km: 0
-      url: "https://www.museumpyrmont.de/"
-    - titel: "Klooster Corvey (Höxter)"
-      beschrijving: "UNESCO-Werelderfgoed met mooie kerk, indrukwekkende bibliotheek en mooie tuin"
-      afstand_km: 0
-      url: "https://www.hoexter-tourismus.de/entdecken/unesco-welterbe-corvey"
-      fotos:
-        - "/assets/images/musea/klooster-corvey/IMG_1753-klooster-corvey-1280x960.webp"
-        - "/assets/images/musea/klooster-corvey/IMG_1769-klooster-corvey-1280x960.webp"
-        - "/assets/images/musea/klooster-corvey/IMG_1772-klooster-corvey-1280x960.webp"
+      url: ""
 
-fotos:
-  - "/assets/images/campings/weserterrassen/IMG_1664-camping-weserterrassen-1280x960.webp"
-  - "/assets/images/campings/weserterrassen/IMG_1730-camping-weserterrassen-1280x960.webp"
+fotos: []
+review_datum: "2025-09-30"
 ---
