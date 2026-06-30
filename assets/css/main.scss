@@ -3872,7 +3872,7 @@ a {
 
 .intro-grid {
   display: grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
 }
