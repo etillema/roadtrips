@@ -38,8 +38,8 @@ Alle items worden rechtstreeks als Markdown-bestanden aangemaakt in de juiste co
 | Jekyll versie   | 4.3                                    |
 | Deployment      | GitHub Actions                         |
 | Content formaat | Markdown met front matter (collections)|
-| Taal            | Nederlands (nl) + Engels (mogelijk)     |
-| Theme           | Minimal Mistakes (gem)                 |
+| Taal            | Nederlands (nl)                        |
+| Theme           | Beautiful Jekyll Theme (gem)           |
 | Tags            | Categorie-specifiek (kenmerken / thema)|
 | Meertalig       | Nee (maar multi-land/multi-regio)      |
 | Regio's         | Noord-West Europa                      |
@@ -455,12 +455,12 @@ Open daarna [http://localhost:4000](http://localhost:4000).
 
 | Gem                    | Doel                                        |
 |------------------------|---------------------------------------------|
-| `minimal-mistakes-jekyll` | Theme: layout, navigatie, typografie     |
+| `beautiful-jekyll-theme` | Theme: layout, navigatie, typografie     |
 | `jekyll-feed`          | RSS-feed genereren                          |
 | `jekyll-seo-tag`       | SEO-metatags (title, description, og:*)     |
-| `jekyll-include-cache` | Vereist door Minimal Mistakes               |
+| `jekyll-include-cache` | Performance: include-caching                |
 
-GitHub Actions is vereist — de `minimal-mistakes-jekyll` gem is niet whitelisted voor klassieke GitHub Pages.
+GitHub Actions is vereist voor automatische build & deploy.
 
 ## Voor livegang
 
@@ -510,10 +510,11 @@ De `relative_url` filter voegt automatisch de baseurl toe aan URL's die met `/` 
 
 ## Stijl aanpassen
 
-Het Minimal Mistakes skin wordt ingesteld via `_config.yml`:
+Beautiful Jekyll Theme gebruikmaken van custom CSS via `_config.yml`:
 
 ```yaml
-minimal_mistakes_skin: default   # opties: air, aqua, contrast, dark, dirt, mint, neon, plum, sunrise
+site-css:
+  - "/assets/css/main.css"
 ```
 
-Eigen stijlen toevoegen in `assets/css/main.scss` — onderaan het bestand, na de `@import`-regels.
+Eigen stijlen toevoegen in `assets/css/main.css` of `assets/css/main.scss`.

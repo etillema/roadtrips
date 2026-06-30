@@ -1,0 +1,12 @@
+<header class="page-header">
+  <div class="page-header-container">
+    <h1 class="page-header-title">{{ page.title | default: page.naam }}</h1>
+    {% if page.locatie %}
+      <p class="page-header-location">
+        {% if page.locatie.plaats %}{{ page.locatie.plaats }}{% endif %}
+        {% if page.locatie.regio %}, {{ page.locatie.regio }}{% endif %}
+        {% if page.locatie.land %}, {{ page.locatie.land }}{% endif %}
+      </p>
+    {% endif %}
+  </div>
+</header>
