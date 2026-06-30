@@ -1,15 +1,6 @@
 <section class="place-hero">
   <div class="place-hero__panel">
     <a href="/plaats/" class="breadcrumb">← Terug naar alle plaatsen</a>
-    <h1>{{ page.title }}</h1>
-
-    {% if page.locatie %}
-      <div class="place-location">
-        {% if page.locatie.plaats %}<span>{{ page.locatie.plaats }}</span>{% endif %}
-        {% if page.locatie.regio %}<span>{{ page.locatie.regio }}</span>{% endif %}
-        {% if page.locatie.land %}<span>{{ page.locatie.land }}</span>{% endif %}
-      </div>
-    {% endif %}
 
     {% if page.type or page.locatie.gebied %}
       <div class="place-badges">

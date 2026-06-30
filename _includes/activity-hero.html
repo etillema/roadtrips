@@ -1,15 +1,3 @@
-<div class="sticky-page-header">
-  <div class="sticky-page-header__inner">
-    <h1 class="sticky-page-header__title">{{ page.naam }}</h1>
-    <p class="sticky-page-header__location">
-      {% if page.locatie.plaats %}{{ page.locatie.plaats }}{% endif %}
-      {% if page.locatie.gebied %}, {{ page.locatie.gebied }}{% endif %}
-      {% if page.locatie.regio %}, {{ page.locatie.regio }}{% endif %}
-      {% if page.locatie.land %}, {{ page.locatie.land }}{% endif %}
-    </p>
-  </div>
-</div>
-
 <section class="camping-hero page-shell">
   {% if page.review_datum %}
     <div class="review-date">Bezocht: {{ page.review_datum | date: "%d %b %Y" }}</div>
