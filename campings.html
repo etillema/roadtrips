@@ -1,0 +1,47 @@
+---
+layout: category-grid
+title: Campings
+collection: campings
+permalink: /campings/
+---
+
+{% assign filtered_items = site.campings | sort: "naam" %}
+
+{% comment %}
+Apply filters based on query parameters
+{% endcomment %}
+{% if page.url contains '?gebied=' %}
+  {% assign gebied_param = page.url | split: '?gebied=' | last | split: '&' | first | replace: '%20', ' ' | replace: '%28', '(' | replace: '%29', ')' %}
+  {% assign filtered_items = site.campings | where_exp: "item", "item.locatie.gebied == gebied_param" | sort: "naam" %}
+{% elsif page.url contains '?regio=' %}
+  {% assign regio_param = page.url | split: '?regio=' | last | split: '&' | first | replace: '%20', ' ' %}
+  {% assign filtered_items = site.campings | where_exp: "item", "item.locatie.regio == regio_param" | sort: "naam" %}
+{% endif %}
+
+{% for camping in filtered_items %}
+  <a href="{{ camping.url | relative_url }}" class="item-card" data-gebied="{{ camping.locatie.gebied }}" data-regio="{{ camping.locatie.regio }}">
+    {% if camping.fotos and camping.fotos.size > 0 %}
+      <img src="{{ camping.fotos[0] | relative_url }}" alt="{{ camping.naam }}" loading="lazy">
+    {% else %}
+      <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #2d7a3f 0%, #d4a574 100%);"></div>
+    {% endif %}
+
+    <div class="item-content">
+      <h3>{{ camping.naam }}</h3>
+      <p class="item-location">{{ camping.locatie.plaats }}, {{ camping.locatie.regio }}</p>
+      {% if camping.locatie.gebied %}
+        <p class="item-gebied">{{ camping.locatie.gebied }}</p>
+      {% endif %}
+      <p class="item-description">{{ camping.beschrijving | truncatewords: 20 }}</p>
+
+      <div class="item-meta">
+        {% if camping.type %}
+          <span>{{ camping.type }}</span>
+        {% endif %}
+        {% if camping.aantal_plaatsen %}
+          <span>{{ camping.aantal_plaatsen }} plaatsen</span>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+{% endfor %}
