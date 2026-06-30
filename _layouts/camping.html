@@ -61,10 +61,6 @@ layout: default
     </div>
   </section>
 
-  <article class="prose-card camping-content">
-    {{ content }}
-  </article>
-
   {% assign winkels = page.voorzieningen.winkels | where_exp: "s", "s.naam != ''" %}
   {% assign horeca_buurt = page.voorzieningen.horeca_in_de_buurt | where_exp: "h", "h.naam != ''" %}
   {% assign horeca_op_camping = page.voorzieningen.horeca_op_camping | where_exp: "h", "h.naam != ''" %}

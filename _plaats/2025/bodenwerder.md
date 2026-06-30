@@ -1,6 +1,5 @@
 ---
 naam: "Bodenwerder"
-title: "Bodenwerder"
 
 locatie:
   plaats: "Bodenwerder"

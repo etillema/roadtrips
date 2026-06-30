@@ -46,14 +46,14 @@
       "type": "array",
       "items": { "$ref": "./defs.json#/$defs/bezienswaardigheidItem" }
     },
-    "gpx_bestand": { "type": "string" },
+    "gpx_bestand": { "type": "string", "format": "uri-reference" },
     "route_url":   { "type": "string", "format": "uri" },
     "horeca": {
       "type": "array",
       "items": { "$ref": "./defs.json#/$defs/horecaItem" }
     },
     "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
-    "fotos":        { "type": "array", "items": { "type": "string" } }
+    "fotos":        { "type": "array", "items": { "type": "string", "format": "uri-reference" } }
   },
   "additionalProperties": false
 }

@@ -1,6 +1,5 @@
 ---
 naam: "Weserterrassen"
-title: "Weserterrassen"
 
 locatie:
   plaats: "Polle"

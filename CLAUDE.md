@@ -7,6 +7,7 @@ Een Jekyll-website voor het bijhouden van roadtrip-informatie in Noord-West Euro
 ## Werkwijze met Claude Code
 
 - **Geen automatische commits**: wijzigingen worden NIET automatisch gecommit. Vraag expliciet om een commit met `commit` als je wilt dat wijzigingen worden opgeslagen in git.
+- **`make serve` en `jekyll serve` zijn taboe voor Claude**: Start deze zelf in de terminal met `make serve` of `bundle exec jekyll serve`. Claude voert deze commands NIET uit.
 
 ## Data beheer: Markdown → HTML
 
@@ -186,6 +187,7 @@ voorzieningen:
   horeca_op_camping:
     - naam: ""
       type: ""                 # restaurant | koffie | snackbar
+      url: ""                  # (optioneel) link naar website/reservering
       opmerking: ""
   winkels:
     - naam: ""
@@ -204,37 +206,43 @@ activiteiten:
     - titel: ""                # (optioneel) titel van de activiteit
       beschrijving: ""
       afstand_km: 0           # (optioneel) afstand van camping naar startpunt
-      url: ""
+      url: ""                 # externe URL
+      interne_url: ""         # interne URL naar eigen pagina
       fotos: []                # (optioneel) foto's
   wandelen:
     - titel: ""
       beschrijving: ""
       afstand_km: 0
-      url: ""
+      url: ""                 # externe URL
+      interne_url: ""         # link naar wandelroute pagina: /wandelroutes/...
       fotos: []
   fietsen:
     - titel: ""
       beschrijving: ""
       afstand_km: 0
-      url: ""
+      url: ""                 # externe URL
+      interne_url: ""         # link naar fietstocht pagina: /fietstochten/...
       fotos: []
   kano_en_sup:
     - titel: ""
       beschrijving: ""
       afstand_km: 0
-      url: ""
+      url: ""                 # externe URL
+      interne_url: ""         # link naar kano/sup route pagina: /kano-suproutes/...
       fotos: []
   plaatsen_en_dorpen:
     - titel: ""
       beschrijving: ""
       afstand_km: 0
-      url: ""
+      url: ""                 # externe URL
+      interne_url: ""         # link naar plaats pagina: /plaats/...
       fotos: []
   musea:
     - titel: ""
       beschrijving: ""
       afstand_km: 0
-      url: ""
+      url: ""                 # externe URL
+      interne_url: ""         # link naar museum pagina: /musea/...
       fotos: []
 
 fotos:                         # (optioneel) foto's van de camping
@@ -271,7 +279,8 @@ omschrijving_route: >
 
 bezienswaardigheden_onderweg:
   - beschrijving: ""
-    url: ""
+    url: ""                    # externe URL
+    interne_url: ""            # interne URL naar plaats/attractie pagina
 
 gpx_bestand: "/assets/gpx/bestandsnaam.gpx"
 route_url: ""
@@ -318,7 +327,8 @@ omschrijving_route: >
 
 bezienswaardigheden_onderweg:
   - beschrijving: ""
-    url: ""
+    url: ""                    # externe URL
+    interne_url: ""            # interne URL naar plaats/attractie pagina
 
 gpx_bestand: "/assets/gpx/bestandsnaam.gpx"
 route_url: ""
@@ -359,6 +369,23 @@ bezienswaardigheden:
 
 horeca: []
 
+activiteiten:                  # (optioneel) koppelingen naar relevante routes en activiteiten
+  wandelen:
+    - titel: ""
+      beschrijving: ""
+      afstand_km: 0
+      interne_url: ""         # link naar wandelroute pagina: /wandelroutes/...
+  fietsen:
+    - titel: ""
+      beschrijving: ""
+      afstand_km: 0
+      interne_url: ""         # link naar fietstocht pagina: /fietstochten/...
+  kano_en_sup:
+    - titel: ""
+      beschrijving: ""
+      afstand_km: 0
+      interne_url: ""         # link naar kano/sup route pagina: /kano-suproutes/...
+
 beschrijving: >
   Korte beschrijving voor de overzichtspagina.
 
@@ -391,6 +418,13 @@ openingstijden: "di–zo 10:00–17:00"
 toegangsprijs: "12,00 euro"
 
 horeca: []
+
+activiteiten:                  # (optioneel) koppelingen naar relevante routes en plaatsen
+  plaatsen_en_dorpen:
+    - beschrijving: ""
+      afstand_km: 0
+      url: ""                  # externe URL
+      interne_url: ""          # link naar plaats pagina: /plaats/...
 
 beschrijving: >
   Korte beschrijving voor de overzichtspagina.
@@ -438,7 +472,8 @@ verhuur:
 
 bezienswaardigheden_onderweg:
   - beschrijving: ""
-    url: ""
+    url: ""                    # externe URL
+    interne_url: ""            # interne URL naar plaats/attractie pagina
 
 gpx_bestand: ""
 route_url: ""

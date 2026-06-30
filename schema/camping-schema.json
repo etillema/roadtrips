@@ -52,6 +52,7 @@
             "properties": {
               "naam":     { "type": "string" },
               "type":     { "type": "string", "enum": ["restaurant", "koffie", "snackbar", ""] },
+              "url":      { "type": "string", "format": "uri" },
               "opmerking":{ "type": "string" }
             },
             "additionalProperties": false
@@ -91,7 +92,7 @@
       "additionalProperties": false
     },
     "activiteiten": { "$ref": "./defs.json#/$defs/activiteiten" },
-    "fotos": { "type": "array", "items": { "type": "string" } }
+    "fotos": { "type": "array", "items": { "type": "string", "format": "uri-reference" } }
   },
   "additionalProperties": false
 }

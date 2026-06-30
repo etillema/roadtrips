@@ -20,7 +20,8 @@
         "beschrijving": { "type": "string" },
         "afstand_km":   { "type": "number", "minimum": 0 },
         "url":          { "type": "string", "format": "uri" },
-        "fotos":        { "type": "array", "items": { "type": "string" } }
+        "interne_url":  { "type": "string", "format": "uri-reference" },
+        "fotos":        { "type": "array", "items": { "type": "string", "format": "uri-reference" } }
       },
       "additionalProperties": false
     },
@@ -42,7 +43,8 @@
       "properties": {
         "titel":        { "type": "string" },
         "beschrijving": { "type": "string" },
-        "url":          { "type": "string", "format": "uri" }
+        "url":          { "type": "string", "format": "uri" },
+        "interne_url":  { "type": "string", "format": "uri-reference" }
       },
       "additionalProperties": false
     },
