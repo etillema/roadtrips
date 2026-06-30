@@ -27,17 +27,17 @@ activiteiten:
   wandelen:
     - beschrijving: "Durch das Habichtstal (Po 2) - rondwandeling van 7,1 km door bossen en het achterland van Polle"
       afstand_km: 0
-      url: "https://www.outdooractive.com/de/route/wanderung/solling-vogler-region/durch-das-habichtstal-po-2-/7445931/"
+      interne_url: "/wandelroutes/durch-das-habichtstal/"
 
   fietsen:
     - beschrijving: "Weser-Radweg - Polle ligt direct aan de route. Mooie fietspaden langs de Weser richting Höxter en Hameln"
       afstand_km: 0
-      url: "https://nl.teutoburgerwald.de/natuur/mijn-dag-in-de-natuur/tour/weser-radweg-hoexter-hameln"
+      interne_url: "/fietstochten/weser-radweg-hoexter-hameln/"
 
   campings:
     - beschrijving: "Camping Weserterrassen - familiecamping direct aan de Weser met eigen restaurant"
       afstand_km: 0
-      url: "https://weserterrassen.de/"
+      interne_url: "/campings/weserterrassen/"
 
 fotos:
   - "/assets/images/plaatsen/polle/IMG_1701-ruine-polle-1280x960.webp"

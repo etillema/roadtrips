@@ -66,13 +66,13 @@ activiteiten:
     - titel: "Wandeling Habichtstal"
       beschrijving: "Rondwandeling van 7,1 km (ca. 2u15) door bos en open vergezichten bij Polle."
       afstand_km: 0
-      url: "https://www.wanderverband.de/wege/alle-wege/durchs-habichtstal-po-2-c87d4fb708"
+      interne_url: "/wandelroutes/durch-das-habichtstal/"
 
   fietsen:
     - titel: "Weser-Radweg (Höxter-Hameln, deeltraject)"
       beschrijving: "Je kunt vanaf de camping direct een deel van het Weser-Radweg fietsen, een goed begaanbaar fietspad langs de rivier de Weser tussen Höxter en Hameln."
       afstand_km: 0
-      url: ""
+      interne_url: "/fietstochten/weser-radweg-hoexter-hameln/"
 
   kano_en_sup:
     - titel: "Kanovaren op de Weser"
@@ -90,33 +90,33 @@ activiteiten:
     - titel: "Höxter"
       beschrijving: "Historisch vakwerkstadje aan de Weser, bekend om de Weserrenaissance-gevels in de oude binnenstad en de nabijgelegen werelderfgoedsite Klooster Corvey."
       afstand_km: 18
-      url: ""
+      interne_url: "/plaats/hoxter/"
     - titel: "Bodenwerder"
       beschrijving: "Leuk vakwerkstadje aan de Weser, bekend als geboorteplaats van baron Von Münchhausen, met standbeelden en fonteinen die zijn verhalen uitbeelden; wel veel leegstand in de binnenstad."
       afstand_km: 15
-      url: ""
+      interne_url: "/plaats/bodenwerder/"
     - titel: "Bad Pyrmont"
       beschrijving: "Oud kuuroord met een prachtig kurpark om doorheen te wandelen (met o.a. een palmentuin). De fietstocht hierheen heeft behoorlijk wat hoogtemeters."
       afstand_km: 25
-      url: ""
+      interne_url: "/plaats/bad-pyrmont/"
 
   musea:
     - titel: "Klooster Corvey"
       beschrijving: "UNESCO-werelderfgoed bij Höxter, met het 1200 jaar oude karolingische Westwerk van de abdijkerk, een mooie kloostertuin en een indrukwekkende bibliotheek met zeer oude boeken."
       afstand_km: 15
-      url: ""
+      interne_url: "/plaats/hoxter/"
     - titel: "Münchhausen-Museum"
       beschrijving: "Klein museum over het leven en de verzonnen verhalen van baron Von Münchhausen, gevestigd in de historische Schulenburg; klein maar grappig om te bekijken."
       afstand_km: 15
-      url: ""
+      interne_url: "/plaats/bodenwerder/"
     - titel: "Schloss Hämelschenburg"
       beschrijving: "Waterkasteel uit 1588-1613 in Emmerthal, hoofdwerk van de Weserrenaissance, nog altijd bewoond door familie Von Klencke, met historische interieurs, kunstcollecties en tuinen."
       afstand_km: 21
-      url: ""
+      interne_url: "/plaats/hameln/"
     - titel: "Burgruine Polle"
       beschrijving: "Middeleeuwse burchtruïne direct boven de camping, met een beklimbare ronde toren en een prachtig uitzicht over de Weser. In het bijbehorende kleine museum zijn archeologische vondsten te zien."
       afstand_km: 0
-      url: ""
+      interne_url: "/plaats/polle/"
 
 fotos: []
 review_datum: "2025-09-30"

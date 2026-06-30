@@ -31,7 +31,6 @@ activiteiten:
   musea:
     - beschrijving: "Museum im Schloss Bad Pyrmont - slot met museum over de geschiedenis van de kuurplaats, mooi kuurpark"
       afstand_km: 0
-      url: "https://www.museumpyrmont.de/"
 
 fotos:
   - "/assets/images/plaatsen/bad-pyrmont/IMG_1812-kurpark-bad-pyrmond-1280x960.webp"

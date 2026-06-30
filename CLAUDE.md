@@ -99,6 +99,48 @@ roadtrips/
 - [ ] Alle velden volledig ingevuld (lege strings `""` of lege arrays `[]` zijn OK)
 - [ ] HTML pagina bevat ALLE beschrijvingen en details
 
+## Camping met activiteiten toevoegen
+
+Wanneer je een YAML bestand met een camping en bijbehorende activiteiten toevoegt:
+
+1. **Maak eerst de Markdown bestanden voor alle activiteiten** in de bijbehorende collecties:
+   - `_wandelroutes/naam.md` voor wandelroutes
+   - `_fietstochten/naam.md` voor fietstochten
+   - `_kano_suproutes/naam.md` voor kano/SUP routes
+   - `_plaats/naam.md` voor plaatsen en dorpen
+   - `_musea/naam.md` voor musea
+
+2. **Voeg interne links toe in de camping's activiteiten sectie**:
+   - Gebruik `interne_url` (niet `url`) voor links naar eigen pagina's
+   - Zorg dat de pad exact overeenkomt met de bestandsnaam (zonder `.md` extensie)
+   - Voorbeeld: `_wandelroutes/durch-das-habichtstal.md` → `/wandelroutes/durch-das-habichtstal/`
+
+3. **Template link structuur**:
+   ```yaml
+   activiteiten:
+     wandelen:
+       - titel: "Wandeling Habichtstal"
+         beschrijving: "..."
+         afstand_km: 0
+         interne_url: "/wandelroutes/durch-das-habichtstal/"
+     fietsen:
+       - titel: "Weser-Radweg"
+         beschrijving: "..."
+         afstand_km: 0
+         interne_url: "/fietstochten/weser-radweg-hoexter-hameln/"
+   ```
+
+4. **Zorg dat ook de plaatsen-pagina's interne links hebben** naar relevante activiteiten (gebruik `interne_url` in hun `activiteiten` sectie)
+
+5. **Voeg externe links toe aan activiteitenpagina's**:
+   - Elke activiteitenpagina kan een `url` veld hebben met een link naar een externe website
+   - Dit kan zijn: OutdoorActive, website van het museum/attractie, Google Maps link, etc.
+   - **Als de externe URL niet bekend is, vraag ernaar aan de gebruiker** (vraag niet zomaar aan om het in te vullen - wacht op antwoord)
+   - Voorbeeld in front matter:
+   ```yaml
+   url: "https://www.outdooractive.com/de/route/wanderung/..."
+   ```
+
 ## Front matter templates per categorie
 
 De volledige, geannoteerde templates staan in de map `/templates/`. Zie daar voor de meest actuele versie.

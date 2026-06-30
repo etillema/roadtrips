@@ -30,12 +30,11 @@ activiteiten:
   fietsen:
     - beschrijving: "Weser-Radweg - fietstocht langs de Weser"
       afstand_km: 0
-      url: ""
+      interne_url: "/fietstochten/weser-radweg-hoexter-hameln/"
 
   musea:
     - beschrijving: "Münchhausen-Museum"
       afstand_km: 0
-      url: ""
 
 fotos: []
 review_datum: "2025-09-30"

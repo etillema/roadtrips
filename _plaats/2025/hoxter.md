@@ -27,7 +27,7 @@ activiteiten:
   fietsen:
     - beschrijving: "Weser-Radweg - vlakke fietstocht langs de Weser"
       afstand_km: 0
-      url: "https://nl.teutoburgerwald.de/natuur/mijn-dag-in-de-natuur/tour/weser-radweg-hoexter-hameln"
+      interne_url: "/fietstochten/weser-radweg-hoexter-hameln/"
 
   musea:
     - beschrijving: "Klooster Corvey - UNESCO-Werelderfgoed met mooie kerk, indrukwekkende bibliotheek en mooie tuin"
