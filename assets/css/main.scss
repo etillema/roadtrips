@@ -3862,19 +3862,23 @@ a {
   font-weight: 400;
 }
 
-// ── INTRO SECTION (2 KOLOMMEN: CONTENT + FOTO) ────────────────────────────────
+// ── INTRO SECTION ────────────────────────────────────────────────────────
 
-.intro-section {
-  max-width: 1200px;
+.intro-with-gallery {
+  max-width: 1400px;
   margin: 0 auto 3rem;
   padding: 0 1rem;
 }
 
-.intro-grid {
+.intro-gallery-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3rem;
   align-items: start;
+}
+
+.intro-section {
+  padding: 0;
 }
 
 .intro-content {
@@ -3903,34 +3907,23 @@ a {
   }
 }
 
-.intro-photo {
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    display: block;
-  }
+// Reduceer gallery grootte in de grid
+.intro-gallery-grid {
+  .camping-gallery {
+    margin: 0;
+    padding: 0;
+    align-self: start;
 
-  .photo-placeholder {
-    width: 100%;
-    aspect-ratio: 3/4;
-    background: linear-gradient(135deg, #2d7a3f 0%, #d4a574 100%);
-    border-radius: 8px;
+    .gallery-slide {
+      max-height: 400px;
+      object-fit: cover;
+    }
   }
 }
 
 @media (max-width: 768px) {
-  .intro-grid {
+  .intro-gallery-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-
-  .intro-content h2 {
-    font-size: 1.5rem;
-  }
-
-  .intro-photo {
-    max-width: 100%;
   }
 }

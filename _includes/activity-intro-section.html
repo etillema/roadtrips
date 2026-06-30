@@ -1,27 +1,17 @@
 <section class="intro-section">
-  <div class="intro-grid">
-    <div class="intro-content">
-      <h2>Over deze activiteit</h2>
-      {% if page.beschrijving %}
-        <p class="intro-text">{{ page.beschrijving }}</p>
-      {% endif %}
-      {% if page.omschrijving_route %}
-        <div class="sfeer-content">
-          {{ page.omschrijving_route | markdownify }}
-        </div>
-      {% endif %}
+  <div class="intro-content">
+    <h2>Over deze activiteit</h2>
+    {% if page.beschrijving %}
+      <p class="intro-text">{{ page.beschrijving }}</p>
+    {% endif %}
+    {% if page.omschrijving_route %}
+      <div class="sfeer-content">
+        {{ page.omschrijving_route | markdownify }}
+      </div>
+    {% endif %}
 
-      {% if page.website %}
-        <p><a href="{{ page.website }}" target="_blank" rel="noopener" class="text-link">Bezoek de website →</a></p>
-      {% endif %}
-    </div>
-
-    <aside class="intro-photo">
-      {% if page.fotos and page.fotos.size > 0 %}
-        <img src="{{ page.fotos[0] | relative_url }}" alt="{{ page.naam }}" loading="lazy">
-      {% else %}
-        <div class="photo-placeholder"></div>
-      {% endif %}
-    </aside>
+    {% if page.website %}
+      <p><a href="{{ page.website }}" target="_blank" rel="noopener" class="text-link">Bezoek de website →</a></p>
+    {% endif %}
   </div>
 </section>

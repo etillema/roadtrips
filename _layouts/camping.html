@@ -4,9 +4,12 @@ layout: default
 
 {% include page-header.html %}
 
-{% include camping-intro-section.html %}
-
-{% include camping-photo-gallery.html %}
+<section class="intro-with-gallery">
+  <div class="intro-gallery-grid">
+    {% include camping-intro-section.html %}
+    {% include camping-photo-gallery.html %}
+  </div>
+</section>
 
 <main class="page-shell camping-page">
 
