@@ -1268,11 +1268,32 @@ a {
   z-index: 10;
 }
 
+// ── DETAILS & CONTACT GRID (camping) ──────────────────────────────────────────
+
+.details-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 40px;
+}
+
+.details-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-column {
+  display: flex;
+  flex-direction: column;
+}
+
 // ── CONTENT GRID ──────────────────────────────────────────────────────────────
 
 .content-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
   align-items: start;
   margin-bottom: 96px;
@@ -1638,7 +1659,7 @@ a {
 
 .activity-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
   margin-bottom: 0;
 }

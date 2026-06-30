@@ -52,6 +52,7 @@ voorzieningen:
   horeca_op_camping:
     - naam: "Restaurant Weserterrassen"
       type: "restaurant"
+      url: "https://weserterrassen.de/restaurant/"
       opmerking: "Eenvoudige Duitse kaart"
 
   winkels:

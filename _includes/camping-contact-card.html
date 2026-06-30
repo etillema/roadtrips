@@ -26,6 +26,15 @@
     </div>
   {% endif %}
 
+  {% if page.website %}
+    <div class="contact-item">
+      <span class="contact-label">Website</span>
+      <p class="contact-value">
+        <a href="{{ page.website }}" target="_blank" rel="noopener">{{ page.website | replace: 'https://', '' | replace: 'http://', '' }}</a>
+      </p>
+    </div>
+  {% endif %}
+
   {% if page.type or page.aantal_plaatsen %}
     <div class="contact-item contact-item--last">
       {% if page.type %}

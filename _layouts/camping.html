@@ -13,11 +13,10 @@ layout: default
 
 <main class="page-shell camping-page">
 
-  <section class="content-grid">
-    <article class="prose-card">
-
+  <!-- Details en Contact in 2 kolommen -->
+  <section class="details-contact-grid">
+    <div class="details-column">
       {% if page.ligging or page.kenmerken_kampeerplek or page.sanitair or page.voorzieningen %}
-        <hr class="soft-divider" />
 
         {% if page.ligging %}
           <div class="detail-block">
@@ -55,13 +54,20 @@ layout: default
           </div>
         {% endif %}
       {% endif %}
+    </div>
 
+    <div class="contact-column">
+      {% include camping-contact-card.html %}
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <article class="prose-card">
       {{ content }}
     </article>
 
     <aside class="side-stack">
       {% include camping-map-card.html %}
-      {% include camping-contact-card.html %}
     </aside>
   </section>
 
