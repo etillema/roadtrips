@@ -1299,6 +1299,12 @@ a {
   margin-bottom: 96px;
 }
 
+.camping-content {
+  max-width: 1200px;
+  margin: 0 auto 96px;
+  padding: 0 1rem;
+}
+
 .prose-card {
   background: var(--color-surface);
   border-radius: var(--radius-md);
@@ -1655,6 +1661,32 @@ a {
   &:first-of-type {
     margin-top: 0;
   }
+}
+
+// ── HORECA & MAP GRID (camping) ────────────────────────────────────────────────
+
+.horeca-map-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 96px;
+}
+
+.horeca-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.horeca-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.map-column {
+  display: flex;
+  flex-direction: column;
 }
 
 .activity-grid {
@@ -3334,8 +3366,7 @@ a {
   height: fit-content;
 }
 
-.place-info-card,
-.map-card {
+.place-info-card {
   background: var(--color-surface);
   padding: 28px;
   border-radius: 20px;

@@ -61,24 +61,19 @@ layout: default
     </div>
   </section>
 
-  <section class="content-grid">
-    <article class="prose-card">
-      {{ content }}
-    </article>
-
-    <aside class="side-stack">
-      {% include camping-map-card.html %}
-    </aside>
-  </section>
+  <article class="prose-card camping-content">
+    {{ content }}
+  </article>
 
   {% assign winkels = page.voorzieningen.winkels | where_exp: "s", "s.naam != ''" %}
   {% assign horeca_buurt = page.voorzieningen.horeca_in_de_buurt | where_exp: "h", "h.naam != ''" %}
   {% assign horeca_op_camping = page.voorzieningen.horeca_op_camping | where_exp: "h", "h.naam != ''" %}
 
   {% if page.voorzieningen and winkels.size > 0 or horeca_buurt.size > 0 or horeca_op_camping.size > 0 %}
-    <section class="nearby-section">
-      <h2>Winkels en Restaurants</h2>
-      <div class="horeca-grid-3col">
+    <section class="horeca-map-grid">
+      <div class="horeca-section">
+        <h2>Winkels en Restaurants</h2>
+        <div class="horeca-grid-2col">
         {% if winkels.size > 0 %}
           <div class="horeca-column">
             <h3 class="horeca-column-title">Winkels</h3>
@@ -129,6 +124,11 @@ layout: default
             </div>
           </div>
         {% endif %}
+        </div>
+      </div>
+
+      <div class="map-column">
+        {% include camping-map-card.html %}
       </div>
     </section>
   {% endif %}
