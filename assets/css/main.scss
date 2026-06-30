@@ -3861,3 +3861,76 @@ a {
   padding: 0;
   font-weight: 400;
 }
+
+// ── INTRO SECTION (2 KOLOMMEN: CONTENT + FOTO) ────────────────────────────────
+
+.intro-section {
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 1rem;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 3rem;
+  align-items: start;
+}
+
+.intro-content {
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .sfeer-content {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .text-link {
+    display: inline-block;
+    margin-top: 1rem;
+  }
+}
+
+.intro-photo {
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, #2d7a3f 0%, #d4a574 100%);
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .intro-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .intro-photo {
+    max-width: 100%;
+  }
+}

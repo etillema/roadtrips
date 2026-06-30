@@ -4,18 +4,12 @@ layout: default
 
 {% include page-header.html %}
 
-{% include place-hero.html %}
+{% include place-intro-section.html %}
 
 <main class="page-shell place-page">
   <section class="place-layout">
     <article class="place-content">
       <section class="prose-card">
-        <h2>Over {{ page.title }}</h2>
-        {% if page.omschrijving_sfeer %}
-          {{ page.omschrijving_sfeer | markdownify }}
-        {% elsif page.beschrijving %}
-          <p>{{ page.beschrijving }}</p>
-        {% endif %}
         {{ content }}
       </section>
 
